@@ -1,6 +1,8 @@
 import sys
 
 from PyQt6 import QtWidgets, QtGui
+import conexion
+import var
 
 
 class Eventos():
@@ -19,3 +21,13 @@ class Eventos():
             sys.exit()
         else:
             mbox.hide()
+
+    def cargarProvincias(self):
+        var.ui.cmbProvcli.clear()
+        listado = conexion.Conexion().listaProv(self)
+        var.ui.cmbProvcli.addItems(listado)
+
+    def cargarMunicipio(self):
+        var.ui.cmbMunicli.clear()
+        listado = conexion.Conexion().listaMuni(self)
+        var.ui.cmbMunicli.addItems(listado)

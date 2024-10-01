@@ -70,285 +70,6 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <layout class="QGridLayout" name="gridLayout_3">
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinAndMaxSize</enum>
-            </property>
-            <item row="0" column="0" rowspan="4">
-             <spacer name="horizontalSpacer_11">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLabel" name="lblDnicli">
-              <property name="text">
-               <string>DNI/CIF:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLineEdit" name="txtEmailcli">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>300</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="4">
-             <widget class="QLabel" name="lblMovilcli">
-              <property name="text">
-               <string>Móvil:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLineEdit" name="txtApelcli">
-              <property name="minimumSize">
-               <size>
-                <width>300</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>400</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="5" colspan="7">
-             <widget class="QLineEdit" name="txtNomcli">
-              <property name="minimumSize">
-               <size>
-                <width>300</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>450</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="3">
-             <spacer name="horizontalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="1">
-             <widget class="QLabel" name="lblDircli">
-              <property name="text">
-               <string>Dirección:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="3">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="2" column="5" colspan="4">
-             <widget class="QLineEdit" name="txtMovilcli">
-              <property name="minimumSize">
-               <size>
-                <width>150</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>150</width>
-                <height>16777215</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="2" colspan="4">
-             <widget class="QLineEdit" name="txtDircli">
-              <property name="minimumSize">
-               <size>
-                <width>400</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="6">
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLineEdit" name="txtDnicli">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="minimumSize">
-               <size>
-                <width>120</width>
-                <height>0</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: rgb(255, 251, 193);</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="7">
-             <widget class="QLabel" name="lblProvcli">
-              <property name="text">
-               <string>Provincia:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="12" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-             <widget class="QCheckBox" name="chkHisoriacli">
-              <property name="text">
-               <string>Histórico</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <widget class="QLabel" name="lblNomcli">
-              <property name="text">
-               <string>Nombre</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="8">
-             <widget class="QComboBox" name="cmbProvcli">
-              <property name="minimumSize">
-               <size>
-                <width>120</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="9">
-             <spacer name="horizontalSpacer_4">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Fixed</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>17</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="10">
-             <widget class="QLabel" name="lblMunicli">
-              <property name="text">
-               <string>Municipio</string>
-              </property>
-             </widget>
-            </item>
-            <item row="3" column="11" colspan="2">
-             <widget class="QComboBox" name="cmbMunicli">
-              <property name="minimumSize">
-               <size>
-                <width>180</width>
-                <height>0</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLabel" name="lblApelcli">
-              <property name="text">
-               <string>Apellidos:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLabel" name="lblEmailcli">
-              <property name="text">
-               <string>Email:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="13" rowspan="4">
-             <spacer name="horizontalSpacer_12">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeType">
-               <enum>QSizePolicy::Expanding</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
-          </item>
           <item row="2" column="0">
            <widget class="QFrame" name="frame">
             <layout class="QHBoxLayout" name="horizontalLayout">
@@ -456,6 +177,356 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinAndMaxSize</enum>
+            </property>
+            <item row="3" column="7">
+             <widget class="QLabel" name="lblProvcli">
+              <property name="text">
+               <string>Provincia:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="4">
+             <widget class="QLabel" name="lblNomcli">
+              <property name="text">
+               <string>Nombre</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="9">
+             <spacer name="horizontalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>17</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="12" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+             <widget class="QCheckBox" name="chkHisoriacli">
+              <property name="text">
+               <string>Histórico</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="8">
+             <widget class="QComboBox" name="cmbProvcli">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="lblApelcli">
+              <property name="text">
+               <string>Apellidos:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="11" colspan="2">
+             <widget class="QComboBox" name="cmbMunicli">
+              <property name="minimumSize">
+               <size>
+                <width>180</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="10">
+             <widget class="QLabel" name="lblMunicli">
+              <property name="text">
+               <string>Municipio</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QLineEdit" name="txtEmailcli">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLineEdit" name="txtApelcli">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="lblDnicli">
+              <property name="text">
+               <string>DNI/CIF:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="4">
+             <widget class="QLabel" name="lblMovilcli">
+              <property name="text">
+               <string>Móvil:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="5" colspan="7">
+             <widget class="QLineEdit" name="txtNomcli">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>450</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLabel" name="lblDircli">
+              <property name="text">
+               <string>Dirección:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="6">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="3" column="2" colspan="4">
+             <widget class="QLineEdit" name="txtDircli">
+              <property name="minimumSize">
+               <size>
+                <width>400</width>
+                <height>0</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLineEdit" name="txtDnicli">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: rgb(255, 251, 193);</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="5" colspan="4">
+             <widget class="QLineEdit" name="txtMovilcli">
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>150</width>
+                <height>16777215</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0" rowspan="4">
+             <spacer name="horizontalSpacer_11">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLabel" name="lblEmailcli">
+              <property name="text">
+               <string>Email:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="13" rowspan="4">
+             <spacer name="horizontalSpacer_12">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="7">
+             <widget class="QLineEdit" name="txtAltacli">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="8">
+             <widget class="QPushButton" name="btnCaledarcli">
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>28</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color : rgb(255, 255, 255)</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>img/calendar.ico</normaloff>img/calendar.ico</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="6">
+             <widget class="QLabel" name="lblAltacli">
+              <property name="text">
+               <string>Fecha Alta:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="3">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="3">
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="3">
+             <spacer name="horizontalSpacer_9">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::Fixed</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>

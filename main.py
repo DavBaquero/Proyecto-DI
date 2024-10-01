@@ -26,6 +26,11 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
 
+        '''
+        eventos de cajas de texto
+        '''
+        var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()

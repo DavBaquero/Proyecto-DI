@@ -34,6 +34,11 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
 
+        '''
+        eventos combobox
+        '''
+        var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMunicipio)
+
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()

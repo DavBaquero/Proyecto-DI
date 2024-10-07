@@ -8,9 +8,9 @@ class Calendar(QtWidgets.QDialog):
         super(Calendar, self).__init__()
         var.uicalendar = Ui_dlgCalendar()
         var.uicalendar.setupUi(self)
-        dia = datetime.today().day
-        mes = datetime.today().month
-        ano = datetime.today().year
+        dia = datetime.now().day
+        mes = datetime.now().month
+        ano = datetime.now().year
 
         var.uicalendar.Calendar.setSelectedDate((QtCore.QDate(ano, mes, dia)))
         var.uicalendar.Calendar.clicked.connect(eventos.Eventos.cargarFecha)

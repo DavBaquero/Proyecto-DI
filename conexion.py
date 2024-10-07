@@ -52,11 +52,13 @@ class Conexion:
         return listaprov
 
     @staticmethod
-    def listaMuni(self):
-        listamuni = []
+    def listaMuni(provincia):
+
+        listamunicipios = []
         query = QtSql.QSqlQuery()
-        query.prepare("SELECT * FROM municipios")
+        query.prepare("SELECT * FROM municipios where idprov = (select idprov from provincias where provincia = ?)")
+        query.bindValue(0, provincia)
         if query.exec():
             while query.next():
-                listamuni.append(query.value(1))
-        return listamuni
+                listamunicipios.append(query.value(1))
+        return listamunicipios

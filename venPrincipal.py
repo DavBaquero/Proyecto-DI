@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file 'venPrincipal.ui'
+# Form implementation generated from reading ui file '.\templates\venPrincipal.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
@@ -22,7 +22,7 @@ class Ui_venPrincipal(object):
         venPrincipal.setFocusPolicy(QtCore.Qt.FocusPolicy.TabFocus)
         venPrincipal.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.DefaultContextMenu)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("img/66_85286.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\templates\\img/66_85286.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         venPrincipal.setWindowIcon(icon)
         venPrincipal.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         venPrincipal.setIconSize(QtCore.QSize(30, 30))
@@ -164,7 +164,7 @@ class Ui_venPrincipal(object):
         self.btnCaledarcli.setStyleSheet("background-color : rgb(255, 255, 255)")
         self.btnCaledarcli.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(".\\templates\\img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btnCaledarcli.setIcon(icon1)
         self.btnCaledarcli.setObjectName("btnCaledarcli")
         self.gridLayout.addWidget(self.btnCaledarcli, 0, 9, 1, 1)

@@ -1,7 +1,8 @@
 from tabnanny import check
 
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets,QtGui
 
+import conexion
 import eventos
 import var
 class Clientes:
@@ -21,8 +22,25 @@ class Clientes:
             print("Error check cliente ", e)
 
     def altaCliente(self):
-        dni = var.ui.txtDnicli.text()
-        print(dni)
+        try:
+            nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
+                     var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
+                     var.ui.cmbMunicli.currentText()]
+            if conexion.Conexion.altaCliente(nuevocli):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Cliente alta base de datos')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+            else:
+                QtWidgets.QMessageBox.critical("Error al dar alta")
+
+        except Exception as e:
+            print("Error alta cliente ", e)
 
     def checkEmail(mail):
         try:

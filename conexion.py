@@ -1,5 +1,5 @@
 import os
-from PyQt6 import QtSql, QtWidgets
+from PyQt6 import QtSql, QtWidgets, QtGui
 
 class Conexion:
 
@@ -62,3 +62,28 @@ class Conexion:
             while query.next():
                 listamunicipios.append(query.value(1))
         return listamunicipios
+
+    def altaCliente(nuevocli):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO CLIENTES(dnicli, altacli, apelcli, nomecli, emailcli, "
+                          "movilcli, dircli, provcli, municli) VALUES (:dnicli, :altacli, :apelcli, :nomecli, "
+                          ":emailcli, :movilcli, :dircli, :provcli, :municli)")
+            query.bindValue(":dnicli", str(nuevocli[0]))
+            query.bindValue(":altacli", str(nuevocli[1]))
+            query.bindValue(":apelcli", str(nuevocli[2]))
+            query.bindValue(":nomecli", str(nuevocli[3]))
+            query.bindValue(":emailcli", str(nuevocli[4]))
+            query.bindValue(":movilcli", str(nuevocli[5]))
+            query.bindValue(":dircli", str(nuevocli[6]))
+            query.bindValue(":provcli", str(nuevocli[7]))
+            query.bindValue(":municli", str(nuevocli[8]))
+            if query.exec():
+                return True
+            else:
+                return False
+
+
+
+        except Exception as e:
+            print("error en alta cliente ", e)

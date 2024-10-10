@@ -26,6 +26,11 @@ class Clientes:
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
                      var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
                      var.ui.cmbMunicli.currentText()]
+            for i in nuevocli:
+                if i == "":
+                    QtWidgets.QMessageBox.critical(None, "Error", "Error al dar alta")
+                    return
+
             if conexion.Conexion.altaCliente(nuevocli):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -36,8 +41,9 @@ class Clientes:
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
             else:
-                QtWidgets.QMessageBox.critical("Error al dar alta")
+                QtWidgets.QMessageBox.critical(None, "Error","Error al dar alta")
 
         except Exception as e:
             print("Error alta cliente ", e)

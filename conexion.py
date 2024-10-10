@@ -82,8 +82,18 @@ class Conexion:
                 return True
             else:
                 return False
-
-
-
         except Exception as e:
             print("error en alta cliente ", e)
+
+    def listadoClientes(self):
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+        except Exception as e:
+            print("error listado en conexion ", e)

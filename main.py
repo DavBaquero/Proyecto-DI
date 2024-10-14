@@ -7,6 +7,7 @@ import styles
 from venPrincipal import *
 import sys
 import var
+import conexionserver
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -14,8 +15,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
+        var.dlgAbrir = FileDialogAbrir()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
+        # conexionserver.ConexionServer.crear_conexion()
         eventos.Eventos.cargarProvincias(self)
         eventos.Eventos.cargarMunicipio(self)
         clientes.Clientes.cargaTablaClientes(self)
@@ -25,6 +28,8 @@ class Main(QtWidgets.QMainWindow):
         zona de eventos del menubar
         '''
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
+        var.ui.actionCrear_backup.triggered.connect(eventos.Eventos.crearBackup)
+        var.ui.actionRestaurar_backup.triggered.connect(eventos.Eventos.restaurarBackup)
 
         '''
         eventos de botones

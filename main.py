@@ -41,7 +41,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
         var.ui.btnAltacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0))
-
+        var.ui.btnModificli.clicked.connect(clientes.Clientes.modifCliente)
         '''
         eventos de cajas de texto
         '''

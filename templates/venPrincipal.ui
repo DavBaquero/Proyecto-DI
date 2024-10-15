@@ -433,7 +433,7 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color : rgb(255, 255, 255)</string>
+               <string notr="true">background-color : whitesmoke</string>
               </property>
               <property name="text">
                <string/>
@@ -531,6 +531,67 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="0" column="10">
+             <widget class="QLabel" name="lblBajacli">
+              <property name="minimumSize">
+               <size>
+                <width>70</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>70</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Fecha Baja</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="11">
+             <widget class="QLineEdit" name="txtBajacli">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>20</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="12">
+             <widget class="QPushButton" name="btnBajacli">
+              <property name="minimumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>30</width>
+                <height>30</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color : whitesmoke</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>

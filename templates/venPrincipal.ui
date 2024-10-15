@@ -553,6 +553,11 @@
           </property>
           <column>
            <property name="text">
+            <string>DNI/CIF</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
             <string>Apellidos</string>
            </property>
           </column>
@@ -573,7 +578,7 @@
           </column>
           <column>
            <property name="text">
-            <string>New Column</string>
+            <string>Municipio</string>
            </property>
           </column>
           <column>
@@ -661,8 +666,22 @@
     <addaction name="actionCrear_Backup"/>
     <addaction name="actionRestaurar_Backup"/>
    </widget>
+   <widget class="QMenu" name="menuAyuda">
+    <property name="geometry">
+     <rect>
+      <x>373</x>
+      <y>133</y>
+      <width>135</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Ayuda</string>
+    </property>
+   </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuHerramientas"/>
+   <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSalir">

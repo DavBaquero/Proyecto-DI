@@ -22,20 +22,26 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarProvincias(self)
         eventos.Eventos.cargarMunicipio(self)
         clientes.Clientes.cargaTablaClientes(self)
+
+        '''
+        zona de eventos de las tablas
+        '''
         eventos.Eventos.resizeTablaClientes(self)
+        var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
 
         '''
         zona de eventos del menubar
         '''
         var.ui.actionSalir.triggered.connect(eventos.Eventos.mensajeSalir)
-        var.ui.actionCrear_backup.triggered.connect(eventos.Eventos.crearBackup)
-        var.ui.actionRestaurar_backup.triggered.connect(eventos.Eventos.restaurarBackup)
+        var.ui.actionCrear_Backup.triggered.connect(eventos.Eventos.crearBackup)
+        var.ui.actionRestaurar_Backup.triggered.connect(eventos.Eventos.restaurarBackup)
 
         '''
         eventos de botones
         '''
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
         var.ui.btnAltacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0))
+
         '''
         eventos de cajas de texto
         '''

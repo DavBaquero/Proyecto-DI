@@ -132,3 +132,13 @@ class Conexion:
                 return False
         except Exception as e:
             print("error en modifiCliente ", e)
+
+    def bajaCliente(datos):
+        query = QtSql.QSqlQuery()
+        query.prepare("UPDATE clientes SET bajacli = :bajacli WHERE dnicli = :dnicli ")
+        query.bindValue = (":bajacli", str(datos[0]))
+        query.bindValue = (":dnicli", str(datos[1]))
+        if query.exec():
+            return True
+        else:
+            return False

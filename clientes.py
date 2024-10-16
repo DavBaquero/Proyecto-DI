@@ -101,7 +101,7 @@ class Clientes:
                         var.ui.txtNomcli,
                         var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
                         var.ui.cmbProvcli,
-                        var.ui.cmbMunicli]
+                        var.ui.cmbMunicli, var.ui.txtBajacli]
             for i in range(len(listado)):
                 if i == 7 or i == 8:
                     listado[i].setCurrentText(registro[i])
@@ -147,3 +147,33 @@ class Clientes:
             clientes.Clientes.cargaTablaClientes
         except Exception as e:
             print("Error al modificar cliente ", e)
+
+    def bajaCliente(self):
+        try:
+            datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
+            if conexion.Conexion.bajaCliente(datos):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Cliente borrado')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Clientes.cargaTablaClientes(self)
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Error al dar de baja')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Clientes.cargaTablaClientes(self)
+        except Exception as e:
+            print("error bajaCliente", e)

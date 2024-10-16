@@ -745,6 +745,24 @@
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: whitesmoke</string>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionbarLimpar"/>
+   <addaction name="separator"/>
+   <addaction name="actionbarSalir"/>
+   <addaction name="separator"/>
+  </widget>
   <action name="actionSalir">
    <property name="text">
     <string>Salir</string>
@@ -758,6 +776,36 @@
   <action name="actionRestaurar_Backup">
    <property name="text">
     <string>Restaurar Backup</string>
+   </property>
+  </action>
+  <action name="actionbarLimpar">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/clear.ico</normaloff>../img/clear.ico</iconset>
+   </property>
+   <property name="text">
+    <string>barLimpar</string>
+   </property>
+   <property name="toolTip">
+    <string>Limpar</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+R</string>
+   </property>
+  </action>
+  <action name="actionbarSalir">
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
+   </property>
+   <property name="text">
+    <string>barSalir</string>
+   </property>
+   <property name="toolTip">
+    <string>Salir</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+S</string>
    </property>
   </action>
  </widget>

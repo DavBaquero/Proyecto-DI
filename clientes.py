@@ -1,3 +1,5 @@
+import time
+
 from PyQt6 import QtWidgets,QtGui, QtCore
 
 import clientes

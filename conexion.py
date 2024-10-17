@@ -67,7 +67,7 @@ class Conexion:
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO CLIENTES(dnicli, altacli, apelcli, nomecli, emailcli, "
-                          "movilcli, dircli, provcli, municli) VALUES (:dnicli, :altacli, :apelcli, :nomecli, "
+                          "movilcli, dircli, provcli, municli, bajacli) VALUES (:dnicli, :altacli, :apelcli, :nomecli, "
                           ":emailcli, :movilcli, :dircli, :provcli, :municli)")
             query.bindValue(":dnicli", str(nuevocli[0]))
             query.bindValue(":altacli", str(nuevocli[1]))
@@ -133,12 +133,14 @@ class Conexion:
         except Exception as e:
             print("error en modifiCliente ", e)
 
+    @staticmethod
     def bajaCliente(datos):
         query = QtSql.QSqlQuery()
-        query.prepare("UPDATE clientes SET bajacli = :bajacli WHERE dnicli = :dnicli ")
-        query.bindValue = (":bajacli", str(datos[0]))
-        query.bindValue = (":dnicli", str(datos[1]))
+        query.prepare('UPDATE clientes SET bajacli = :bajacli WHERE dnicli = :dnicli')
+        query.bindValue(":bajacli", str(datos[0]))
+        query.bindValue(":dnicli", str(datos[1]))
         if query.exec():
             return True
+
         else:
             return False

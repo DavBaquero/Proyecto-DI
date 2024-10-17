@@ -1,18 +1,30 @@
 QMainWindow {
-    background-color:#d7eff6;
+    background-color:#b0e2e3;
 }
 
 QTabWidget {
-    background-color: none;
+    background-color: #8fc7c8;
 }
 
 QMenuBar {
     background-color: whitesmoke;
 }
 
-QPushButton{
-    background-color: #0ea2ae;
+QPushButton {
+    background-color: #6fabad;
     font-weight: bold;
     color: white;
     border-radius: 5px;
+}
+
+QLineEdit {
+    background-color: whitesmoke;
+}
+
+QComboBox{
+    background-color: whitesmoke;
+}
+
+QTableWidget::item:alternate {
+    background-color: whitesmoke;
 }

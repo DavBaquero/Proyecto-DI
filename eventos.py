@@ -97,7 +97,7 @@ class Eventos():
 
     def validarMovil(movil):
         regex = r'^(6\d{8}|7\d{8})$'
-        if re.match(regex, movil) and len(movil) == 9:
+        if (re.match(regex, movil) and len(movil) == 9) or (movil == ''):
             return True
         else:
             return False

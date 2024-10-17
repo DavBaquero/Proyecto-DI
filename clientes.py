@@ -27,11 +27,18 @@ class Clientes:
         try:
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
                      var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
-                     var.ui.cmbMunicli.currentText()]
-            for i in nuevocli:
-                if i == "":
-                    QtWidgets.QMessageBox.critical(None, "Error", "Error al dar alta")
+                     var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
+
+            posicionObl = [0,1,2,3,5,7,8]
+            obligatorios = [nuevocli[i] for i in posicionObl]
+
+            for i in obligatorios:
+                if i == '':
+                    QtWidgets.QMessageBox.critical(None, "Error", "Falta un dato obligatorio")
                     return
+
+            if nuevocli[9] == None:
+                var.ui.txtBajacli.setText('')
 
             if conexion.Conexion.altaCliente(nuevocli):
                 mbox = QtWidgets.QMessageBox()
@@ -87,6 +94,7 @@ class Clientes:
             listado = conexion.Conexion.listadoClientes(self)
             # listado = conexionserver.ConexionServer.listadoClientes()
             index = 0
+
             for registro in listado:
                 var.ui.tablaClientes.setRowCount(index + 1)
                 var.ui.tablaClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
@@ -135,7 +143,7 @@ class Clientes:
                         var.ui.txtNomcli.text(),
                         var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
                         var.ui.cmbProvcli.currentText(),
-                        var.ui.cmbMunicli.currentText()]
+                        var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
             if conexion.Conexion.modifiCliente(modifcli):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -153,7 +161,7 @@ class Clientes:
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
                 mbox.setWindowTitle('Aviso')
-                mbox.setText('Error cliente modificado')
+                mbox.setText('El cliente no está en la base de datos')
                 mbox.setStandardButtons(
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
@@ -185,7 +193,7 @@ class Clientes:
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
                 mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
                 mbox.setWindowTitle('Aviso')
-                mbox.setText('Error al dar de baja')
+                mbox.setText('El cliente no está en la base de datos')
                 mbox.setStandardButtons(
                     QtWidgets.QMessageBox.StandardButton.Ok)
                 mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)

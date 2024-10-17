@@ -68,7 +68,7 @@ class Conexion:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO CLIENTES(dnicli, altacli, apelcli, nomecli, emailcli, "
                           "movilcli, dircli, provcli, municli, bajacli) VALUES (:dnicli, :altacli, :apelcli, :nomecli, "
-                          ":emailcli, :movilcli, :dircli, :provcli, :municli)")
+                          ":emailcli, :movilcli, :dircli, :provcli, :municli, :bajacli)")
             query.bindValue(":dnicli", str(nuevocli[0]))
             query.bindValue(":altacli", str(nuevocli[1]))
             query.bindValue(":apelcli", str(nuevocli[2]))
@@ -78,6 +78,7 @@ class Conexion:
             query.bindValue(":dircli", str(nuevocli[6]))
             query.bindValue(":provcli", str(nuevocli[7]))
             query.bindValue(":municli", str(nuevocli[8]))
+            query.bindValue(":bajacli", str(nuevocli[9]))
             if query.exec():
                 return True
             else:
@@ -115,32 +116,42 @@ class Conexion:
     def modifiCliente(registro):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("UPDATE clientes SET altacli = :altacli, apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli,"
-                          " movilcli = :movilcli, dircli = :dircli, provcli = :provcli, municli = :municli WHERE dnicli = :dnicli ")
-            query.bindValue(":dnicli", str(registro[0]))
-            query.bindValue(":altacli", str(registro[1]))
-            query.bindValue(":apelcli", str(registro[2]))
-            query.bindValue(":nomecli", str(registro[3]))
-            query.bindValue(":emailcli", str(registro[4]))
-            query.bindValue(":movilcli", str(registro[5]))
-            query.bindValue(":dircli", str(registro[6]))
-            query.bindValue(":provcli", str(registro[7]))
-            query.bindValue(":municli", str(registro[8]))
-            if query.exec():
-                return True
-            else:
-                return False
+            query.prepare("Select count(*) from clientes where dnicli = :dnicli")
+            query.bindValue(":dnicli",str(registro[0]))
+            query.exec()
+            if query.next() and query.value(0):
+                query.prepare("UPDATE clientes SET altacli = :altacli, apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli,"
+                              " movilcli = :movilcli, dircli = :dircli, provcli = :provcli, municli = :municli, bajacli = :bajacli WHERE dnicli = :dnicli ")
+                query.bindValue(":dnicli", str(registro[0]))
+                query.bindValue(":altacli", str(registro[1]))
+                query.bindValue(":apelcli", str(registro[2]))
+                query.bindValue(":nomecli", str(registro[3]))
+                query.bindValue(":emailcli", str(registro[4]))
+                query.bindValue(":movilcli", str(registro[5]))
+                query.bindValue(":dircli", str(registro[6]))
+                query.bindValue(":provcli", str(registro[7]))
+                query.bindValue(":municli", str(registro[8]))
+                query.bindValue(":bajacli", str(registro[9]))
+                if query.exec():
+                    return True
+                else:
+                    return False
         except Exception as e:
-            print("error en modifiCliente ", e)
+            print("El cliente no está registrado", e)
 
     @staticmethod
     def bajaCliente(datos):
         query = QtSql.QSqlQuery()
-        query.prepare('UPDATE clientes SET bajacli = :bajacli WHERE dnicli = :dnicli')
-        query.bindValue(":bajacli", str(datos[0]))
+        query.prepare("Select count(*) from clientes where dnicli = :dnicli")
         query.bindValue(":dnicli", str(datos[1]))
-        if query.exec():
-            return True
+        query.exec()
+        if query.next() and query.value(0):
+            query = QtSql.QSqlQuery()
+            query.prepare('UPDATE clientes SET bajacli = :bajacli WHERE dnicli = :dnicli')
+            query.bindValue(":bajacli", str(datos[0]))
+            query.bindValue(":dnicli", str(datos[1]))
+            if query.exec():
+                return True
 
-        else:
-            return False
+            else:
+                return False

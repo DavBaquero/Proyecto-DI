@@ -935,10 +935,6 @@
    </property>
   </action>
   <action name="actionRestaurar_Backup">
-   <property name="icon">
-    <iconset>
-     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
-   </property>
    <property name="text">
     <string>Restaurar Backup</string>
    </property>

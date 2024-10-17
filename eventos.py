@@ -95,6 +95,13 @@ class Eventos():
         else:
             return False
 
+    def validarMovil(movil):
+        regex = r'^(6\d{8}|7\d{8})$'
+        if re.match(regex, movil) and len(movil) == 9:
+            return True
+        else:
+            return False
+
     def resizeTablaClientes(self):
         try:
             header = var.ui.tablaClientes.horizontalHeader()

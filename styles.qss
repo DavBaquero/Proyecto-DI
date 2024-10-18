@@ -28,3 +28,7 @@ QComboBox{
 QTableWidget::item:alternate {
     background-color: whitesmoke;
 }
+
+QTableWidget::item:selected {
+    color: black;
+}

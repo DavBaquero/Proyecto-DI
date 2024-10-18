@@ -33,7 +33,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../.designer/img/logo.svg</normaloff>../../../../../../.designer/img/logo.svg</iconset>
+    <normaloff>../img/logo.svg</normaloff>../img/logo.svg</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
@@ -905,10 +905,6 @@
    <addaction name="separator"/>
   </widget>
   <action name="actionSalir">
-   <property name="icon">
-    <iconset>
-     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
-   </property>
    <property name="text">
     <string>Salir</string>
    </property>
@@ -941,7 +937,7 @@
   <action name="actionbarSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../../../../.designer/img/salir.ico</normaloff>../../../../.designer/img/salir.ico</iconset>
+     <normaloff>../img/salir.ico</normaloff>../img/salir.ico</iconset>
    </property>
    <property name="text">
     <string>barSalir</string>

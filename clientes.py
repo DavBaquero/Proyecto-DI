@@ -37,9 +37,6 @@ class Clientes:
                     QtWidgets.QMessageBox.critical(None, "Error", "Falta un dato obligatorio")
                     return
 
-            if nuevocli[9] == None:
-                var.ui.txtBajacli.setText('')
-
             if conexion.Conexion.altaCliente(nuevocli):
                 mbox = QtWidgets.QMessageBox()
                 mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
@@ -169,7 +166,7 @@ class Clientes:
                 mbox.exec()
                 Clientes.cargaTablaClientes(self)
 
-            clientes.Clientes.cargaTablaClientes
+            clientes.Clientes.cargaTablaClientes(self)
         except Exception as e:
             print("Error al modificar cliente ", e)
 
@@ -202,3 +199,13 @@ class Clientes:
                 Clientes.cargaTablaClientes(self)
         except Exception as e:
             print("error bajaCliente", e)
+
+    def historicoCli(self):
+        try:
+            if var.ui.chkHistoriacli.isChecked():
+                var.historico = 0
+            else:
+                var.historico = 1
+            Clientes.cargaTablaClientes(self)
+        except Exception as e:
+            print("Error en historicocli", e)

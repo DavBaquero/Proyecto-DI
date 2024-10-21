@@ -15,6 +15,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
+        var.historico = 1
         var.dlgAbrir = FileDialogAbrir()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
@@ -61,6 +62,11 @@ class Main(QtWidgets.QMainWindow):
         '''
         var.ui.actionbarSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionbarLimpar.triggered.connect(eventos.Eventos.limpiarPanel)
+
+        '''
+        zona eventos checkbox
+        '''
+        var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

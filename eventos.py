@@ -3,13 +3,13 @@ import sys
 from PyQt6 import QtWidgets, QtGui
 import conexion
 import var
+import eventos
 import time
 import re
 from datetime import datetime
 import locale
 import clientes
 import conexionserver
-import eventos
 import zipfile
 import shutil
 

@@ -1,5 +1,7 @@
 import os
-from PyQt6 import QtSql, QtWidgets, QtGui
+from PyQt6 import QtSql, QtWidgets, QtGui,QtCore
+
+import var
 
 class Conexion:
 
@@ -89,13 +91,23 @@ class Conexion:
     def listadoClientes(self):
         try:
             listado = []
-            query = QtSql.QSqlQuery()
-            query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
-            if query.exec():
-                while query.next():
-                    fila = [query.value(i) for i in range(query.record().count())]
-                    listado.append(fila)
-            return listado
+            if var.historico == 1:
+
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM clientes where bajacli is NULL ORDER BY apelcli, nomecli ASC ")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+                return listado
+            elif var.historico == 0:
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+                return listado
         except Exception as e:
             print("error listado en conexion ", e)
 
@@ -118,22 +130,30 @@ class Conexion:
             query = QtSql.QSqlQuery()
             query.prepare("Select count(*) from clientes where dnicli = :dnicli")
             query.bindValue(":dnicli",str(registro[0]))
-            query.exec()
-            if query.next() and query.value(0):
-                query.prepare("UPDATE clientes SET altacli = :altacli, apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli,"
-                              " movilcli = :movilcli, dircli = :dircli, provcli = :provcli, municli = :municli, bajacli = :bajacli WHERE dnicli = :dnicli ")
-                query.bindValue(":dnicli", str(registro[0]))
-                query.bindValue(":altacli", str(registro[1]))
-                query.bindValue(":apelcli", str(registro[2]))
-                query.bindValue(":nomecli", str(registro[3]))
-                query.bindValue(":emailcli", str(registro[4]))
-                query.bindValue(":movilcli", str(registro[5]))
-                query.bindValue(":dircli", str(registro[6]))
-                query.bindValue(":provcli", str(registro[7]))
-                query.bindValue(":municli", str(registro[8]))
-                query.bindValue(":bajacli", str(registro[9]))
-                if query.exec():
-                    return True
+            if query.exec():
+                if query.next() and query.value(0)>0:
+                    if query.exec():
+                        query.prepare("UPDATE clientes SET altacli = :altacli, apelcli = :apelcli, nomecli = :nomecli, emailcli = :emailcli,"
+                                      " movilcli = :movilcli, dircli = :dircli, provcli = :provcli, municli = :municli, bajacli = :bajacli WHERE dnicli = :dnicli ")
+                        query.bindValue(":dnicli", str(registro[0]))
+                        query.bindValue(":altacli", str(registro[1]))
+                        query.bindValue(":apelcli", str(registro[2]))
+                        query.bindValue(":nomecli", str(registro[3]))
+                        query.bindValue(":emailcli", str(registro[4]))
+                        query.bindValue(":movilcli", str(registro[5]))
+                        query.bindValue(":dircli", str(registro[6]))
+                        query.bindValue(":provcli", str(registro[7]))
+                        query.bindValue(":municli", str(registro[8]))
+                        if registro[9] == "":
+                            query.bindValue(":bajacli", QtCore.QVariant())
+                        else:
+                            query.bindValue(":bajacli", str(registro[9]))
+                        if query.exec():
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
                 else:
                     return False
         except Exception as e:

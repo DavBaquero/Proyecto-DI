@@ -175,3 +175,9 @@ class Eventos():
             else:
                 dato.setText("")
         eventos.Eventos.cargarProvincias(self)
+
+    def abrirTipoprop(self):
+        try:
+            var.dlggestion.show()
+        except Exception as e:
+            print("Error en abrir gestion propiedades",e)

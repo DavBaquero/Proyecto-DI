@@ -9,3 +9,4 @@ global uicalendar
 global panel
 global dlgAbrir
 global historico
+global dlggestion

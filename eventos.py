@@ -180,4 +180,4 @@ class Eventos():
         try:
             var.dlggestion.show()
         except Exception as e:
-            print("Error en abrir gestion propiedades",e)
+            print("error en abrir tipo prop: ", e)

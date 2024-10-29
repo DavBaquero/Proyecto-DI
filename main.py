@@ -1,4 +1,6 @@
 from calendar import Calendar
+
+import dlgGestipoprop
 from venAux import *
 import clientes
 import conexion
@@ -17,6 +19,7 @@ class Main(QtWidgets.QMainWindow):
         var.uicalendar = Calendar()
         var.historico = 1
         var.dlgAbrir = FileDialogAbrir()
+        var.dlggestion = dlg_Tipo_prop()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         # conexionserver.ConexionServer.crear_conexion()
@@ -44,6 +47,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnGrabarcli.clicked.connect(clientes.Clientes.altaCliente)
         var.ui.btnAltacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0,0))
         var.ui.btnBajacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0,1))
+        var.ui.btnAltaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1,0))
+        var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1,1))
         var.ui.btnModificli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnEliminarcli.clicked.connect(clientes.Clientes.bajaCliente)
         '''

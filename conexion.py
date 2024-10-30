@@ -62,6 +62,7 @@ class Conexion:
         query = QtSql.QSqlQuery()
         query.prepare("SELECT * FROM municipios where idprov = (select idprov from provincias where provincia = ?)")
         query.bindValue(0, provincia)
+
         if query.exec():
             while query.next():
                 listamunicipios.append(query.value(1))
@@ -214,3 +215,12 @@ class Conexion:
                 return False
         except Exception as e:
             print("Error en conexion al dar de baja tipo propiedad", e)
+
+    @staticmethod
+    def altaPropiedad():
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO PROPIEDADES(altaprop, dirprop, provpro, muniprop, tipoprop, habprop, banprop,"
+                          "superprop, prealquilerprop, prevenprop, cpprop, oberprop, tipooper, estadoprop, nomeprop,movilprop)"
+                          "VALUES(:altaprop, :dirprop, :provpro, :muniprop, :tipoprop ,:habprop, :banprop, :superprop, :prealquilerprop,"
+                          ":prevenprop, :cpprop, :oberprop, :tipooper, :estadoprop, :nomeprop, :movilprop)")

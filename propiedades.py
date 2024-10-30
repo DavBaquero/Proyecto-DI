@@ -69,10 +69,29 @@ class Propiedades():
     def altaPropiedad(self):
         try:
             propiedad = [var.ui.txtAltaprop.text(),var.ui.txtDirprop.text(),var.ui.cmbProvprop.currentText(),
-                         var.ui.cmbMuniprop.currentText(),var.ui.txtCpprop.text(),var.ui.cmbTipoprop.currentText(),
+                         var.ui.cmbMuniprop.currentText(),var.ui.cmbTipoprop.currentText(),
                          var.ui.spinHabprop.text(), var.ui.spinBanosprop.text(), var.ui.txtSuperprop.text(),
-                         var.ui.txtPrecioVentaprop.text(), var.ui.txtPrecioAlquilerprop.text(),var.ui.areatxtDescriprop.toPlainText(),
-                         var.ui.txtNomeprop.text(),var.ui.txtMovilprop.text()]
-            print(propiedad)
+                         var.ui.txtPrecioAlquilerprop.text(), var.ui.txtPrecioVentaprop.text(),
+                         var.ui.txtCpprop.text(),var.ui.areatxtDescriprop.toPlainText()]
+            tipoper = []
+
+            if var.ui.chkAlquilprop.isChecked():
+                tipoper.append(var.ui.chkAlquilprop.text())
+            if var.ui.chkVentaprop.isChecked():
+                tipoper.append(var.ui.chkVentaprop.text())
+            if var.ui.chkInterprop.isChecked():
+                tipoper.append(var.ui.chkInterprop.text())
+            propiedad.append(tipoper)
+
+            if var.ui.chkInterprop.isChecked():
+                propiedad.append(var.ui.chkInterprop.text())
+            elif var.ui.rbtAlquilprop.isChecked():
+                propiedad.append(var.ui.rbtAlquilprop.text())
+            elif var.ui.rbtVentaprop.isChecked():
+                propiedad.append(var.ui.rbtVentaprop.text())
+
+            propiedad.append(var.ui.txtNomeprop.text())
+            propiedad.append(var.ui.txtMovilprop.text())
+            conexion.Conexion.altaPropiedad()
         except Exception as e:
             print(str(e))

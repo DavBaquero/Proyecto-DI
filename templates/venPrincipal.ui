@@ -756,11 +756,23 @@
           <property name="alternatingRowColors">
            <bool>true</bool>
           </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::ExtendedSelection</enum>
+          </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
+          <property name="showGrid">
+           <bool>true</bool>
+          </property>
           <attribute name="horizontalHeaderVisible">
            <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderHighlightSections">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>100</number>
           </attribute>
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
@@ -832,78 +844,6 @@
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QTableWidget" name="tablaProp">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="lineWidth">
-             <number>2</number>
-            </property>
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
-            <attribute name="horizontalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>DNI/CIF</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Apellidos</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Nombre</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Móvil</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Provincia</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Municipio</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Fecha de baja</string>
-             </property>
-            </column>
            </widget>
           </item>
           <item row="0" column="0">
@@ -988,7 +928,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../../../Nueva carpeta/ProyectoDI/img/calendar.ico</normaloff>../../../Nueva carpeta/ProyectoDI/img/calendar.ico</iconset>
+                    <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1045,7 +985,7 @@
                  </widget>
                 </item>
                 <item>
-                 <widget class="QTextEdit" name="areatxtDescriprop_2">
+                 <widget class="QTextEdit" name="areatxtDescriprop">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
                     <horstretch>0</horstretch>
@@ -1572,7 +1512,7 @@
                   </property>
                   <property name="icon">
                    <iconset>
-                    <normaloff>../../../Nueva carpeta/ProyectoDI/img/calendar.ico</normaloff>../../../Nueva carpeta/ProyectoDI/img/calendar.ico</iconset>
+                    <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
                   </property>
                  </widget>
                 </item>
@@ -1785,7 +1725,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="txtSuperprop_2">
+               <widget class="QLineEdit" name="txtSuperprop">
                 <property name="maximumSize">
                  <size>
                   <width>100</width>
@@ -2046,7 +1986,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="txtPrecioVentaprop_2">
+               <widget class="QLineEdit" name="txtPrecioVentaprop">
                 <property name="minimumSize">
                  <size>
                   <width>110</width>
@@ -2084,7 +2024,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QLineEdit" name="txtPrecioAlquilerprop_2">
+               <widget class="QLineEdit" name="txtPrecioAlquilerprop">
                 <property name="minimumSize">
                  <size>
                   <width>110</width>
@@ -2224,6 +2164,99 @@
             </property>
            </spacer>
           </item>
+          <item row="3" column="1">
+           <widget class="QTableWidget" name="tablaProp">
+            <property name="minimumSize">
+             <size>
+              <width>1275</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="lineWidth">
+             <number>2</number>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="showDropIndicator" stdset="0">
+             <bool>true</bool>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="showGrid">
+             <bool>true</bool>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderHighlightSections">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>Código</string>
+             </property>
+             <property name="font">
+              <font>
+               <kerning>true</kerning>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Municipio</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo de propiedad</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Número de habitaciones</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Número de baños</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo de Operación</string>
+             </property>
+            </column>
+           </widget>
+          </item>
          </layout>
         </item>
        </layout>
@@ -2350,7 +2383,4 @@
  </widget>
  <resources/>
  <connections/>
- <buttongroups>
-  <buttongroup name="buttonGroup"/>
- </buttongroups>
 </ui>

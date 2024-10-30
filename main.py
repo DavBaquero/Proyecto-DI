@@ -24,7 +24,10 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_conexion(self)
         # conexionserver.ConexionServer.crear_conexion()
         eventos.Eventos.cargarProvincias(self)
+        eventos.Eventos.cargarProvprop(self)
         eventos.Eventos.cargarMunicipio(self)
+        eventos.Eventos.cargarMuniprop(self)
+        var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniprop)
         eventos.Eventos.cargarTipoprop()
         clientes.Clientes.cargaTablaClientes(self)
 

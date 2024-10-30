@@ -180,18 +180,37 @@ class Conexion:
 
     def altaTipoprop(tipo):
         try:
+            registro = []
             query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO TIPOPROPIEDAD (TIPO) VALUES (:tipo)")
+            query.prepare("INSERT into tipopropiedad (tipo) values (:tipo) ")
             query.bindValue(":tipo", str(tipo))
             if query.exec():
-                query = QtSql.QSqlQuery()
-                query.prepare("Select tipo from TIPOPROPIEDAD")
-                if query.exec() :
-                    registro = []
-                    while query.exec():
-                        registro.append(str(query.value(0)))
-                    return registro
+                registro = Conexion.cargarTipoprop()
+                return registro
+            else:
+                return registro
+        except Exception as e:
+            print("Error en conexion al dar de alta tipo propiedad", e)
+
+    @staticmethod
+    def cargarTipoprop():
+        query = QtSql.QSqlQuery()
+        query.prepare("SELECT tipo from tipopropiedad ")
+        if query.exec():
+            registro = []
+            while query.next():
+                registro.append(str(query.value(0)))
+            return registro
+
+
+    def bajaTipoprop(tipo):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE from tipopropiedad where tipo = :tipo ")
+            query.bindValue(":tipo", str(tipo))
+            if query.exec() and query.numRowsAffected() == 1:
+                return True
             else:
                 return False
         except Exception as e:
-            print("Error alta tipo propiedad", e)
+            print("Error en conexion al dar de baja tipo propiedad", e)

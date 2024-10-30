@@ -25,6 +25,7 @@ class Main(QtWidgets.QMainWindow):
         # conexionserver.ConexionServer.crear_conexion()
         eventos.Eventos.cargarProvincias(self)
         eventos.Eventos.cargarMunicipio(self)
+        eventos.Eventos.cargarTipoprop()
         clientes.Clientes.cargaTablaClientes(self)
 
         '''
@@ -51,6 +52,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1,1))
         var.ui.btnModificli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnEliminarcli.clicked.connect(clientes.Clientes.bajaCliente)
+        var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         '''
         eventos de cajas de texto
         '''
@@ -66,9 +68,9 @@ class Main(QtWidgets.QMainWindow):
         '''
         zona toolbar
         '''
+
         var.ui.actionbarSalir.triggered.connect(eventos.Eventos.mensajeSalir)
         var.ui.actionbarLimpar.triggered.connect(eventos.Eventos.limpiarPanel)
-
         '''
         zona eventos checkbox
         '''

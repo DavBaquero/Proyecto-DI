@@ -157,7 +157,7 @@ class Eventos():
                 mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
                 mbox.exec()
                 conexion.Conexion.db_conexion()
-                eventos.Eventos.cargarProv()
+                eventos.Eventos.cargarProvincias(self)
                 clientes.Clientes.cargaTablaClientes()
         except Exception as error:
             print("error en restaurar backup: ", error)
@@ -181,3 +181,9 @@ class Eventos():
             var.dlggestion.show()
         except Exception as e:
             print("error en abrir tipo prop: ", e)
+
+    @staticmethod
+    def cargarTipoprop():
+        registro = conexion.Conexion.cargarTipoprop()
+        var.ui.cmbTipoprop.clear()
+        var.ui.cmbTipoprop.addItems(registro)

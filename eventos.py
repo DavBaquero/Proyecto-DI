@@ -18,20 +18,49 @@ locale.setlocale(locale.LC_MONETARY,'es_ES.UTF-8')
 
 class Eventos():
     def mensajeSalir(self=None):
-        mbox = QtWidgets.QMessageBox()
-        mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
-        mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
-        mbox.setWindowTitle('Salir')
-        mbox.setText('¿Desea usted salir?')
-        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
-        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
-        mbox.button(QtWidgets.QMessageBox.StandardButton.Yes).setText('Sí')
-        mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('No')
+        mbox = Eventos.crearMensajeSalida('Salir',"¿Desea salir?")
 
         if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
             sys.exit()
         else:
             mbox.hide()
+
+    @staticmethod
+    def crearMensajeSalida(titulo_ventana, mensaje):
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
+        mbox.setWindowIcon(QtGui.QIcon('./img/icono.svg'))
+        mbox.setText(mensaje)
+        mbox.setWindowTitle(titulo_ventana)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Yes).setText('Sí')
+        mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('No')
+        return mbox
+
+    @staticmethod
+    def crearMensajeInfo(titulo_ventana, mensaje):
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+        mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
+        mbox.setWindowTitle(titulo_ventana)
+        mbox.setText(mensaje)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+        return mbox
+
+    @staticmethod
+    def crearMensajeError(titulo_ventana, mensaje):
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+        mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
+        mbox.setWindowTitle(titulo_ventana)
+        mbox.setText(mensaje)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+        return mbox
 
     def cargarProvincias(self):
         var.ui.cmbProvcli.clear()
@@ -135,18 +164,20 @@ class Eventos():
 
     def resizeTablaPropiedades(self):
         try:
-            header = var.ui.tablaPropiedades.horizontalHeader()
+            header = var.ui.tablaProp.horizontalHeader()
             for i in range(header.count()):
-                if (i == 1 or i == 2 or i == 5):
+                if i == 1 or i == 2:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
-                header_items = var.ui.tablaClientes.horizontalHeaderItem(i)
-                font = header_items.font()
-                font.setBold(True)
-                header_items.setFont(font)
+
+                header_item = var.ui.tablaProp.horizontalHeaderItem(i)
+                if header_item is not None:
+                    font = header_item.font()
+                    font.setBold(True)
+                    header_item.setFont(font)
         except Exception as e:
-            print("error en resize tabla clientes: ", e)
+            print("error en resize tabla prop", e)
 
     def crearBackup(self):
         try:

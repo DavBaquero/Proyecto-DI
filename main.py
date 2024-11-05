@@ -37,6 +37,9 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resizeTablaClientes(self)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
 
+        propiedades.Propiedades.cargarTablaPropiedades()
+        eventos.Eventos.resizeTablaPropiedades(self)
+        var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         '''
         zona de eventos del menubar
         '''
@@ -56,18 +59,18 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModificli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnEliminarcli.clicked.connect(clientes.Clientes.bajaCliente)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
+        var.ui.btnModifiprop.clicked.connect(propiedades.Propiedades.modifProp)
         '''
         eventos de cajas de texto
         '''
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
         var.ui.txtEmailcli.editingFinished.connect(lambda: clientes.Clientes.checkEmail(var.ui.txtEmailcli.text()))
         var.ui.txtMovilcli.editingFinished.connect(lambda: clientes.Clientes.checkMovil(var.ui.txtMovilcli.text()))
-
+        var.ui.txtMovilprop.editingFinished.connect(lambda : propiedades.Propiedades.checkMovilProp(var.ui.txtMovilprop.text()))
         '''
         eventos combobox
         '''
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMunicipio)
-
         '''
         zona toolbar
         '''

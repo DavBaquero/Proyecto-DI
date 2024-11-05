@@ -217,10 +217,114 @@ class Conexion:
             print("Error en conexion al dar de baja tipo propiedad", e)
 
     @staticmethod
-    def altaPropiedad():
+    def altaPropiedad(propiedad):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO PROPIEDADES(altaprop, dirprop, provpro, muniprop, tipoprop, habprop, banprop,"
+            query.prepare("INSERT INTO PROPIEDADES(altaprop, dirprop, provprop, muniprop, tipoprop, habprop, banprop,"
                           "superprop, prealquilerprop, prevenprop, cpprop, oberprop, tipooper, estadoprop, nomeprop,movilprop)"
-                          "VALUES(:altaprop, :dirprop, :provpro, :muniprop, :tipoprop ,:habprop, :banprop, :superprop, :prealquilerprop,"
+                          "VALUES(:altaprop, :dirprop, :provprop, :muniprop, :tipoprop ,:habprop, :banprop, :superprop, :prealquilerprop,"
                           ":prevenprop, :cpprop, :oberprop, :tipooper, :estadoprop, :nomeprop, :movilprop)")
+            query.bindValue(":altaprop",str(propiedad[0]))
+            query.bindValue(":dirprop",str(propiedad[1]))
+            query.bindValue(":provprop",str(propiedad[2]))
+            query.bindValue(":muniprop",str(propiedad[3]))
+            query.bindValue(":tipoprop",str(propiedad[4]))
+            query.bindValue(":habprop",str(propiedad[5]))
+            query.bindValue(":banprop",str(propiedad[6]))
+            query.bindValue(":superprop",str(propiedad[7]))
+            query.bindValue(":prealquilerprop",str(propiedad[8]))
+            query.bindValue(":prevenprop",str(propiedad[9]))
+            query.bindValue(":cpprop",str(propiedad[10]))
+            query.bindValue(":oberprop",str(propiedad[11]))
+            query.bindValue(":tipooper",str(propiedad[12]))
+            query.bindValue(":estadoprop",str(propiedad[13]))
+            query.bindValue(":nomeprop",str(propiedad[14]))
+            query.bindValue(":movilprop",str(propiedad[15]))
+
+            if query.exec():
+                return True
+            else:
+                return False
+
+
+        except Exception as e:
+            print("Error al dar de alta propiedad en conexion",e)
+
+
+    @staticmethod
+    def listadoPropiedades():
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+
+        except Exception as e:
+            print("Error al listar propiedades en listadoPropiedades", e)
+
+
+    def modifProp(propiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("select count(*) from propiedades where codigo = :codigo")
+            query.bindValue(":codigo", propiedad[0])
+            if query.exec() and query.next():
+                count = query.value(0)
+                if count == 1: #verificamos que solo nos devuelve un resultado, la fila para el codigo que buscamos
+                    query.prepare("UPDATE propiedades set altaprop = :altaprop, bajaprop = :bajaprop, dirprop = :dirprop, "
+                                  "muniprop = :muniprop, provprop = :provprop, "
+                                  "tipoprop = :tipoprop, habprop=:habprop, banprop = :banprop, "
+                                  "superprop = :superprop, prealquilerprop = :prealquilerprop, prevenprop = :prevenprop, "
+                                  "cpprop = :cpprop, oberprop = :oberprop, tipooper = :tipooper,"
+                                  " estadoprop=:estadoprop, nomeprop =:nomeprop, movilprop =:movilprop WHERE codigo = :codigo")
+                    query.bindValue(":codigo",str(propiedad[0]))
+                    query.bindValue(":altaprop",str(propiedad[1]))
+                    query.bindValue(":dirprop",str(propiedad[3]))
+                    query.bindValue(":provprop",str(propiedad[4]))
+                    query.bindValue(":muniprop",str(propiedad[5]))
+                    query.bindValue(":tipoprop",str(propiedad[6]))
+                    query.bindValue(":habprop",str(propiedad[7]))
+                    query.bindValue(":banprop",str(propiedad[8]))
+                    query.bindValue(":superprop",str(propiedad[9]))
+                    query.bindValue(":prealquilerprop",str(propiedad[10]))
+                    query.bindValue(":prevenprop",str(propiedad[11]))
+                    query.bindValue(":cpprop",str(propiedad[12]))
+                    query.bindValue(":oberprop",str(propiedad[13]))
+                    query.bindValue(":tipooper",str(propiedad[14]))
+                    query.bindValue(":estadoprop",str(propiedad[15]))
+                    query.bindValue(":nomeprop",str(propiedad[16]))
+                    query.bindValue(":movilprop",str(propiedad[17]))
+                    if propiedad[2] == "":
+                        query.bindValue(":bajacli",QtCore.QVariant()) #QVariant añade un null a la BD
+                    else:
+                        query.bindValue(":bajaprop",str(propiedad[2]))
+                    if query.exec():
+                        return True
+                    else:
+                        return False
+                else:
+                    return False
+            else:
+                return False
+
+        except Exception as e:
+            print("Error al modificar cliente en conexión.",e)
+
+    @staticmethod
+    def datosOnePropiedad(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM propiedades WHERE codigo = :codigo")
+            query.bindValue(":codigo", str(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as e:
+            print("Error al cargar UNA propiedad en conexion.", e)

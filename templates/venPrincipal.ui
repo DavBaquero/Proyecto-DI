@@ -2232,7 +2232,7 @@
             </column>
             <column>
              <property name="text">
-              <string>Municipio</string>
+              <string>Precio Alquiler</string>
              </property>
             </column>
             <column>
@@ -2248,6 +2248,16 @@
             <column>
              <property name="text">
               <string>Número de baños</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>New Column</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Precio Alquiler</string>
              </property>
             </column>
             <column>

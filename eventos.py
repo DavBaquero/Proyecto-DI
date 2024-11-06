@@ -225,18 +225,52 @@ class Eventos():
             print("error en restaurar backup: ", error)
 
     def limpiarPanel(self):
-        objetospanel = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
-                        var.ui.txtNomcli,
-                        var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
-                        var.ui.cmbProvcli,
-                        var.ui.cmbMunicli,
-                        var.ui.txtBajacli]
-        for i,dato in enumerate(objetospanel):
-            if i == 7 or i == 8:
-                pass
+        try:
+            if var.ui.panPrincipal is not None:
+                current_index = var.ui.panPrincipal.currentIndex()
+
+                if current_index == 0:
+                    objetospanel = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli, var.ui.txtNomcli,
+                                    var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli, var.ui.cmbProvcli,
+                                    var.ui.cmbMunicli, var.ui.txtBajacli]
+
+                    for i, dato in enumerate(objetospanel):
+                        if i not in {7, 8}:
+                            dato.setText("")
+                    eventos.Eventos.cargarProvincias(self)
+
+                elif current_index == 1:
+                    propiedad = [var.ui.lblProp, var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop,
+                                 var.ui.cmbProvprop, var.ui.cmbMuniprop, var.ui.cmbTipoprop, var.ui.spinHabprop,
+                                 var.ui.spinBanosprop, var.ui.txtSuperprop, var.ui.txtPrecioAlquilerprop,
+                                 var.ui.txtPrecioVentaprop, var.ui.txtCpprop, var.ui.areatxtDescriprop,
+                                 var.ui.rbtDisponprop, var.ui.rbtAlquilprop, var.ui.rbtVentaprop, var.ui.chkInterprop,
+                                 var.ui.chkAlquilprop, var.ui.chkVentaprop, var.ui.txtNomeprop, var.ui.txtMovilprop]
+
+                    for i, dato in enumerate(propiedad):
+                        if i not in {4, 5, 6, 7, 8, 14, 15, 16, 17, 18, 19}:
+                            dato.setText("")
+                        if i in {7,8}:
+                            dato.setValue(0)
+                        if i in {14}:
+                            dato.setChecked(True)
+                        if i in {15, 16}:
+                            dato.setChecked(False)
+                        if i in {17, 18, 19}:
+                            dato.setChecked(False)
+
+
+                    eventos.Eventos.cargarProvprop(self)
+                    eventos.Eventos.cargarTipoprop()
+
+                else:
+                    print("Panel no existente")
             else:
-                dato.setText("")
-        eventos.Eventos.cargarProvincias(self)
+                print("panPrincipal es nulo")
+        except Exception as e:
+            print(f"Se ha producido una excepción: {e}")
+
+
 
     def abrirTipoprop(self):
         try:

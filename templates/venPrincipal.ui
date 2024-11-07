@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1582</width>
-    <height>805</height>
+    <width>1811</width>
+    <height>800</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -65,22 +65,6 @@
       </property>
      </spacer>
     </item>
-    <item row="0" column="2">
-     <spacer name="horizontalSpacer_10">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Fixed</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>117</width>
-        <height>695</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
     <item row="0" column="1">
      <widget class="QTabWidget" name="panPrincipal">
       <property name="sizePolicy">
@@ -99,7 +83,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -750,6 +734,12 @@
           <property name="lineWidth">
            <number>2</number>
           </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAlwaysOn</enum>
+          </property>
           <property name="editTriggers">
            <set>QAbstractItemView::NoEditTriggers</set>
           </property>
@@ -757,19 +747,28 @@
            <bool>true</bool>
           </property>
           <property name="selectionMode">
-           <enum>QAbstractItemView::ExtendedSelection</enum>
+           <enum>QAbstractItemView::SingleSelection</enum>
           </property>
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
+          <property name="verticalScrollMode">
+           <enum>QAbstractItemView::ScrollPerPixel</enum>
+          </property>
           <property name="showGrid">
            <bool>true</bool>
           </property>
+          <property name="rowCount">
+           <number>15</number>
+          </property>
+          <property name="columnCount">
+           <number>7</number>
+          </property>
           <attribute name="horizontalHeaderVisible">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderHighlightSections">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderMinimumSectionSize">
            <number>100</number>
@@ -777,6 +776,24 @@
           <attribute name="verticalHeaderVisible">
            <bool>false</bool>
           </attribute>
+          <attribute name="verticalHeaderHighlightSections">
+           <bool>true</bool>
+          </attribute>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
+          <row/>
           <column>
            <property name="text">
             <string>DNI/CIF</string>
@@ -821,22 +838,9 @@
         <string>PROPIEDADES</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
-        <item row="0" column="1">
-         <spacer name="horizontalSpacer_36">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="2" column="1">
+          <item row="2" column="0">
            <widget class="Line" name="line_3">
             <property name="lineWidth">
              <number>3</number>
@@ -846,20 +850,7 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <spacer name="horizontalSpacer_13">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1">
+          <item row="1" column="0">
            <widget class="QFrame" name="frame_2">
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <property name="spacing">
@@ -951,20 +942,7 @@
             </layout>
            </widget>
           </item>
-          <item row="1" column="2">
-           <spacer name="horizontalSpacer_14">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="1">
+          <item row="3" column="0">
            <widget class="QTableWidget" name="tablaProp">
             <property name="minimumSize">
              <size>
@@ -984,6 +962,12 @@
             <property name="lineWidth">
              <number>2</number>
             </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOn</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOn</enum>
+            </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
             </property>
@@ -993,11 +977,26 @@
             <property name="alternatingRowColors">
              <bool>true</bool>
             </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
             <property name="selectionBehavior">
              <enum>QAbstractItemView::SelectRows</enum>
             </property>
+            <property name="verticalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
             <property name="showGrid">
              <bool>true</bool>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="rowCount">
+             <number>8</number>
             </property>
             <attribute name="horizontalHeaderVisible">
              <bool>false</bool>
@@ -1006,7 +1005,10 @@
              <bool>false</bool>
             </attribute>
             <attribute name="horizontalHeaderHighlightSections">
-             <bool>false</bool>
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>100</number>
             </attribute>
             <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
              <bool>false</bool>
@@ -1020,6 +1022,17 @@
             <attribute name="verticalHeaderCascadingSectionResizes">
              <bool>false</bool>
             </attribute>
+            <attribute name="verticalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
             <column>
              <property name="text">
               <string>Código</string>
@@ -1032,12 +1045,12 @@
             </column>
             <column>
              <property name="text">
-              <string>Precio Alquiler</string>
+              <string>Municipio</string>
              </property>
             </column>
             <column>
              <property name="text">
-              <string>Tipo de propiedad</string>
+              <string>Tipo propiedad</string>
              </property>
             </column>
             <column>
@@ -1052,12 +1065,12 @@
             </column>
             <column>
              <property name="text">
-              <string>New Column</string>
+              <string>Precio Alquiler</string>
              </property>
             </column>
             <column>
              <property name="text">
-              <string>Precio Alquiler</string>
+              <string>Precio Venta</string>
              </property>
             </column>
             <column>
@@ -1065,11 +1078,101 @@
               <string>Tipo de Operación</string>
              </property>
             </column>
+            <column>
+             <property name="text">
+              <string>Fecha Baja</string>
+             </property>
+            </column>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="5">
+            <item row="2" column="3">
+             <layout class="QHBoxLayout" name="horizontalLayout_28">
+              <item>
+               <widget class="QLabel" name="lblHabiprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Habitaciones: </string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinHabprop">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="4">
+             <layout class="QHBoxLayout" name="horizontalLayout_29">
+              <item>
+               <widget class="QLabel" name="lblBanosprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Baños:</string>
+                </property>
+               </widget>
+              </item>
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QSpinBox" name="spinBanosprop">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_48">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>0</width>
+                  <height>0</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="6">
              <layout class="QHBoxLayout" name="horizontalLayout_21">
               <item>
                <widget class="QLabel" name="lblBajaprop">
@@ -1160,7 +1263,7 @@
               </item>
              </layout>
             </item>
-            <item row="2" column="5" colspan="2">
+            <item row="2" column="6" colspan="2">
              <layout class="QHBoxLayout" name="horizontalLayout_34">
               <item>
                <widget class="QLabel" name="lblPrecioprop_2">
@@ -1253,7 +1356,7 @@
               </item>
              </layout>
             </item>
-            <item row="1" column="0" colspan="5">
+            <item row="1" column="1" colspan="5">
              <layout class="QHBoxLayout" name="horizontalLayout_17">
               <item>
                <widget class="QLabel" name="lblDirprop">
@@ -1302,7 +1405,7 @@
               </item>
              </layout>
             </item>
-            <item row="4" column="0" colspan="7">
+            <item row="4" column="1" colspan="7">
              <layout class="QHBoxLayout" name="horizontalLayout_23">
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_22">
@@ -1605,7 +1708,7 @@
               </item>
              </layout>
             </item>
-            <item row="1" column="6">
+            <item row="1" column="7">
              <layout class="QHBoxLayout" name="horizontalLayout_18">
               <item>
                <spacer name="horizontalSpacer_43">
@@ -1679,7 +1782,7 @@
               </item>
              </layout>
             </item>
-            <item row="1" column="7">
+            <item row="1" column="8">
              <layout class="QHBoxLayout" name="horizontalLayout_20">
               <item>
                <widget class="QLabel" name="lblCp">
@@ -1730,7 +1833,40 @@
               </item>
              </layout>
             </item>
-            <item row="0" column="3" colspan="2">
+            <item row="2" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_26">
+              <item>
+               <widget class="QLabel" name="lblTipoprop">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Tipo: (*)</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cmbTipoprop">
+                <property name="minimumSize">
+                 <size>
+                  <width>150</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>200</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="4" colspan="2">
              <layout class="QHBoxLayout" name="horizontalLayout_24">
               <item>
                <spacer name="horizontalSpacer_45">
@@ -1834,40 +1970,7 @@
               </item>
              </layout>
             </item>
-            <item row="2" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_26">
-              <item>
-               <widget class="QLabel" name="lblTipoprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Tipo: (*)</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QComboBox" name="cmbTipoprop">
-                <property name="minimumSize">
-                 <size>
-                  <width>150</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="5">
+            <item row="1" column="6">
              <layout class="QHBoxLayout" name="horizontalLayout_27">
               <item>
                <widget class="QLabel" name="lblProvProp">
@@ -1919,92 +2022,7 @@
               </item>
              </layout>
             </item>
-            <item row="2" column="3">
-             <layout class="QHBoxLayout" name="horizontalLayout_29">
-              <item>
-               <widget class="QLabel" name="lblBanosprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Baños:</string>
-                </property>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignHCenter">
-               <widget class="QSpinBox" name="spinBanosprop">
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="horizontalSpacer_48">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>0</width>
-                  <height>0</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="2">
-             <layout class="QHBoxLayout" name="horizontalLayout_28">
-              <item>
-               <widget class="QLabel" name="lblHabiprop">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Habitaciones: </string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QSpinBox" name="spinHabprop">
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="4">
+            <item row="2" column="5">
              <layout class="QHBoxLayout" name="horizontalLayout_30">
               <item>
                <widget class="QLabel" name="lblSuperprop_2">
@@ -2050,7 +2068,7 @@
               </item>
              </layout>
             </item>
-            <item row="0" column="7">
+            <item row="0" column="8">
              <widget class="QLabel" name="lblDnicli_4">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -2108,7 +2126,7 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
+            <item row="0" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_31">
               <item>
                <widget class="QLabel" name="lblCodigo">
@@ -2141,7 +2159,7 @@
               </item>
              </layout>
             </item>
-            <item row="6" column="0" colspan="5">
+            <item row="6" column="1" colspan="5">
              <layout class="QHBoxLayout" name="horizontalLayout_32">
               <item>
                <widget class="QLabel" name="lblProp_2">
@@ -2187,7 +2205,7 @@
               </item>
              </layout>
             </item>
-            <item row="5" column="0">
+            <item row="5" column="1">
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -2203,7 +2221,7 @@
               </property>
              </spacer>
             </item>
-            <item row="3" column="4">
+            <item row="3" column="5">
              <spacer name="verticalSpacer_6">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -2219,7 +2237,18 @@
               </property>
              </spacer>
             </item>
-            <item row="6" column="5">
+            <item row="2" column="2">
+             <widget class="QPushButton" name="btnBuscProp">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../img/buscar.ico</normaloff>../img/buscar.ico</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="6" column="6">
              <layout class="QHBoxLayout" name="horizontalLayout_33">
               <item>
                <widget class="QLabel" name="lblMovilprop">
@@ -2265,23 +2294,38 @@
               </item>
              </layout>
             </item>
-            <item row="0" column="6">
+            <item row="0" column="7">
              <widget class="QCheckBox" name="chkHistoriaprop">
               <property name="text">
                <string>Historico</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QPushButton" name="btnBuscProp">
-              <property name="text">
-               <string/>
+            <item row="0" column="9" rowspan="7">
+             <spacer name="horizontalSpacer_8">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-              <property name="icon">
-               <iconset>
-                <normaloff>../img/buscar.ico</normaloff>../img/buscar.ico</iconset>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
               </property>
-             </widget>
+             </spacer>
+            </item>
+            <item row="0" column="0" rowspan="7">
+             <spacer name="horizontalSpacer_11">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -2291,6 +2335,22 @@
       </widget>
      </widget>
     </item>
+    <item row="0" column="2">
+     <spacer name="horizontalSpacer_10">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>117</width>
+        <height>695</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2298,7 +2358,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1582</width>
+     <width>1811</width>
      <height>21</height>
     </rect>
    </property>

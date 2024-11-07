@@ -151,14 +151,16 @@ class Eventos():
         try:
             header = var.ui.tablaClientes.horizontalHeader()
             for i in range(header.count()):
-                if (i == 1 or i == 2 or i == 4 or i == 5):
+                if i not in (0,3,6):
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+
                 header_items = var.ui.tablaClientes.horizontalHeaderItem(i)
-                font = header_items.font()
-                font.setBold(True)
-                header_items.setFont(font)
+                if header_items is not None:
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
         except Exception as e:
             print("error en resize tabla clientes: ", e)
 
@@ -166,16 +168,16 @@ class Eventos():
         try:
             header = var.ui.tablaProp.horizontalHeader()
             for i in range(header.count()):
-                if i == 1 or i == 2:
+                if i in(1,2):
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
                 else:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
 
-                header_item = var.ui.tablaProp.horizontalHeaderItem(i)
-                if header_item is not None:
-                    font = header_item.font()
+                header_items = var.ui.tablaProp.horizontalHeaderItem(i)
+                if header_items is not None:
+                    font = header_items.font()
                     font.setBold(True)
-                    header_item.setFont(font)
+                    header_items.setFont(font)
         except Exception as e:
             print("error en resize tabla prop", e)
 

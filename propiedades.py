@@ -127,7 +127,6 @@ class Propiedades():
         try:
             listado = conexion.Conexion.listadoPropiedades()
             index = 0
-            print(listado)
             for registro in listado:
                 var.ui.tablaProp.setRowCount(index + 1)
                 var.ui.tablaProp.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))

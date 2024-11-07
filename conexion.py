@@ -179,6 +179,24 @@ class Conexion:
             else:
                 return False
 
+
+    @staticmethod
+    def bajaPropiedad(datos):
+        query = QtSql.QSqlQuery()
+        query.prepare("Select count(*) from propiedades where codigo = :codigo")
+        query.bindValue(":codigo", str(datos[1]))
+        query.exec()
+        if query.next() and query.value(0):
+            query = QtSql.QSqlQuery()
+            query.prepare('UPDATE propiedades SET bajaprop = :bajaprop WHERE codigo = :codigo')
+            query.bindValue(":bajaprop", str(datos[0]))
+            query.bindValue(":codigo", str(datos[1]))
+            if query.exec():
+                return True
+
+            else:
+                return False
+
     def altaTipoprop(tipo):
         try:
             registro = []

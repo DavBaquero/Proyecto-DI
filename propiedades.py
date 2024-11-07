@@ -265,3 +265,45 @@ class Propiedades():
             if dato == "" or dato is None:
                 return False
         return True
+
+    def bajaProp(self):
+        try:
+            datos = [var.ui.txtBajaprop.text(), var.ui.lblProp.text()]
+            if datos[0] == "":
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('No has introducido fecha')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Propiedades.cargarTablaPropiedades()
+            elif conexion.Conexion.bajaPropiedad(datos):
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('Propiedad borrada')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Propiedades.cargarTablaPropiedades()
+            else:
+                mbox = QtWidgets.QMessageBox()
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                mbox.setWindowTitle('Aviso')
+                mbox.setText('La propiedad no está en la base de datos')
+                mbox.setStandardButtons(
+                    QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox.exec()
+                Propiedades.cargarTablaPropiedades()
+        except Exception as e:
+            print("error bajaCliente", e)

@@ -1,6 +1,7 @@
 from calendar import Calendar
 
 import dlgGestipoprop
+import propiedades
 from venAux import *
 import clientes
 import conexion
@@ -58,6 +59,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1,1))
         var.ui.btnModificli.clicked.connect(clientes.Clientes.modifCliente)
         var.ui.btnEliminarcli.clicked.connect(clientes.Clientes.bajaCliente)
+        var.ui.btnEliminarprop.clicked.connect(propiedades.Propiedades.bajaProp)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         var.ui.btnModifiprop.clicked.connect(propiedades.Propiedades.modifProp)
         '''

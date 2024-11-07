@@ -8,5 +8,6 @@ global ui
 global uicalendar
 global panel
 global dlgAbrir
-global historico
+global historicocli
+global historicoprop
 global dlggestion

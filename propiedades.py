@@ -307,3 +307,13 @@ class Propiedades():
                 Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("error bajaCliente", e)
+
+    def historicoProp(self):
+        try:
+            if var.ui.chkHistoriaprop.isChecked():
+                var.historicoprop = 0
+            else:
+                var.historicoprop = 1
+            Propiedades.cargarTablaPropiedades()
+        except Exception as e:
+            print("Error en historicocli", e)

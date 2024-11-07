@@ -94,7 +94,7 @@ class Conexion:
     def listadoClientes(self):
         try:
             listado = []
-            if var.historico == 1:
+            if var.historicocli == 1:
 
                 query = QtSql.QSqlQuery()
                 query.prepare("SELECT * FROM clientes where bajacli is NULL ORDER BY apelcli, nomecli ASC ")
@@ -103,7 +103,7 @@ class Conexion:
                         fila = [query.value(i) for i in range(query.record().count())]
                         listado.append(fila)
                 return listado
-            elif var.historico == 0:
+            elif var.historicocli == 0:
                 query = QtSql.QSqlQuery()
                 query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
                 if query.exec():
@@ -273,13 +273,23 @@ class Conexion:
     def listadoPropiedades():
         try:
             listado = []
-            query = QtSql.QSqlQuery()
-            query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
-            if query.exec():
-                while query.next():
-                    fila = [query.value(i) for i in range(query.record().count())]
-                    listado.append(fila)
-            return listado
+            if var.historicoprop == 1:
+
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM propiedades where bajaprop is NULL ORDER BY codigo ASC")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+                return listado
+            elif var.historicoprop == 0:
+                query = QtSql.QSqlQuery()
+                query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
+                if query.exec():
+                    while query.next():
+                        fila = [query.value(i) for i in range(query.record().count())]
+                        listado.append(fila)
+                return listado
 
         except Exception as e:
             print("Error al listar propiedades en listadoPropiedades", e)

@@ -18,7 +18,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
         var.uicalendar = Calendar()
-        var.historico = 1
+        var.historicocli = 1
+        var.historicoprop = 1
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlg_Tipo_prop()
         self.setStyleSheet(styles.load_stylesheet())
@@ -83,6 +84,7 @@ class Main(QtWidgets.QMainWindow):
         zona eventos checkbox
         '''
         var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
+        var.ui.chkHistoriaprop.stateChanged.connect(propiedades.Propiedades.historicoProp)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

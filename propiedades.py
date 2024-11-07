@@ -156,6 +156,7 @@ class Propiedades():
                 index += 1
         except Exception as error:
             print('Error cargaTablaPropiedades: %s ' % str(error))
+
     @staticmethod
     def cargaOnePropiedad():
         try:
@@ -191,7 +192,6 @@ class Propiedades():
                     listado[i].setText(registro[17])
                 else:
                     listado[i].setText(registro[i])
-
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 

@@ -5,6 +5,7 @@ from PyQt6 import QtSql, QtWidgets, QtGui,QtCore
 
 import var
 
+
 class Conexion:
 
     '''
@@ -273,23 +274,31 @@ class Conexion:
     def listadoPropiedades():
         try:
             listado = []
-            if var.historicoprop == 1:
+            historico = var.ui.chkHistoriaprop.isChecked()
+            municipio = var.ui.cmbMuniprop.currentText()
+            filtrado = var.ui.btnBuscProp.isChecked()
+            tipoSeleccionado = var.ui.cmbTipoprop.currentText()
 
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM propiedades where bajaprop is NULL ORDER BY codigo ASC")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-                return listado
-            elif var.historicoprop == 0:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM propiedades ORDER BY codigo ASC")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-                return listado
+            query = QtSql.QSqlQuery()
+            if not historico and filtrado:
+                query.prepare("SELECT * FROM PROPIEDADES WHERE bajaprop IS NULL AND estadoprop = 'Disponible' "
+                              "AND tipoprop = :tipoprop AND muniprop = :muniprop ORDER BY muniprop ASC")
+                query.bindValue(":tipoprop", str(tipoSeleccionado))
+                query.bindValue(":muniprop", str(municipio))
+            elif historico and not filtrado:
+                query.prepare("SELECT * FROM propiedades ORDER BY muniprop ASC")
+            elif historico and filtrado:
+                query.prepare("SELECT * FROM PROPIEDADES WHERE estadoprop = 'Disponible' AND tipoprop = :tipoprop AND muniprop = :muniprop ORDER BY muniprop ASC")
+                query.bindValue(":tipoprop", str(tipoSeleccionado))
+                query.bindValue(":muniprop", str(municipio))
+            else:
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop IS NULL ORDER BY muniprop ASC")
+
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
 
         except Exception as e:
             print("Error al listar propiedades en listadoPropiedades", e)

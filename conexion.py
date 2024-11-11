@@ -277,22 +277,22 @@ class Conexion:
             historico = var.ui.chkHistoriaprop.isChecked()
             municipio = var.ui.cmbMuniprop.currentText()
             filtrado = var.ui.btnBuscProp.isChecked()
-            tipoSeleccionado = var.ui.cmbTipoprop.currentText()
+            tipoSelecionado = var.ui.cmbTipoprop.currentText()
 
             query = QtSql.QSqlQuery()
             if not historico and filtrado:
-                query.prepare("SELECT * FROM PROPIEDADES WHERE bajaprop IS NULL AND estadoprop = 'Disponible' "
-                              "AND tipoprop = :tipoprop AND muniprop = :muniprop ORDER BY muniprop ASC")
-                query.bindValue(":tipoprop", str(tipoSeleccionado))
-                query.bindValue(":muniprop", str(municipio))
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is NULL AND muniprop = :municipio AND tipoprop = :tipo AND estadoprop = 'Disponible'")
+                query.bindValue(":municipio", municipio)
+                query.bindValue(":tipo", tipoSelecionado)
             elif historico and not filtrado:
-                query.prepare("SELECT * FROM propiedades ORDER BY muniprop ASC")
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL")
+
             elif historico and filtrado:
-                query.prepare("SELECT * FROM PROPIEDADES WHERE estadoprop = 'Disponible' AND tipoprop = :tipoprop AND muniprop = :muniprop ORDER BY muniprop ASC")
-                query.bindValue(":tipoprop", str(tipoSeleccionado))
-                query.bindValue(":muniprop", str(municipio))
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL AND muniprop = :municipio AND tipoprop = :tipo AND estadoprop = 'Disponible'")
+                query.bindValue(":municipio", municipio)
+                query.bindValue(":tipo", tipoSelecionado)
             else:
-                query.prepare("SELECT * FROM propiedades WHERE bajaprop IS NULL ORDER BY muniprop ASC")
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is NULL AND estadoprop = 'Disponible'")
 
             if query.exec():
                 while query.next():
@@ -301,7 +301,7 @@ class Conexion:
             return listado
 
         except Exception as e:
-            print("Error al listar propiedades en listadoPropiedades", e)
+            print("Error en listado de propiedades en conexion", e)
 
 
     def modifProp(propiedad):

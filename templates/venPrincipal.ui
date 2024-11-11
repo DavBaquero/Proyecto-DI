@@ -282,7 +282,7 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color : whitesmoke</string>
+               <string notr="true">background-color : rgb(143, 197, 200)</string>
               </property>
               <property name="text">
                <string/>
@@ -290,6 +290,12 @@
               <property name="icon">
                <iconset>
                 <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -481,7 +487,7 @@
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color : whitesmoke</string>
+               <string notr="true">background-color : rgb(143, 197, 200)</string>
               </property>
               <property name="text">
                <string/>
@@ -489,6 +495,12 @@
               <property name="icon">
                <iconset>
                 <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>24</width>
+                <height>24</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -1232,7 +1244,7 @@
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color : rgb(255, 255, 255)</string>
+                   <string notr="true">background-color : rgb(143, 197, 200)</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1240,6 +1252,12 @@
                   <property name="icon">
                    <iconset>
                     <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -1942,7 +1960,7 @@
                    </size>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color : rgb(255, 255, 255)</string>
+                   <string notr="true">background-color : rgb(143, 197, 200)</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1950,6 +1968,12 @@
                   <property name="icon">
                    <iconset>
                     <normaloff>../img/calendar.ico</normaloff>../img/calendar.ico</iconset>
+                  </property>
+                  <property name="iconSize">
+                   <size>
+                    <width>24</width>
+                    <height>24</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -2239,12 +2263,21 @@
             </item>
             <item row="2" column="2">
              <widget class="QPushButton" name="btnBuscProp">
+              <property name="styleSheet">
+               <string notr="true">background-color : rgb(143, 197, 200)</string>
+              </property>
               <property name="text">
                <string/>
               </property>
               <property name="icon">
                <iconset>
                 <normaloff>../img/buscar.ico</normaloff>../img/buscar.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
               </property>
              </widget>
             </item>
@@ -2406,6 +2439,12 @@
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: whitesmoke</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
    </property>
    <attribute name="toolBarArea">
     <enum>TopToolBarArea</enum>

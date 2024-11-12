@@ -90,7 +90,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMunicipio)
         var.ui.cmbTipoprop.currentIndexChanged.connect(propiedades.Propiedades.cargarTablaPropiedades)
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniprop)
-
+        var.ui.actionbarFiltrar.triggered.connect(propiedades.Propiedades.filtrar)
         '''
         zona toolbar
         '''

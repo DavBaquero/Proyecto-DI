@@ -314,3 +314,9 @@ class Propiedades():
             Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("checkbox historico no funciona correcatamente", e)
+
+    @staticmethod
+    def filtrar():
+        checkeado = var.ui.btnBuscProp.isChecked()
+        var.ui.btnBuscProp.setChecked(not checkeado)
+        Propiedades.cargarTablaPropiedades()

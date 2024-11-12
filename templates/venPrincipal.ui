@@ -2459,6 +2459,8 @@
    <addaction name="separator"/>
    <addaction name="actionbarSalir"/>
    <addaction name="separator"/>
+   <addaction name="actionbarFiltrar"/>
+   <addaction name="separator"/>
   </widget>
   <action name="actionSalir">
    <property name="text">
@@ -2508,6 +2510,18 @@
   <action name="actionTipo_Propiedades">
    <property name="text">
     <string>Tipo Propiedades</string>
+   </property>
+  </action>
+  <action name="actionbarFiltrar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../img/buscar.ico</normaloff>../img/buscar.ico</iconset>
+   </property>
+   <property name="text">
+    <string>Filtrar</string>
    </property>
   </action>
  </widget>

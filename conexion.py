@@ -285,10 +285,9 @@ class Conexion:
                 query.bindValue(":municipio", municipio)
                 query.bindValue(":tipo", tipoSelecionado)
             elif historico and not filtrado:
-                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL")
-
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is NULL")
             elif historico and filtrado:
-                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL AND muniprop = :municipio AND tipoprop = :tipo AND estadoprop = 'Disponible'")
+                query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is null AND muniprop = :municipio AND tipoprop = :tipo AND estadoprop = 'Disponible'")
                 query.bindValue(":municipio", municipio)
                 query.bindValue(":tipo", tipoSelecionado)
             else:

@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\templates\venPrincipal.ui'
+# Form implementation generated from reading ui file '.\\templates\\venPrincipal.ui'
 #
 # Created by: PyQt6 UI code generator 6.7.1
 #
@@ -22,7 +22,7 @@ class Ui_venPrincipal(object):
         venPrincipal.setFocusPolicy(QtCore.Qt.FocusPolicy.TabFocus)
         venPrincipal.setContextMenuPolicy(QtCore.Qt.ContextMenuPolicy.DefaultContextMenu)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(".\\templates\\../img/logo.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap(".\\\\templates\\../img/logo.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         venPrincipal.setWindowIcon(icon)
         venPrincipal.setLayoutDirection(QtCore.Qt.LayoutDirection.LeftToRight)
         venPrincipal.setIconSize(QtCore.QSize(30, 30))
@@ -99,7 +99,7 @@ class Ui_venPrincipal(object):
         self.btnBajacli.setStyleSheet("background-color : rgb(143, 197, 200)")
         self.btnBajacli.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(".\\templates\\../img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap(".\\\\templates\\../img/calendar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btnBajacli.setIcon(icon1)
         self.btnBajacli.setIconSize(QtCore.QSize(24, 24))
         self.btnBajacli.setObjectName("btnBajacli")
@@ -306,7 +306,7 @@ class Ui_venPrincipal(object):
         self.tablaClientes.setHorizontalHeaderItem(5, item)
         item = QtWidgets.QTableWidgetItem()
         self.tablaClientes.setHorizontalHeaderItem(6, item)
-        self.tablaClientes.horizontalHeader().setVisible(True)
+        self.tablaClientes.horizontalHeader().setVisible(False)
         self.tablaClientes.horizontalHeader().setHighlightSections(True)
         self.tablaClientes.horizontalHeader().setMinimumSectionSize(100)
         self.tablaClientes.verticalHeader().setVisible(False)
@@ -831,9 +831,10 @@ class Ui_venPrincipal(object):
         self.btnBuscProp.setStyleSheet("background-color : rgb(143, 197, 200)")
         self.btnBuscProp.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(".\\templates\\../img/buscar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon2.addPixmap(QtGui.QPixmap(".\\\\templates\\../img/buscar.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.btnBuscProp.setIcon(icon2)
         self.btnBuscProp.setIconSize(QtCore.QSize(20, 20))
+        self.btnBuscProp.setCheckable(True)
         self.btnBuscProp.setObjectName("btnBuscProp")
         self.gridLayout_5.addWidget(self.btnBuscProp, 2, 2, 1, 1)
         self.horizontalLayout_33 = QtWidgets.QHBoxLayout()
@@ -897,12 +898,12 @@ class Ui_venPrincipal(object):
         self.actionRestaurar_Backup.setObjectName("actionRestaurar_Backup")
         self.actionbarLimpar = QtGui.QAction(parent=venPrincipal)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(".\\templates\\../img/clear.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon3.addPixmap(QtGui.QPixmap(".\\\\templates\\../img/clear.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.actionbarLimpar.setIcon(icon3)
         self.actionbarLimpar.setObjectName("actionbarLimpar")
         self.actionbarSalir = QtGui.QAction(parent=venPrincipal)
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(".\\templates\\../img/salir.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon4.addPixmap(QtGui.QPixmap(".\\\\templates\\../img/salir.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         self.actionbarSalir.setIcon(icon4)
         self.actionbarSalir.setObjectName("actionbarSalir")
         self.actionTipo_Propiedades = QtGui.QAction(parent=venPrincipal)
@@ -921,7 +922,7 @@ class Ui_venPrincipal(object):
         self.toolBar.addSeparator()
 
         self.retranslateUi(venPrincipal)
-        self.panPrincipal.setCurrentIndex(0)
+        self.panPrincipal.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(venPrincipal)
 
     def retranslateUi(self, venPrincipal):

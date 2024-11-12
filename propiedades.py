@@ -87,8 +87,8 @@ class Propiedades():
                 tipoper.append(var.ui.chkInterprop.text())
             propiedad.append(tipoper)
 
-            if var.ui.chkInterprop.isChecked():
-                propiedad.append(var.ui.chkInterprop.text())
+            if var.ui.rbtDisponprop.isChecked():
+                propiedad.append(var.ui.rbtDisponprop.text())
             elif var.ui.rbtAlquilprop.isChecked():
                 propiedad.append(var.ui.rbtAlquilprop.text())
             elif var.ui.rbtVentaprop.isChecked():

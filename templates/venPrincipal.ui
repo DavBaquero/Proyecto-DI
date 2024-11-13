@@ -2408,8 +2408,17 @@
     <property name="title">
      <string>Herramientas</string>
     </property>
+    <widget class="QMenu" name="menuExportar_datos">
+     <property name="title">
+      <string>Exportar datos</string>
+     </property>
+     <addaction name="actionExportar_Clientes_CSV"/>
+     <addaction name="actionExportar_Clientes_JSON"/>
+    </widget>
     <addaction name="actionCrear_Backup"/>
     <addaction name="actionRestaurar_Backup"/>
+    <addaction name="separator"/>
+    <addaction name="menuExportar_datos"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="geometry">
@@ -2471,6 +2480,9 @@
    <property name="text">
     <string>Crear Backup</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
   </action>
   <action name="actionRestaurar_Backup">
    <property name="text">
@@ -2522,6 +2534,16 @@
    </property>
    <property name="text">
     <string>Filtrar</string>
+   </property>
+  </action>
+  <action name="actionExportar_Clientes_CSV">
+   <property name="text">
+    <string>Exportar Clientes CSV</string>
+   </property>
+  </action>
+  <action name="actionExportar_Clientes_JSON">
+   <property name="text">
+    <string>Exportar Clientes JSON</string>
    </property>
   </action>
  </widget>

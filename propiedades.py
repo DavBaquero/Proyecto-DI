@@ -218,6 +218,10 @@ class Propiedades():
                          var.ui.spinHabprop.text(), var.ui.spinBanosprop.text(), var.ui.txtSuperprop.text(),var.ui.txtPrecioAlquilerprop.text(),
                          var.ui.txtPrecioVentaprop.text(),
                          var.ui.txtCpprop.text(),var.ui.areatxtDescriprop.toPlainText()]
+            validarFechaBaja = Propiedades.validarFechaBaja()
+            if (validarFechaBaja == False):
+                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
+                mbox.exec()
             tipoOper = []
             if var.ui.chkAlquilprop.isChecked():
                 tipoOper.append(var.ui.chkAlquilprop.text())
@@ -271,42 +275,47 @@ class Propiedades():
     def bajaProp(self):
         try:
             datos = [var.ui.txtBajaprop.text(), var.ui.lblProp.text()]
-            if datos[0] == "":
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('No has introducido fecha')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+            validarFechaBaja = Propiedades.validarFechaBaja()
+            if (validarFechaBaja == False):
+                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
-                Propiedades.cargarTablaPropiedades()
-            elif conexion.Conexion.bajaPropiedad(datos):
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('Propiedad borrada')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-                Propiedades.cargarTablaPropiedades()
             else:
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-                mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
-                mbox.setWindowTitle('Aviso')
-                mbox.setText('La propiedad no está en la base de datos')
-                mbox.setStandardButtons(
-                    QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
-                mbox.exec()
-                Propiedades.cargarTablaPropiedades()
+                if datos[0] == "":
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                    mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setText('No has introducido fecha')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+                    Propiedades.cargarTablaPropiedades()
+                elif conexion.Conexion.bajaPropiedad(datos):
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setText('Propiedad borrada')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+                    Propiedades.cargarTablaPropiedades()
+                else:
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
+                    mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setText('La propiedad no está en la base de datos')
+                    mbox.setStandardButtons(
+                        QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
+                    mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                    mbox.exec()
+                    Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("error bajaCliente", e)
 
@@ -321,3 +330,48 @@ class Propiedades():
         checkeado = var.ui.btnBuscProp.isChecked()
         var.ui.btnBuscProp.setChecked(not checkeado)
         Propiedades.cargarTablaPropiedades()
+
+    @staticmethod
+    def validarFechaBaja():
+        if var.ui.txtBajaprop.text() == "":
+            return True
+        elif var.ui.txtBajaprop.text() < var.ui.txtAltaprop.text():
+            return False
+        else:
+            return True
+
+    @staticmethod
+    def manageChkBox():
+        if var.ui.txtPrecioAlquilerprop.text() == "":
+            var.ui.chkAlquilprop.setChecked(False)
+            var.ui.chkAlquilprop.setEnabled(False)
+        else:
+            var.ui.chkAlquilprop.setChecked(True)
+            var.ui.chkAlquilprop.setEnabled(True)
+
+        if var.ui.txtPrecioVentaprop.text() == "":
+            var.ui.chkVentaprop.setChecked(False)
+            var.ui.chkVentaprop.setEnabled(False)
+        else:
+            var.ui.chkVentaprop.setChecked(True)
+            var.ui.chkVentaprop.setEnabled(True)
+
+        if var.ui.txtPrecioVentaprop.text() == "" and var.ui.txtPrecioAlquilerprop.text() == "":
+            var.ui.chkInterprop.setChecked(True)
+            var.ui.chkInterprop.setEnabled(True)
+
+    @staticmethod
+    def manageRadioButtons():
+        if var.ui.txtBajaprop.text() == "":
+            var.ui.rbtDisponprop.setEnabled(True)
+            var.ui.rbtDisponprop.setChecked(True)
+            var.ui.rbtAlquilprop.setChecked(False)
+            var.ui.rbtVentaprop.setChecked(False)
+            var.ui.rbtAlquilprop.setEnabled(False)
+            var.ui.rbtVentaprop.setEnabled(False)
+        else:
+            var.ui.rbtDisponprop.setChecked(False)
+            var.ui.rbtDisponprop.setEnabled(False)
+            var.ui.rbtAlquilprop.setChecked(True)
+            var.ui.rbtAlquilprop.setEnabled(True)
+            var.ui.rbtVentaprop.setEnabled(True)

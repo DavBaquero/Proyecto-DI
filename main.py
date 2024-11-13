@@ -2,6 +2,7 @@ from calendar import Calendar
 
 import dlgGestipoprop
 import propiedades
+from propiedades import Propiedades
 from venAux import *
 import clientes
 import conexion
@@ -81,7 +82,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
         var.ui.txtEmailcli.editingFinished.connect(lambda: clientes.Clientes.checkEmail(var.ui.txtEmailcli.text()))
         var.ui.txtMovilcli.editingFinished.connect(lambda: clientes.Clientes.checkMovil(var.ui.txtMovilcli.text()))
-
+        var.ui.txtBajaprop.textChanged.connect(lambda: propiedades.Propiedades.manageRadioButtons())
+        var.ui.txtPrecioVentaprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())
+        var.ui.txtPrecioAlquilerprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())
         var.ui.txtMovilprop.editingFinished.connect(lambda : propiedades.Propiedades.checkMovilProp(var.ui.txtMovilprop.text()))
         '''
         eventos combobox
@@ -101,7 +104,7 @@ class Main(QtWidgets.QMainWindow):
         zona eventos checkbox
         '''
         var.ui.chkHistoriacli.stateChanged.connect(clientes.Clientes.historicoCli)
-
+        propiedades.Propiedades.manageRadioButtons()
         var.ui.chkHistoriaprop.stateChanged.connect(propiedades.Propiedades.historicoProp)
 
 if __name__ == '__main__':

@@ -1,4 +1,6 @@
+import csv
 import datetime
+import shutil
 import time
 
 from PyQt6 import QtWidgets,QtGui, QtCore
@@ -212,7 +214,41 @@ class Clientes:
             print("Error en historicocli", e)
 
 
-'''def exportarCSVClientes(self):
+    def exportarCSVCli(self):
         try:
-            fecha = datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
-            file = (srt(fecha) + '_DatosPropiedades.csv')'''
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+            file = str(fecha + "_DatosClientes.csv")
+            directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en CSV", file,'.csv')
+            if fichero:
+                registros = conexion.Conexion.ListadoClientesExportar()
+                with open(fichero,"w",newline="",encoding="utf-8") as csvfile:
+                    writer = csv.writer(csvfile)
+                    writer.writerow(["DNI","Fecha Alta","Apellidos","Nombre","Email","Movil","Direccion","Provincia","Municipio","Fecha Baja"])
+                    for registro in registros:
+                        writer.writerow(registro)
+                shutil.move(fichero,directorio)
+            else:
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha seleccionado ningún archivo.")
+                mbox.exec()
+        except Exception as e:
+            print("Error exportar CSV", e)
+
+    def exportarJSONProp(self):
+        fecha = datetime.today()
+        fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+        file = str(fecha + "_DatosPropiedades.json")
+        directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en JSON", file,'.json')
+        if fichero:
+            keys =["Codigo","Alta","Baja","Direccion","Provincia","Municipio","Tipo"
+                ,"Nº Habitaciones", "Nº Baños", "Superficie", "Precio Alquiler", "Precio Compra",
+                   "Codigo Postal", "Observaciones", "Operacion", "Estado", "Propietario", "Movil"]
+            registros = conexion.Conexion.listadoPropiedadesExportar()
+            lista_propiedades = [dict(zip(keys, registro)) for registro in registros]
+            with open(fichero,"w",newline="",encoding="utf-8") as jsonfile:
+                json.dump(lista_propiedades,jsonfile,ensure_ascii=False,indent=4)
+            shutil.move(fichero,directorio)
+
+        else:
+            mbox = eventos.Eventos.crearMensajeError("Error","No se ha seleccionado ningún archivo.")
+            mbox.exec()

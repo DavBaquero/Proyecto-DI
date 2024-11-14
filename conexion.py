@@ -378,3 +378,15 @@ class Conexion:
             return listado
         except Exception as e:
             print("Error al exportar", e)
+
+
+    @staticmethod
+    def ListadoClientesExportar():
+        listado = []
+        query = QtSql.QSqlQuery()
+        query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
+        if query.exec():
+            while query.next():
+                fila = [query.value(i) for i in range(query.record().count())]
+                listado.append(fila)
+        return listado

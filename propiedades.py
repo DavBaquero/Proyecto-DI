@@ -1,4 +1,5 @@
 import csv
+import json
 import shutil
 from datetime import datetime
 
@@ -403,7 +404,7 @@ class Propiedades():
             file = str(fecha + "_DatosPropiedades.csv")
             directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en CSV", file,'.csv')
             if fichero:
-                registros = conexion.Conexion.listadoPropiedadesCSV()
+                registros = conexion.Conexion.listadoPropiedadesExportar()
                 with open(fichero,"w",newline="",encoding="utf-8") as csvfile:
                     writer = csv.writer(csvfile)
                     writer.writerow(["Codigo","Alta","Baja","Direccion","Provincia","Municipio","Tipo"
@@ -417,3 +418,22 @@ class Propiedades():
                 mbox.exec()
         except Exception as e:
             print("Error exportar CSV", e)
+
+    def exportarJSONProp(self):
+        fecha = datetime.today()
+        fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+        file = str(fecha + "_DatosPropiedades.json")
+        directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en JSON", file,'.json')
+        if fichero:
+            keys =["Codigo","Alta","Baja","Direccion","Provincia","Municipio","Tipo"
+                ,"Nº Habitaciones", "Nº Baños", "Superficie", "Precio Alquiler", "Precio Compra",
+                  "Codigo Postal", "Observaciones", "Operacion", "Estado", "Propietario", "Movil"]
+            registros = conexion.Conexion.listadoPropiedadesExportar()
+            lista_propiedades = [dict(zip(keys, registro)) for registro in registros]
+            with open(fichero,"w",newline="",encoding="utf-8") as jsonfile:
+                json.dump(lista_propiedades,jsonfile,ensure_ascii=False,indent=4)
+            shutil.move(fichero,directorio)
+
+        else:
+            mbox = eventos.Eventos.crearMensajeError("Error","No se ha seleccionado ningún archivo.")
+            mbox.exec()

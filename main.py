@@ -95,6 +95,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniprop)
         var.ui.actionbarFiltrar.triggered.connect(propiedades.Propiedades.filtrar)
         var.ui.actionExportar_Propiedades_CSV.triggered.connect(propiedades.Propiedades.exportarCSVProp)
+        var.ui.actionExprotar_Propiedades_JSON.triggered.connect(propiedades.Propiedades.exportarJSONProp)
         'var.ui.actionExportar_Clientes_CSV.triggered.connect(clientes.Clientes.exportarCSVClientes)'
         '''
         zona toolbar

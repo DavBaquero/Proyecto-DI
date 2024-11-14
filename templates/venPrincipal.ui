@@ -2415,6 +2415,7 @@
      <addaction name="actionExportar_Clientes_CSV"/>
      <addaction name="actionExportar_Clientes_JSON"/>
      <addaction name="actionExportar_Propiedades_CSV"/>
+     <addaction name="actionExprotar_Propiedades_JSON"/>
     </widget>
     <addaction name="actionCrear_Backup"/>
     <addaction name="actionRestaurar_Backup"/>
@@ -2550,6 +2551,11 @@
   <action name="actionExportar_Propiedades_CSV">
    <property name="text">
     <string>Exportar Propiedades CSV</string>
+   </property>
+  </action>
+  <action name="actionExprotar_Propiedades_JSON">
+   <property name="text">
+    <string>Exprotar Propiedades JSON</string>
    </property>
   </action>
  </widget>

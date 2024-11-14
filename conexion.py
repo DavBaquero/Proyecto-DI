@@ -366,7 +366,7 @@ class Conexion:
             print("Error al cargar UNA propiedad en conexion.", e)
 
     @staticmethod
-    def listadoPropiedadesCSV():
+    def listadoPropiedadesExportar():
         try:
             listado = []
             query = QtSql.QSqlQuery()

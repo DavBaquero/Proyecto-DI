@@ -1,5 +1,6 @@
 import csv
 import datetime
+import json
 import shutil
 import time
 
@@ -216,7 +217,7 @@ class Clientes:
 
     def exportarCSVCli(self):
         try:
-            fecha = datetime.today()
+            fecha = datetime.datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
             file = str(fecha + "_DatosClientes.csv")
             directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en CSV", file,'.csv')
@@ -234,15 +235,13 @@ class Clientes:
         except Exception as e:
             print("Error exportar CSV", e)
 
-    def exportarJSONProp(self):
-        fecha = datetime.today()
+    def exportarJSONCli(self):
+        fecha = datetime.datetime.today()
         fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
-        file = str(fecha + "_DatosPropiedades.json")
+        file = str(fecha + "_DatosClientes.json")
         directorio,fichero = var.dlgAbrir.getSaveFileName(None,"Exporta Datos en JSON", file,'.json')
         if fichero:
-            keys =["Codigo","Alta","Baja","Direccion","Provincia","Municipio","Tipo"
-                ,"Nº Habitaciones", "Nº Baños", "Superficie", "Precio Alquiler", "Precio Compra",
-                   "Codigo Postal", "Observaciones", "Operacion", "Estado", "Propietario", "Movil"]
+            keys =["DNI","Fecha Alta","Apellidos","Nombre","Email","Movil","Direccion","Provincia","Municipio","Fecha Baja"]
             registros = conexion.Conexion.listadoPropiedadesExportar()
             lista_propiedades = [dict(zip(keys, registro)) for registro in registros]
             with open(fichero,"w",newline="",encoding="utf-8") as jsonfile:

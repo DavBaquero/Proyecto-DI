@@ -1,0 +1,38 @@
+[
+    {
+        "DNI": 1,
+        "Fecha Alta": "05/11/2024",
+        "Apellidos": "",
+        "Nombre": "C/rollo nº 5",
+        "Email": "Pontevedra",
+        "Movil": "Tui",
+        "Direccion": "Piso",
+        "Provincia": 3,
+        "Municipio": 2,
+        "Fecha Baja": 50.0
+    },
+    {
+        "DNI": 2,
+        "Fecha Alta": "06/11/2024",
+        "Apellidos": "",
+        "Nombre": "plaza mayor",
+        "Email": "Ávila",
+        "Movil": "Amavida",
+        "Direccion": "Casa",
+        "Provincia": 2,
+        "Municipio": 1,
+        "Fecha Baja": 56.0
+    },
+    {
+        "DNI": 3,
+        "Fecha Alta": "12/11/2024",
+        "Apellidos": "14/11/2024",
+        "Nombre": "Plaza mayor",
+        "Email": "Álava",
+        "Movil": "Arraia-Maeztu",
+        "Direccion": "Casa",
+        "Provincia": 4,
+        "Municipio": 2,
+        "Fecha Baja": 78.0
+    }
+]

@@ -80,37 +80,45 @@ class Propiedades():
                          var.ui.txtPrecioVentaprop.text(),
                          var.ui.txtCpprop.text(),var.ui.areatxtDescriprop.toPlainText()]
 
-            tipoper = []
-
-            if var.ui.txtBajaprop.text() ==  None:
-                var.ui.txtBajaprop.text.setText("")
-            if var.ui.chkAlquilprop.isChecked():
-                tipoper.append(var.ui.chkAlquilprop.text())
-            if var.ui.chkVentaprop.isChecked():
-                tipoper.append(var.ui.chkVentaprop.text())
-            if var.ui.chkInterprop.isChecked():
-                tipoper.append(var.ui.chkInterprop.text())
-            propiedad.append(tipoper)
-
-            if var.ui.rbtDisponprop.isChecked():
-                propiedad.append(var.ui.rbtDisponprop.text())
-            elif var.ui.rbtAlquilprop.isChecked():
-                propiedad.append(var.ui.rbtAlquilprop.text())
-            elif var.ui.rbtVentaprop.isChecked():
-                propiedad.append(var.ui.rbtVentaprop.text())
-
-            propiedad.append(var.ui.txtNomeprop.text())
-            propiedad.append(var.ui.txtMovilprop.text())
-            if Propiedades.checkDatosVaciosAltaProp(propiedad) and conexion.Conexion.altaPropiedad(propiedad):
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se ha grabado la propiedad en la base de datos.")
+            validarFechaBaja = Propiedades.validarFechaBaja()
+            if (validarFechaBaja == False):
+                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
-                Propiedades.cargarTablaPropiedades()
-            elif not Propiedades.checkDatosVaciosAltaProp(propiedad):
-                mbox = eventos.Eventos.crearMensajeError("Aviso", "Hay campos vacíos que deben ser cubiertos.")
+            elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
+                mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
                 mbox.exec()
             else:
-                mbox = eventos.Eventos.crearMensajeError("Aviso","Se ha producido un error al grabar la propiedad.")
-                mbox.exec()
+                tipoper = []
+
+                if var.ui.txtBajaprop.text() ==  None:
+                    var.ui.txtBajaprop.text.setText("")
+                if var.ui.chkAlquilprop.isChecked():
+                    tipoper.append(var.ui.chkAlquilprop.text())
+                if var.ui.chkVentaprop.isChecked():
+                    tipoper.append(var.ui.chkVentaprop.text())
+                if var.ui.chkInterprop.isChecked():
+                    tipoper.append(var.ui.chkInterprop.text())
+                propiedad.append(tipoper)
+
+                if var.ui.rbtDisponprop.isChecked():
+                    propiedad.append(var.ui.rbtDisponprop.text())
+                elif var.ui.rbtAlquilprop.isChecked():
+                    propiedad.append(var.ui.rbtAlquilprop.text())
+                elif var.ui.rbtVentaprop.isChecked():
+                    propiedad.append(var.ui.rbtVentaprop.text())
+
+                propiedad.append(var.ui.txtNomeprop.text())
+                propiedad.append(var.ui.txtMovilprop.text())
+                if Propiedades.checkDatosVaciosAltaProp(propiedad) and conexion.Conexion.altaPropiedad(propiedad):
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se ha grabado la propiedad en la base de datos.")
+                    mbox.exec()
+                    Propiedades.cargarTablaPropiedades()
+                elif not Propiedades.checkDatosVaciosAltaProp(propiedad):
+                    mbox = eventos.Eventos.crearMensajeError("Aviso", "Hay campos vacíos que deben ser cubiertos.")
+                    mbox.exec()
+                else:
+                    mbox = eventos.Eventos.crearMensajeError("Aviso","Se ha producido un error al grabar la propiedad.")
+                    mbox.exec()
         except Exception as e:
             print(str(e))
 
@@ -175,38 +183,30 @@ class Propiedades():
                        var.ui.txtPrecioVentaprop,
                        var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
                        var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
-            validarFechaBaja = Propiedades.validarFechaBaja()
 
-            if (validarFechaBaja == False):
-                    mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
-                    mbox.exec()
-            elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
-                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede contener letras.")
-                mbox.exec()
-            else:
-                for i in range(len(listado)):
-                    if i in (4,5,6):
-                        listado[i].setCurrentText(registro[i])
-                    elif i in (7,8):
-                        listado[i].setValue(int(registro[i]))
-                    elif i == 13:
-                        listado[i].setPlainText(registro[i])
-                    elif i == 14:
-                        listado[i].setChecked(registro[15] == "Disponible")
-                    elif i == 15:
-                        listado[i].setChecked(registro[15] == "Alquilado")
-                    elif i == 16:
-                        listado[i].setChecked(registro[15] == "Vendido")
-                    elif i in (17,18,19):
-                        listado[17].setChecked("Intercambio" in registro[14])
-                        listado[18].setChecked("Alquiler" in registro[14])
-                        listado[19].setChecked("Venta" in registro[14])
-                    elif i == 20:
-                        listado[i].setText(registro[16])
-                    elif i == 21:
-                        listado[i].setText(registro[17])
-                    else:
-                        listado[i].setText(registro[i])
+            for i in range(len(listado)):
+                if i in (4,5,6):
+                    listado[i].setCurrentText(registro[i])
+                elif i in (7,8):
+                    listado[i].setValue(int(registro[i]))
+                elif i == 13:
+                    listado[i].setPlainText(registro[i])
+                elif i == 14:
+                    listado[i].setChecked(registro[15] == "Disponible")
+                elif i == 15:
+                    listado[i].setChecked(registro[15] == "Alquilado")
+                elif i == 16:
+                    listado[i].setChecked(registro[15] == "Vendido")
+                elif i in (17,18,19):
+                    listado[17].setChecked("Intercambio" in registro[14])
+                    listado[18].setChecked("Alquiler" in registro[14])
+                    listado[19].setChecked("Venta" in registro[14])
+                elif i == 20:
+                    listado[i].setText(registro[16])
+                elif i == 21:
+                    listado[i].setText(registro[17])
+                else:
+                    listado[i].setText(registro[i])
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 
@@ -237,7 +237,7 @@ class Propiedades():
                 mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
             elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
-                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede contener letras.")
+                mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
                 mbox.exec()
             else:
                 tipoOper = []
@@ -298,7 +298,7 @@ class Propiedades():
                 mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
             elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
-                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede contener letras.")
+                mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
                 mbox.exec()
             else:
                 if datos[0] == "":

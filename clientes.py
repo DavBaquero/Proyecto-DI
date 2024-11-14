@@ -1,3 +1,4 @@
+import datetime
 import time
 
 from PyQt6 import QtWidgets,QtGui, QtCore
@@ -209,3 +210,9 @@ class Clientes:
             Clientes.cargaTablaClientes(self)
         except Exception as e:
             print("Error en historicocli", e)
+
+
+'''def exportarCSVClientes(self):
+        try:
+            fecha = datetime.today().strftime('%Y-%m-%d-%H-%M-%S')
+            file = (srt(fecha) + '_DatosPropiedades.csv')'''

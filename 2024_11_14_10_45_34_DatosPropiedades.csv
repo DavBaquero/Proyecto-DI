@@ -1,0 +1,4 @@
+Codigo,Alta,Baja,Direccion,Provincia,Municipio,Tipo,Nº Habitaciones,Nº Baños,Superficie,Precio Alquiler,Precio Compra,Codigo Postal,Observaciones,Operacion,Estado,Propietario,Movil
+1,05/11/2024,,C/rollo nº 5,Pontevedra,Tui,Piso,3,2,50.0,,70000.0,36700,,"['Alquiler', 'Venta']",Disponible,David baquero,656456948
+2,06/11/2024,,plaza mayor,Ávila,Amavida,Casa,2,1,56.0,600.0,120000.0,24567,,"['Alquiler', 'Venta']",Disponible,Juana perez,722456789
+3,12/11/2024,14/11/2024,Plaza mayor,Álava,Arraia-Maeztu,Casa,4,2,78.0,456.0,,67890,,['Alquiler'],Alquilado,Adrian perez,722345689

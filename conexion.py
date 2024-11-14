@@ -364,3 +364,17 @@ class Conexion:
             return registro
         except Exception as e:
             print("Error al cargar UNA propiedad en conexion.", e)
+
+    @staticmethod
+    def listadoPropiedadesCSV():
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM propiedades WHERE bajaprop is NULL or bajaprop is not null")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+        except Exception as e:
+            print("Error al exportar", e)

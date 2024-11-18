@@ -1,6 +1,7 @@
 from datetime import datetime
 
 import dlgGestipoprop
+from dlgAbout import Ui_venAcercaDe
 from dlgGestipoprop import Ui_dlgGestipoprop
 import propiedades
 from dlgCalendar import *
@@ -33,3 +34,10 @@ class dlg_Tipo_prop(QtWidgets.QDialog):
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
         super(FileDialogAbrir,self).__init__()
+
+class dlg_About(QtWidgets.QDialog):
+    def __init__(self):
+        super(dlg_About,self).__init__()
+        self.ui = Ui_venAcercaDe()
+        self.ui.setupUi(self)
+        self.ui.btnCerrarAbout.clicked.connect(eventos.Eventos.cerrarAcercaDe)

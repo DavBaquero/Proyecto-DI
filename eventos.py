@@ -285,6 +285,18 @@ class Eventos():
         except Exception as e:
             print("error en abrir tipo prop: ", e)
 
+    def abrirAbout(self):
+        try:
+            var.dlgabout.show()
+        except Exception as e:
+            print("error en abrir about: ", e)
+
+    def cerrarAcercaDe(self):
+        try:
+            var.dlgabout.close()
+        except Exception as e:
+            print("error en cerrar acerca de: ", e)
+
     @staticmethod
     def cargarTipoprop():
         registro = conexion.Conexion.cargarTipoprop()

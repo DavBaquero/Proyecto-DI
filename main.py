@@ -26,6 +26,7 @@ class Main(QtWidgets.QMainWindow):
         var.historicoprop = 1
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlg_Tipo_prop()
+        var.dlgabout = dlg_About()
         self.setStyleSheet(styles.load_stylesheet())
         conexion.Conexion.db_conexion(self)
         # conexionserver.ConexionServer.crear_conexion()
@@ -59,6 +60,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionCrear_Backup.triggered.connect(eventos.Eventos.crearBackup)
         var.ui.actionRestaurar_Backup.triggered.connect(eventos.Eventos.restaurarBackup)
         var.ui.actionTipo_Propiedades.triggered.connect(eventos.Eventos.abrirTipoprop)
+        var.ui.actionAcerca_de.triggered.connect(eventos.Eventos.abrirAbout)
 
         '''
         eventos de botones

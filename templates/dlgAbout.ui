@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>venAcercaDe</class>
  <widget class="QDialog" name="venAcercaDe">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,6 +19,9 @@
   <property name="windowIcon">
    <iconset>
     <normaloff>../img/logo.svg</normaloff>../img/logo.svg</iconset>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
   </property>
   <widget class="QLabel" name="lblimgAb">
    <property name="geometry">

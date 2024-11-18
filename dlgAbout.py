@@ -12,10 +12,12 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_venAcercaDe(object):
     def setupUi(self, venAcercaDe):
         venAcercaDe.setObjectName("venAcercaDe")
+        venAcercaDe.setWindowModality(QtCore.Qt.WindowModality.ApplicationModal)
         venAcercaDe.resize(400, 300)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(".\\templates\\../img/logo.svg"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         venAcercaDe.setWindowIcon(icon)
+        venAcercaDe.setModal(True)
         self.lblimgAb = QtWidgets.QLabel(parent=venAcercaDe)
         self.lblimgAb.setGeometry(QtCore.QRect(0, 0, 81, 71))
         self.lblimgAb.setText("")

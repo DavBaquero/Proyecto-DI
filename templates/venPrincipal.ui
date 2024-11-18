@@ -83,7 +83,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="pesClientes">
        <attribute name="title">
@@ -777,7 +777,7 @@
            <number>7</number>
           </property>
           <attribute name="horizontalHeaderVisible">
-           <bool>false</bool>
+           <bool>true</bool>
           </attribute>
           <attribute name="horizontalHeaderHighlightSections">
            <bool>true</bool>
@@ -1011,7 +1011,7 @@
              <number>8</number>
             </property>
             <attribute name="horizontalHeaderVisible">
-             <bool>false</bool>
+             <bool>true</bool>
             </attribute>
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>false</bool>
@@ -1029,7 +1029,7 @@
              <bool>false</bool>
             </attribute>
             <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
+             <bool>T</bool>
             </attribute>
             <attribute name="verticalHeaderCascadingSectionResizes">
              <bool>false</bool>
@@ -2425,15 +2425,16 @@
    <widget class="QMenu" name="menuAyuda">
     <property name="geometry">
      <rect>
-      <x>373</x>
-      <y>133</y>
+      <x>624</x>
+      <y>191</y>
       <width>135</width>
-      <height>50</height>
+      <height>72</height>
      </rect>
     </property>
     <property name="title">
      <string>Ayuda</string>
     </property>
+    <addaction name="actionAcerca_de"/>
    </widget>
    <widget class="QMenu" name="menuGesti_n">
     <property name="title">
@@ -2556,6 +2557,11 @@
   <action name="actionExprotar_Propiedades_JSON">
    <property name="text">
     <string>Exprotar Propiedades JSON</string>
+   </property>
+  </action>
+  <action name="actionAcerca_de">
+   <property name="text">
+    <string>Acerca de</string>
    </property>
   </action>
  </widget>

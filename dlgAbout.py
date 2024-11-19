@@ -80,7 +80,7 @@ class Ui_venAcercaDe(object):
         _translate = QtCore.QCoreApplication.translate
         venAcercaDe.setWindowTitle(_translate("venAcercaDe", "About"))
         self.lblNomAb.setText(_translate("venAcercaDe", "ImmoTeis"))
-        self.lblNomAb_2.setText(_translate("venAcercaDe", "Author: David baquero Amaral"))
+        self.lblNomAb_2.setText(_translate("venAcercaDe", "Author: David Baquero Amaral"))
         self.lblNomAb_3.setText(_translate("venAcercaDe", "Version: 0.0.1"))
         self.lblNomAb_4.setText(_translate("venAcercaDe", " Copyright © 2023-2024"))
         self.btnCerrarAbout.setText(_translate("venAcercaDe", "Cerrar"))

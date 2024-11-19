@@ -89,7 +89,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Author: David baquero Amaral</string>
+       <string>Author: David Baquero Amaral</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

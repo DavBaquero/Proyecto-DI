@@ -290,6 +290,7 @@ class Conexion:
                 query.prepare("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is null AND muniprop = :municipio AND tipoprop = :tipo AND estadoprop = 'Disponible'")
                 query.bindValue(":municipio", municipio)
                 query.bindValue(":tipo", tipoSelecionado)
+
             else:
                 query.prepare("SELECT * FROM propiedades WHERE bajaprop is NULL AND estadoprop = 'Disponible'")
 

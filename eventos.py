@@ -19,7 +19,6 @@ locale.setlocale(locale.LC_MONETARY,'es_ES.UTF-8')
 class Eventos():
     def mensajeSalir(self=None):
         mbox = Eventos.crearMensajeSalida('Salir',"¿Desea salir?")
-
         if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
             sys.exit()
         else:
@@ -102,14 +101,7 @@ class Eventos():
                 fichzip.write("bbdd.sqlite",os.path.basename("bbdd.sqlite"),zipfile.ZIP_DEFLATED)
                 fichzip.close()
                 shutil.move(fichero, directorio)
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
-                mbox.setWindowTitle('Copia de seguridad')
-                mbox.setText("Copia de seguridad creada.")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox = eventos.Eventos.crearMensajeInfo("Crear Copia de Seguridad", "Copia de seguridad creada.")
                 mbox.exec()
         except Exception as error:
             print("error en crear backup: ", error)
@@ -122,14 +114,7 @@ class Eventos():
                 with zipfile.ZipFile(file, 'r') as bbdd:
                     bbdd.extractall(pwd=None)
                 bbdd.close()
-                mbox = QtWidgets.QMessageBox()
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-                mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
-                mbox.setWindowTitle('Copia de seguridad')
-                mbox.setText("Copia de seguridad restaurada.")
-                mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.Ok)
-                mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
+                mbox = eventos.Eventos.crearMensajeInfo("Restaurar Copia de Seguridad", "Copia de seguridad restaurada.")
                 mbox.exec()
                 conexion.Conexion.db_conexion()
                 eventos.Eventos.cargarProvincias(self)

@@ -100,7 +100,7 @@ class Conexion:
             dni = var.ui.txtDnicli.text()
             query = QtSql.QSqlQuery()
             if not historico and filtrado:
-                query.prepare("SELECT * FROM clientes where bajacli is NULL AND dnicli = :dnicli ORDER BY apelcli, nomecli ASC ")
+                query.prepare("SELECT * FROM clientes where bajacli is null and dnicli = :dnicli or bajacli is not null and dnicli = :dnicli ORDER BY apelcli, nomecli ASC ")
                 query.bindValue(":dnicli", dni)
 
             elif historico and not filtrado:

@@ -2,6 +2,7 @@ import os
 import sys
 from PyQt6 import QtWidgets, QtGui
 import conexion
+import propiedades
 import var
 import eventos
 import time
@@ -287,3 +288,13 @@ class Eventos():
         registro = conexion.Conexion.cargarTipoprop()
         var.ui.cmbTipoprop.clear()
         var.ui.cmbTipoprop.addItems(registro)
+
+    def filtrar(self):
+        if var.ui.panPrincipal.currentIndex() == 0:
+            checkeado = var.ui.btnFiltrarCli.isChecked()
+            var.ui.btnFiltrarCli.setChecked(not checkeado)
+            clientes.Clientes.cargaTablaClientes(self)
+        elif var.ui.panPrincipal.currentIndex() == 1:
+            checkeado = var.ui.btnBuscProp.isChecked()
+            var.ui.btnBuscProp.setChecked(not checkeado)
+            propiedades.Propiedades.cargarTablaPropiedades()

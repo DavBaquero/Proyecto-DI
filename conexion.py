@@ -95,23 +95,28 @@ class Conexion:
     def listadoClientes(self):
         try:
             listado = []
-            if var.historicocli == 1:
+            historico = var.ui.chkHistoriacli.isChecked()
+            filtrado = var.ui.btnFiltrarCli.isChecked()
+            dni = var.ui.txtDnicli.text()
+            query = QtSql.QSqlQuery()
+            if not historico and filtrado:
+                query.prepare("SELECT * FROM clientes where bajacli is NULL AND dnicli = :dnicli ORDER BY apelcli, nomecli ASC ")
+                query.bindValue(":dnicli", dni)
 
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM clientes where bajacli is NULL ORDER BY apelcli, nomecli ASC ")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-                return listado
-            elif var.historicocli == 0:
-                query = QtSql.QSqlQuery()
-                query.prepare("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
-                if query.exec():
-                    while query.next():
-                        fila = [query.value(i) for i in range(query.record().count())]
-                        listado.append(fila)
-                return listado
+            elif historico and not filtrado:
+                query.prepare("SELECT * FROM clientes where bajacli is NULL or bajacli is not null ORDER BY apelcli, nomecli ASC ")
+
+            elif historico and filtrado:
+                query.prepare("SELECT * FROM clientes where bajacli is null and dnicli = :dnicli or bajacli is not null and dnicli = :dnicli ORDER BY apelcli, nomecli ASC ")
+                query.bindValue(":dnicli", dni)
+            else:
+                query.prepare("SELECT * FROM clientes where bajacli is null ORDER BY apelcli, nomecli ASC")
+
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
         except Exception as e:
             print("error listado en conexion ", e)
 

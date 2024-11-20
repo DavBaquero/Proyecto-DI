@@ -77,6 +77,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 0))
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 1))
         var.ui.btnBuscProp.clicked.connect(propiedades.Propiedades.cargarTablaPropiedades)
+        var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.cargaTablaClientes)
 
         '''
         eventos de cajas de texto
@@ -95,7 +96,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.cmbProvcli.currentIndexChanged.connect(eventos.Eventos.cargarMunicipio)
         var.ui.cmbTipoprop.currentIndexChanged.connect(propiedades.Propiedades.cargarTablaPropiedades)
         var.ui.cmbProvprop.currentIndexChanged.connect(eventos.Eventos.cargarMuniprop)
-        var.ui.actionbarFiltrar.triggered.connect(propiedades.Propiedades.filtrar)
+        var.ui.actionbarFiltrar.triggered.connect(eventos.Eventos.filtrar)
         var.ui.actionExportar_Propiedades_CSV.triggered.connect(propiedades.Propiedades.exportarCSVProp)
         var.ui.actionExprotar_Propiedades_JSON.triggered.connect(propiedades.Propiedades.exportarJSONProp)
         var.ui.actionExportar_Clientes_CSV.triggered.connect(clientes.Clientes.exportarCSVCli)

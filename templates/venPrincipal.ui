@@ -724,6 +724,29 @@
               </property>
              </widget>
             </item>
+            <item row="1" column="4">
+             <widget class="QPushButton" name="btnFiltrarCli">
+              <property name="styleSheet">
+               <string notr="true">background-color : rgb(143, 197, 200)</string>
+              </property>
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>../img/buscar.ico</normaloff>../img/buscar.ico</iconset>
+              </property>
+              <property name="iconSize">
+               <size>
+                <width>20</width>
+                <height>20</height>
+               </size>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
          </layout>
@@ -1011,7 +1034,7 @@
              <number>8</number>
             </property>
             <attribute name="horizontalHeaderVisible">
-             <bool>true</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="horizontalHeaderCascadingSectionResizes">
              <bool>false</bool>
@@ -1029,7 +1052,7 @@
              <bool>false</bool>
             </attribute>
             <attribute name="verticalHeaderVisible">
-             <bool>T</bool>
+             <bool>false</bool>
             </attribute>
             <attribute name="verticalHeaderCascadingSectionResizes">
              <bool>false</bool>

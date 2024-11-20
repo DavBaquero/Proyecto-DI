@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>424</width>
+    <height>326</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -69,10 +69,10 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>30</x>
      <y>70</y>
-     <width>381</width>
-     <height>191</height>
+     <width>351</width>
+     <height>201</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -109,8 +109,38 @@
       <property name="text">
        <string>Version: 0.0.1</string>
       </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="lblNomAb_5">
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <underline>true</underline>
+       </font>
+      </property>
+      <property name="text">
+       <string>&lt;a href=&quot;https://imgs.search.brave.com/sEk7st3Hg7RupbF8I28DKEmZrDo_N5N5PdQ5flX1amo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLmt5/bS1jZG4uY29tL3Bo/b3Rvcy9pbWFnZXMv/bmV3c2ZlZWQvMDAy/LzU1OS80NTgvMjIw/LmpwZw&quot;&gt; IES de teis&lt;/a&gt;</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -136,8 +166,8 @@
   <widget class="QPushButton" name="btnCerrarAbout">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>270</y>
+     <x>170</x>
+     <y>280</y>
      <width>75</width>
      <height>23</height>
     </rect>

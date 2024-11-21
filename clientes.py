@@ -29,9 +29,12 @@ class Clientes:
 
     def altaCliente(self):
         try:
+            #nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
+                     #var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
+                     #var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
-                     var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
-                     var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
+                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
+                        var.ui.cmbMunicli.currentText()]
 
             posicionObl = [0,1,2,3,5,7,8]
             obligatorios = [nuevocli[i] for i in posicionObl]
@@ -41,7 +44,8 @@ class Clientes:
                     QtWidgets.QMessageBox.critical(None, "Error", "Falta un dato obligatorio")
                     return
 
-            if conexion.Conexion.altaCliente(nuevocli):
+            #if conexion.Conexion.altaCliente(nuevocli):
+            if conexionserver.ConexionServer.altaCliente(nuevocli):
                 mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente dado de alta")
                 mbox.exec()
                 Clientes.cargaTablaClientes(self)
@@ -84,8 +88,8 @@ class Clientes:
 
     def cargaTablaClientes(self):
         try:
-            listado = conexion.Conexion.listadoClientes(self)
-            # listado = conexionserver.ConexionServer.listadoClientes()
+            #listado = conexion.Conexion.listadoClientes(self)
+            listado = conexionserver.ConexionServer.listadoClientes(self)
             index = 0
             var.ui.tablaClientes.setRowCount(len(listado))
             if not listado:
@@ -118,7 +122,9 @@ class Clientes:
         try:
             fila = var.ui.tablaClientes.selectedItems()
             datos = [dato.text() for dato in fila]
-            registro = conexion.Conexion.datosOneCliente(datos[0])
+            #registro = conexion.Conexion.datosOneCliente(datos[0])
+            registro = conexionserver.ConexionServer.datosOneCliente(datos[0])
+            registro = [x if x != 'None' else '' for x in registro]
             listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
                         var.ui.txtNomcli,
                         var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
@@ -129,8 +135,6 @@ class Clientes:
                     listado[i].setCurrentText(registro[i])
                 else:
                     listado[i].setText(registro[i])
-            #Clientes.cargaCliente(registro)
-
         except Exception as error:
             print("Error carga cliente ", error)
 

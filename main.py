@@ -28,8 +28,8 @@ class Main(QtWidgets.QMainWindow):
         var.dlggestion = dlg_Tipo_prop()
         var.dlgabout = dlg_About()
         self.setStyleSheet(styles.load_stylesheet())
-        conexion.Conexion.db_conexion(self)
-        # conexionserver.ConexionServer.crear_conexion()
+        #conexion.Conexion.db_conexion(self)
+        conexionserver.ConexionServer.crear_conexion(self)
 
         '''
             zona de inicializar eventos
@@ -39,7 +39,7 @@ class Main(QtWidgets.QMainWindow):
 
         eventos.Eventos.cargarProvprop(self)
         eventos.Eventos.cargarMuniprop(self)
-        eventos.Eventos.cargarTipoprop()
+      #  eventos.Eventos.cargarTipoprop()
 
         '''
         zona de eventos de las tablas

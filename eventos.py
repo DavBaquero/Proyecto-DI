@@ -171,15 +171,15 @@ class Eventos():
     '''
     def cargarProvincias(self):
         var.ui.cmbProvcli.clear()
-        listado = conexion.Conexion().listaProv(self)
-        # listado = conexionserver.ConexionServer.listaProv()
+        #listado = conexion.Conexion().listaProv(self)
+        listado = conexionserver.ConexionServer.listaProv()
         var.ui.cmbProvcli.addItems(listado)
 
     def cargarMunicipio(self):
         var.ui.cmbMunicli.clear()
         provActual = var.ui.cmbProvcli.currentText()
-        listado = conexion.Conexion().listaMuni(provActual)
-        # listado = conexionserver.ConexionServer.listaProv()
+        #listado = conexion.Conexion().listaMuni(provActual)
+        listado = conexionserver.ConexionServer.listaMuniProv(provActual)
         var.ui.cmbMunicli.addItems(listado)
 
     def validarDNIcli(dni):
@@ -283,11 +283,12 @@ class Eventos():
         except Exception as e:
             print("error en cerrar acerca de: ", e)
 
-    @staticmethod
-    def cargarTipoprop():
-        registro = conexion.Conexion.cargarTipoprop()
-        var.ui.cmbTipoprop.clear()
-        var.ui.cmbTipoprop.addItems(registro)
+    #@staticmethod
+    #def cargarTipoprop():
+       # registro = conexion.Conexion.cargarTipoprop()
+     #   registro = conexionserver.ConexionServer.cargarTipoprop()
+      #  var.ui.cmbTipoprop.clear()
+       # var.ui.cmbTipoprop.addItems(registro)
 
     def filtrar(self):
         if var.ui.panPrincipal.currentIndex() == 0:

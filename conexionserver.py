@@ -1,7 +1,9 @@
+import datetime
+
 import mysql.connector
 from mysql.connector import Error
 import os
-from PyQt6 import QtSql, QtWidgets
+from PyQt6 import QtSql, QtWidgets, QtCore
 
 class ConexionServer():
     def crear_conexion(self):
@@ -102,7 +104,7 @@ class ConexionServer():
             if conexion:
                 cursor = conexion.cursor()
                 # Definir la consulta de selección
-                query = '''SELECT * FROM clientes WHERE dnicli = %s'''  # Usa %s para el placeholder
+                query = '''SELECT dnicli, altacli, apelcli, nomecli, dircli, emailcli, movilcli, provcli, municli, bajacli FROM clientes WHERE dnicli = %s'''  # Usa %s para el placeholder
                 cursor.execute(query, (dni,))  # Pasar 'dni' como una tupla
                 # Recuperar los datos de la consulta
                 for row in cursor.fetchall():
@@ -112,3 +114,38 @@ class ConexionServer():
         except Exception as e:
             print("Error al obtener datos de un cliente:", e)
             return None  # Devolver None en caso de error
+
+    def modifiCliente(registro):
+        try:
+            conexion = ConexionServer().crear_conexion()
+            if conexion:
+                cursor = conexion.cursor()
+                query = """UPDATE clientes SET altacli = %s, apelcli = %s, 
+                nomecli = %s, dircli = %s, emailcli = %s, movilcli = %s, provcli = %s,
+                municli = %s, bajacli = %s WHERE dnicli = %s"""
+                cursor.execute(query, registro)
+                conexion.commit()
+                cursor.close()
+                conexion.close()
+                return True
+        except Exception as e:
+            print("El cliente no está registrado", e)
+            return False
+
+
+
+    @staticmethod
+    def bajaCliente(fecha, dni):
+        try:
+            conexion = ConexionServer().crear_conexion()
+            if conexion:
+                datos = (fecha, dni)
+                cursor = conexion.cursor()
+                query = """UPDATE clientes SET bajacli = %s WHERE dnicli = %s"""
+                cursor.execute(query, datos)
+                conexion.commit()
+                cursor.close()
+                conexion.close()
+                return True
+        except Exception as e:
+            print("El cliente no está registrado", e)

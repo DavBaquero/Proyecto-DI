@@ -140,12 +140,19 @@ class Clientes:
 
     def modifCliente(self):
         try:
-            modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
-                        var.ui.txtNomcli.text(),
-                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
+            #modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
+             #           var.ui.txtNomcli.text(),
+              #          var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
+               #         var.ui.cmbProvcli.currentText(),
+                #        var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
+            modifcli = [ var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
+                        var.ui.txtNomcli.text(), var.ui.txtDircli.text(),
+                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(),
                         var.ui.cmbProvcli.currentText(),
-                        var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
-            if conexion.Conexion.modifiCliente(modifcli):
+                        var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
+
+            #if conexion.Conexion.modifiCliente(modifcli):
+            if conexionserver.ConexionServer.modifiCliente(modifcli):
                 mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente modificado")
                 mbox.exec()
                 Clientes.cargaTablaClientes(self)
@@ -161,7 +168,10 @@ class Clientes:
     def bajaCliente(self):
         try:
             datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
-            if conexion.Conexion.bajaCliente(datos):
+            baja = var.ui.txtBajacli.text()
+            dni = var.ui.txtDnicli.text()
+            #if conexion.Conexion.bajaCliente(datos):
+            if conexionserver.ConexionServer.bajaCliente(baja, dni):
                 mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente dado de baja")
                 mbox.exec()
                 Clientes.cargaTablaClientes(self)

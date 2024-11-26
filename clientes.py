@@ -33,7 +33,7 @@ class Clientes:
                      #var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
                      #var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
-                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
+                        var.ui.txtDircli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(),  var.ui.cmbProvcli.currentText(),
                         var.ui.cmbMunicli.currentText()]
 
             posicionObl = [0,1,2,3,5,7,8]
@@ -125,11 +125,18 @@ class Clientes:
             #registro = conexion.Conexion.datosOneCliente(datos[0])
             registro = conexionserver.ConexionServer.datosOneCliente(datos[0])
             registro = [x if x != 'None' else '' for x in registro]
+            #listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
+             #           var.ui.txtNomcli,
+              #          var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
+               #         var.ui.cmbProvcli,
+            #        var.ui.cmbMunicli, var.ui.txtBajacli]
+
             listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
-                        var.ui.txtNomcli,
-                        var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
-                        var.ui.cmbProvcli,
-                        var.ui.cmbMunicli, var.ui.txtBajacli]
+                       var.ui.txtNomcli, var.ui.txtDircli,
+                       var.ui.txtEmailcli, var.ui.txtMovilcli,
+                       var.ui.cmbProvcli,
+                       var.ui.cmbMunicli, var.ui.txtBajacli]
+
             for i in range(len(listado)):
                 if i == 7 or i == 8:
                     listado[i].setCurrentText(registro[i])

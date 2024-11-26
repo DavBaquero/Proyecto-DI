@@ -32,8 +32,9 @@ class Clientes:
             #nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
                      #var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
                      #var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
-            nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
-                        var.ui.txtDircli.text(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(),  var.ui.cmbProvcli.currentText(),
+
+            nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(), var.ui.txtNomcli.text().title(),
+                        var.ui.txtDircli.text().title(), var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(),  var.ui.cmbProvcli.currentText(),
                         var.ui.cmbMunicli.currentText()]
 
             posicionObl = [0,1,2,3,5,7,8]
@@ -152,8 +153,8 @@ class Clientes:
               #          var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
                #         var.ui.cmbProvcli.currentText(),
                 #        var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
-            modifcli = [ var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
-                        var.ui.txtNomcli.text(), var.ui.txtDircli.text(),
+            modifcli = [ var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(),
+                        var.ui.txtNomcli.text().title(), var.ui.txtDircli.text().title(),
                         var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(),
                         var.ui.cmbProvcli.currentText(),
                         var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]

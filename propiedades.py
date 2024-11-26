@@ -6,6 +6,7 @@ from datetime import datetime
 from PyQt6 import QtWidgets,QtGui,QtCore
 
 import conexion
+import conexionserver
 from eventos import Eventos
 import eventos
 import var
@@ -113,7 +114,9 @@ class Propiedades():
     @staticmethod
     def cargarTablaPropiedades():
         try:
-            listado = conexion.Conexion.listadoPropiedades()
+            #listado = conexion.Conexion.listadoPropiedades()
+            listado = conexionserver.ConexionServer.listadoPropiedades()
+            listado = [x if x != 'None' else '' for x in listado]
             index = 0
             var.ui.tablaProp.setRowCount(len(listado))
             if not listado:
@@ -155,13 +158,14 @@ class Propiedades():
         try:
             fila = var.ui.tablaProp.selectedItems()
             datos = [dato.text() for dato in fila]
-            registro = conexion.Conexion.datosOnePropiedad(str(datos[0]))
+            #registro = conexion.Conexion.datosOnePropiedad(str(datos[0]))
+            registro = conexionserver.ConexionServer.datosOnePropiedad(str(datos[0]))
             listado = [var.ui.lblProp,var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop,var.ui.cmbProvprop,
-                       var.ui.cmbMuniprop,var.ui.cmbTipoprop,
-                       var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop,var.ui.txtPrecioAlquilerprop,
-                       var.ui.txtPrecioVentaprop,
-                       var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
-                       var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
+                    var.ui.cmbMuniprop,var.ui.cmbTipoprop,
+                    var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop,var.ui.txtPrecioAlquilerprop,
+                    var.ui.txtPrecioVentaprop,
+                    var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
+                    var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
 
             for i in range(len(listado)):
                 if i in (4,5,6):

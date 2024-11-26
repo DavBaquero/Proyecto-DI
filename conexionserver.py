@@ -5,6 +5,9 @@ from mysql.connector import Error
 import os
 from PyQt6 import QtSql, QtWidgets, QtCore
 
+import var
+
+
 class ConexionServer():
     def crear_conexion(self):
 
@@ -149,3 +152,124 @@ class ConexionServer():
                 return True
         except Exception as e:
             print("El cliente no está registrado", e)
+
+
+
+    @staticmethod
+    def listadoPropiedades():
+        try:
+            historico = var.ui.chkHistoriaprop.isChecked()
+            municipio = var.ui.cmbMuniprop.currentText()
+            filtrado = var.ui.btnBuscProp.isChecked()
+            tipoSelecionado = var.ui.cmbTipoprop.currentText()
+
+            conexion = ConexionServer().crear_conexion()
+            listadopropiedades = []
+            cursor = conexion.cursor()
+            if not historico and filtrado:
+                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is NULL AND muniprop = '"+municipio+"' AND tipoprop = '"+tipoSelecionado+"' AND estadoprop = 'Disponible'")
+                resultados = cursor.fetchall()
+            elif historico and not filtrado:
+                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is NULL")
+                resultados = cursor.fetchall()
+            elif historico and filtrado:
+                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is null AND muniprop = '"+municipio+"' AND tipoprop = '"+tipoSelecionado+"' AND estadoprop = 'Disponible'")
+                resultados = cursor.fetchall()
+            else:
+                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is NULL AND estadoprop = 'Disponible'")
+                resultados = cursor.fetchall()
+
+            for fila in resultados:
+                listadopropiedades.append(list(fila))
+            cursor.close()
+            conexion.close()
+            return listadopropiedades
+
+        except Exception as e:
+            print("Error en listado de propiedades en conexion", e)
+
+
+    @staticmethod
+    def datosOnePropiedad(codigo):
+        registro = []  # Inicializa la lista para almacenar los datos del cliente
+        try:
+            conexion = ConexionServer().crear_conexion()
+            if conexion:
+                cursor = conexion.cursor()
+                query = """SELECT * FROM propiedades WHERE CODIGO = %s"""
+                cursor.execute(query, (codigo,))  # Pasar 'dni' como una tupla
+            # Recuperar los datos de la consulta
+                for row in cursor.fetchall():
+                    registro.extend([str(col) for col in row])
+                return registro
+        except Exception as e:
+            print("Error al cargar UNA propiedad en conexion.", e)
+
+    @staticmethod
+    def listaProvprop(self=None):
+        listaprov = []
+        conexion = ConexionServer().crear_conexion()
+        if conexion:
+            try:
+                cursor = conexion.cursor()
+                cursor.execute("SELECT * FROM provincias")
+                resultados = cursor.fetchall()
+                for fila in resultados:
+                    listaprov.append(fila[1])  # Asumiendo que el nombre de la provincia está en la segunda columna
+                cursor.close()
+                conexion.close()
+            except Error as e:
+                print(f"Error al ejecutar la consulta: {e}")
+        return listaprov
+
+    @staticmethod
+    def listaMuniProvprop(provincia):
+        try:
+            conexion = ConexionServer().crear_conexion()
+            listamunicipios = []
+            cursor = conexion.cursor()
+            cursor.execute(
+                "SELECT * FROM municipios WHERE idprov = (SELECT idprov FROM provincias WHERE provincia = %s)",
+                (provincia,)
+            )
+            resultados = cursor.fetchall()
+            for fila in resultados:
+                listamunicipios.append(fila[1])  # Asumiendo que el nombre de la provincia está en la segunda columna
+            cursor.close()
+            conexion.close()
+            return listamunicipios
+        except Exception as error:
+            print("error lista muni", error)
+
+
+    @staticmethod
+    def cargarTipoprop():
+        conexion = ConexionServer().crear_conexion()
+        listaTipoProp = []
+        if conexion:
+            try:
+                cursor = conexion.cursor()
+                cursor.execute("SELECT tipo from tipopropiedad ")
+                resultados = cursor.fetchall()
+                for fila in resultados:
+                    listaTipoProp.append(fila[1])  # Asumiendo que el nombre de la provincia está en la segunda columna
+                cursor.close()
+                conexion.close()
+            except Exception as e:
+                print("Error cargar tipo", e)
+
+    def altaTipoprop(tipo):
+        try:
+            registro = []
+            conexion = ConexionServer().crear_conexion()
+            cursor = conexion.cursor()
+            cursor.execute("INSERT into tipopropiedad (tipo) values (%s) ")
+            cursor.fetchall()
+
+            if cursor.execute():
+                registro = ConexionServer.cargarTipoprop()
+                return registro
+            else:
+                return registro
+        except Exception as e:
+            print("Error en conexion al dar de alta tipo propiedad", e)

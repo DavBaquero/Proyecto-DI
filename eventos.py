@@ -239,13 +239,15 @@ class Eventos():
     '''
     def cargarProvprop(self):
         var.ui.cmbProvprop.clear()
-        listado = conexion.Conexion().listaProv(self)
+        #listado = conexion.Conexion().listaProv(self)
+        listado = conexionserver.ConexionServer.listaProvprop()
         var.ui.cmbProvprop.addItems(listado)
 
     def cargarMuniprop(self):
         var.ui.cmbMuniprop.clear()
         provActual = var.ui.cmbProvprop.currentText()
-        listado = conexion.Conexion().listaMuni(provActual)
+        #listado = conexion.Conexion().listaMuni(provActual)
+        listado = conexionserver.ConexionServer.listaMuniProvprop(provActual)
         var.ui.cmbMuniprop.addItems(listado)
 
     def resizeTablaPropiedades(self):

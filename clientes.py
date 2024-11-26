@@ -102,7 +102,7 @@ class Clientes:
                     var.ui.tablaClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
                     var.ui.tablaClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[2]))
                     var.ui.tablaClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[3]))
-                    var.ui.tablaClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(" " +" " +registro[5]+" " + " "))
+                    var.ui.tablaClientes.setItem(index, 3, QtWidgets.QTableWidgetItem(" " +" " +registro[6]+" " + " "))
                     var.ui.tablaClientes.setItem(index, 4, QtWidgets.QTableWidgetItem(registro[7]))
                     var.ui.tablaClientes.setItem(index, 5, QtWidgets.QTableWidgetItem(registro[8]))
                     var.ui.tablaClientes.setItem(index, 6, QtWidgets.QTableWidgetItem(registro[9]))

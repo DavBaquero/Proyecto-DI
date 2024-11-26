@@ -285,12 +285,12 @@ class Eventos():
         except Exception as e:
             print("error en cerrar acerca de: ", e)
 
-    #@staticmethod
-    #def cargarTipoprop():
+    @staticmethod
+    def cargarTipoprop():
        # registro = conexion.Conexion.cargarTipoprop()
-     #   registro = conexionserver.ConexionServer.cargarTipoprop()
-      #  var.ui.cmbTipoprop.clear()
-       # var.ui.cmbTipoprop.addItems(registro)
+        registro = conexionserver.ConexionServer.cargarTipoprop()
+        var.ui.cmbTipoprop.clear()
+        var.ui.cmbTipoprop.addItems(registro)
 
     def filtrar(self):
         if var.ui.panPrincipal.currentIndex() == 0:

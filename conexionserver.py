@@ -252,7 +252,7 @@ class ConexionServer():
                 cursor.execute("SELECT tipo from tipopropiedad ")
                 resultados = cursor.fetchall()
                 for fila in resultados:
-                    listaTipoProp.append(fila[1])  # Asumiendo que el nombre de la provincia está en la segunda columna
+                    listaTipoProp.append(fila[0])  # Asumiendo que el nombre de la provincia está en la segunda columna
                 cursor.close()
                 conexion.close()
             except Exception as e:

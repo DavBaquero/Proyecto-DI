@@ -34,7 +34,8 @@ class Propiedades():
     def bajaTipopropiedad(self):
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().title()
-            if conexion.Conexion.bajaTipoprop(tipo):
+            #if conexion.Conexion.bajaTipoprop(tipo):
+            if conexionserver.ConexionServer.bajaTipoprop(tipo):
                 mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Tipo de propiedad eliminado.")
                 mbox.exec()
                 eventos.Eventos.cargarTipoprop()

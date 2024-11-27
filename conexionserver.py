@@ -69,16 +69,28 @@ class ConexionServer():
 
     def listadoClientes(self):
         try:
-            conexion = ConexionServer().crear_conexion()
-            listadoclientes = []
-            cursor = conexion.cursor()
-            cursor.execute("SELECT * FROM clientes ORDER BY apelcli, nomecli ASC")
-            resultados = cursor.fetchall()
-            for fila in resultados:      # Procesar cada fila de los resultados y crea una lista con valores de la fila
-                listadoclientes.append(list(fila))  # Convierte la tupla en una lista y la añade a listadoclientes
-            cursor.close()    # Cerrar el cursor y la conexión si no los necesitas más
-            conexion.close()
-            return listadoclientes
+            if var.historicocli == 1:
+                conexion = ConexionServer().crear_conexion()
+                listadoclientes = []
+                cursor = conexion.cursor()
+                cursor.execute("SELECT * FROM clientes where clientes.bajacli is null ORDER BY apelcli, nomecli ASC")
+                resultados = cursor.fetchall()
+                for fila in resultados:      # Procesar cada fila de los resultados y crea una lista con valores de la fila
+                    listadoclientes.append(list(fila))  # Convierte la tupla en una lista y la añade a listadoclientes
+                cursor.close()    # Cerrar el cursor y la conexión si no los necesitas más
+                conexion.close()
+                return listadoclientes
+            elif var.historicocli == 0:
+                conexion = ConexionServer().crear_conexion()
+                listadoclientes = []
+                cursor = conexion.cursor()
+                cursor.execute("SELECT * FROM clientes where clientes.bajacli is null or clientes.bajacli is not null ORDER BY apelcli, nomecli ASC")
+                resultados = cursor.fetchall()
+                for fila in resultados:      # Procesar cada fila de los resultados y crea una lista con valores de la fila
+                    listadoclientes.append(list(fila))  # Convierte la tupla en una lista y la añade a listadoclientes
+                cursor.close()    # Cerrar el cursor y la conexión si no los necesitas más
+                conexion.close()
+                return listadoclientes
         except Exception as e:
             print("error listado en conexion", e)
 
@@ -167,18 +179,19 @@ class ConexionServer():
             listadopropiedades = []
             cursor = conexion.cursor()
             if not historico and filtrado:
-                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is NULL AND muniprop = '"+municipio+"' AND tipoprop = '"+tipoSelecionado+"' AND estadoprop = 'Disponible'")
-                resultados = cursor.fetchall()
+                query = "SELECT * FROM propiedades WHERE bajaprop is NULL AND muniprop = %s AND tipoprop = %s AND estadoprop = 'Disponible'"
+                cursor.execute(query, (municipio, tipoSelecionado))
             elif historico and not filtrado:
-                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is NULL")
-                resultados = cursor.fetchall()
+                query = "SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is NULL"
+                cursor.execute(query)
             elif historico and filtrado:
-                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is null AND muniprop = '"+municipio+"' AND tipoprop = '"+tipoSelecionado+"' AND estadoprop = 'Disponible'")
-                resultados = cursor.fetchall()
+                query = "SELECT * FROM propiedades WHERE bajaprop is not NULL or bajaprop is null AND muniprop = %s AND tipoprop = %s AND estadoprop = 'Disponible'"
+                cursor.execute(query, (municipio, tipoSelecionado))
             else:
-                cursor.execute("SELECT * FROM propiedades WHERE bajaprop is NULL AND estadoprop = 'Disponible'")
-                resultados = cursor.fetchall()
+                query = "SELECT * FROM propiedades WHERE bajaprop is NULL AND estadoprop = 'Disponible'"
+                cursor.execute(query)
 
+            resultados = cursor.fetchall()
             for fila in resultados:
                 listadopropiedades.append(list(fila))
             cursor.close()
@@ -255,21 +268,7 @@ class ConexionServer():
                     listaTipoProp.append(fila[0])  # Asumiendo que el nombre de la provincia está en la segunda columna
                 cursor.close()
                 conexion.close()
+                return listaTipoProp
             except Exception as e:
                 print("Error cargar tipo", e)
 
-    def altaTipoprop(tipo):
-        try:
-            registro = []
-            conexion = ConexionServer().crear_conexion()
-            cursor = conexion.cursor()
-            cursor.execute("INSERT into tipopropiedad (tipo) values (%s) ")
-            cursor.fetchall()
-
-            if cursor.execute():
-                registro = ConexionServer.cargarTipoprop()
-                return registro
-            else:
-                return registro
-        except Exception as e:
-            print("Error en conexion al dar de alta tipo propiedad", e)

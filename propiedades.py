@@ -59,9 +59,6 @@ class Propiedades():
             elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
                 mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
                 mbox.exec()
-            elif not var.ui.txtPrecioAlquilerprop.text().isdigit() or not var.ui.txtPrecioVentaprop.text().isdigit():
-                mbox = eventos.Eventos.crearMensajeError("Error","Los precios no pueden contener letras.")
-                mbox.exec()
             else:
                 tipoper = []
 
@@ -217,9 +214,6 @@ class Propiedades():
                 mbox.exec()
             elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
                 mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
-                mbox.exec()
-            elif not var.ui.txtPrecioAlquilerprop.text().isdigit() or not var.ui.txtPrecioVentaprop.text().isdigit():
-                mbox = eventos.Eventos.crearMensajeError("Error","Los precios no pueden contener letras.")
                 mbox.exec()
             else:
                 tipoOper = []

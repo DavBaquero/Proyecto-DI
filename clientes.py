@@ -215,3 +215,25 @@ class Clientes:
         else:
             mbox = eventos.Eventos.crearMensajeError("Error","No se ha seleccionado ningún archivo.")
             mbox.exec()
+
+
+    def anteriorCliente(self):
+        try:
+            if var.ui.tablaClientes.currentRow() == -1:
+                var.ui.tablaClientes.selectRow(0)
+            else:
+                var.ui.tablaClientes.selectRow(var.ui.tablaClientes.currentRow()-1)
+            Clientes.cargaOneCliente(self)
+        except Exception as e:
+            print("Error anterior cliente ", e)
+
+
+    def siguienteCliente(self):
+        try:
+            if var.ui.tablaClientes.currentRow() == -1:
+                var.ui.tablaClientes.selectRow(0)
+            else:
+                var.ui.tablaClientes.selectRow(var.ui.tablaClientes.currentRow()+1)
+            Clientes.cargaOneCliente(self)
+        except Exception as e:
+            print("Error siguiente cliente ", e)

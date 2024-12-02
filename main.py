@@ -79,6 +79,12 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBuscProp.clicked.connect(propiedades.Propiedades.cargarTablaPropiedades)
         var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.cargaTablaClientes)
 
+        var.ui.btnAntCli.clicked.connect(clientes.Clientes.anteriorCliente)
+        var.ui.btnAntProp.clicked.connect(propiedades.Propiedades.anteriorPropiedad)
+
+        var.ui.btnSigCli.clicked.connect(clientes.Clientes.siguienteCliente)
+        var.ui.btnSigProp.clicked.connect(propiedades.Propiedades.siguientePropiedad)
+
         '''
         eventos de cajas de texto
         '''

@@ -385,3 +385,24 @@ class Propiedades():
         else:
             mbox = eventos.Eventos.crearMensajeError("Error","No se ha seleccionado ningún archivo.")
             mbox.exec()
+
+
+    def anteriorPropiedad(self):
+        try:
+            fila = var.ui.tablaProp.currentRow()
+            if fila > 0:
+                fila -= 1
+                var.ui.tablaProp.selectRow(fila)
+                Propiedades.cargaOnePropiedad()
+        except Exception as e:
+            print("Error anterior propiedad", e)
+
+    def siguientePropiedad(self):
+        try:
+            fila = var.ui.tablaProp.currentRow()
+            if fila < var.ui.tablaProp.rowCount():
+                fila += 1
+                var.ui.tablaProp.selectRow(fila)
+                Propiedades.cargaOnePropiedad()
+        except Exception as e:
+            print("Error siguiente propiedad", e)

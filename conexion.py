@@ -92,7 +92,8 @@ class Conexion:
         except Exception as e:
             print("error en alta cliente ", e)
 
-    def listadoClientes(self):
+    @staticmethod
+    def listadoClientes():
         try:
             listado = []
             historico = var.ui.chkHistoriacli.isChecked()

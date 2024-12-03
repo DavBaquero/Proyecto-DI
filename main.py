@@ -24,6 +24,10 @@ class Main(QtWidgets.QMainWindow):
         var.uicalendar = Calendar()
         var.historicocli = 1
         var.historicoprop = 1
+        var.current_page_cli = 0
+        var.items_per_page_cli = 15
+        var.current_page_prop = 0
+        var.items_per_page_prop = 1
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlg_Tipo_prop()
         var.dlgabout = dlg_About()

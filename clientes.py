@@ -84,16 +84,20 @@ class Clientes:
 
     def cargaTablaClientes(self):
         try:
-            listado = conexion.Conexion.listadoClientes(self)
+            var.ui.tablaClientes.setRowCount(0)
+            listado = conexion.Conexion.listadoClientes()
+            total = len(listado)
             # listado = conexionserver.ConexionServer.listadoClientes()
-            index = 0
-            var.ui.tablaClientes.setRowCount(len(listado))
+            start_index = var.current_page_cli * var.items_per_page_cli
+            end_index = start_index + var.items_per_page_cli
+            sublista = listado[start_index:end_index] if listado else []
+            var.ui.tablaClientes.setRowCount(len(sublista))
             if not listado:
                 var.ui.tablaClientes.setRowCount(1)
                 var.ui.tablaClientes.setItem(0, 3, QtWidgets.QTableWidgetItem("No se encuentra el cliente"))
                 var.ui.tablaClientes.item(0, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             else:
-                for registro in listado:
+                for index, registro in enumerate (sublista):
                     var.ui.tablaClientes.setItem(index, 0, QtWidgets.QTableWidgetItem(registro[0]))
                     var.ui.tablaClientes.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[2]))
                     var.ui.tablaClientes.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[3]))
@@ -102,17 +106,24 @@ class Clientes:
                     var.ui.tablaClientes.setItem(index, 5, QtWidgets.QTableWidgetItem(registro[8]))
                     var.ui.tablaClientes.setItem(index, 6, QtWidgets.QTableWidgetItem(registro[9]))
 
-                    var.ui.tablaClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
-                    var.ui.tablaClientes.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
-                    index += 1
-
+                    if var.ui.tablaClientes.item(index, 0):
+                        var.ui.tablaClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 1):
+                        var.ui.tablaClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 2):
+                        var.ui.tablaClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 3):
+                        var.ui.tablaClientes.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 4):
+                        var.ui.tablaClientes.item(index, 4).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 5):
+                        var.ui.tablaClientes.item(index, 5).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                    if var.ui.tablaClientes.item(index, 6):
+                        var.ui.tablaClientes.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter.AlignVCenter)
+                var.ui.btnSigCli.setEnabled(end_index < total)
+                var.ui.btnAntCli.setEnabled(var.current_page_cli > 0)
         except Exception as e:
-            print("Error carga tabla clientes ")
+            print("Error carga tabla clientes ",e)
 
     def cargaOneCliente(self):
         try:
@@ -218,22 +229,11 @@ class Clientes:
 
 
     def anteriorCliente(self):
-        try:
-            if var.ui.tablaClientes.currentRow() == -1:
-                var.ui.tablaClientes.selectRow(0)
-            else:
-                var.ui.tablaClientes.selectRow(var.ui.tablaClientes.currentRow()-1)
-            Clientes.cargaOneCliente(self)
-        except Exception as e:
-            print("Error anterior cliente ", e)
+        if var.current_page_cli > 0:
+            var.current_page_cli -= 1
+        Clientes.cargaTablaClientes(self)
 
 
     def siguienteCliente(self):
-        try:
-            if var.ui.tablaClientes.currentRow() == -1:
-                var.ui.tablaClientes.selectRow(0)
-            else:
-                var.ui.tablaClientes.selectRow(var.ui.tablaClientes.currentRow()+1)
-            Clientes.cargaOneCliente(self)
-        except Exception as e:
-            print("Error siguiente cliente ", e)
+        var.current_page_cli += 1
+        Clientes.cargaTablaClientes(self)

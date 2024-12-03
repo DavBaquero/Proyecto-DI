@@ -110,15 +110,19 @@ class Propiedades():
     @staticmethod
     def cargarTablaPropiedades():
         try:
+            var.ui.tablaProp.setRowCount(0)
             listado = conexion.Conexion.listadoPropiedades()
-            index = 0
-            var.ui.tablaProp.setRowCount(len(listado))
+            total = len(listado)
+            start_index = var.current_page_prop * var.items_per_page_prop
+            end_index = start_index + var.items_per_page_prop
+            sublistado = listado[start_index:end_index] if listado else []
+            var.ui.tablaProp.setRowCount(len(sublistado))
             if not listado:
                 var.ui.tablaProp.setRowCount(1)
                 var.ui.tablaProp.setItem(0, 2, QtWidgets.QTableWidgetItem("No hay propiedades de ese tipo"))
                 var.ui.tablaProp.item(0, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
             else:
-                for registro in listado:
+                for index, registro in enumerate(sublistado):
                     var.ui.tablaProp.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
                     var.ui.tablaProp.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[5])))
                     var.ui.tablaProp.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[6])))
@@ -143,7 +147,8 @@ class Propiedades():
                     var.ui.tablaProp.item(index, 6).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                     var.ui.tablaProp.item(index, 7).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                     var.ui.tablaProp.item(index, 8).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
-                    index += 1
+                var.ui.btnAntProp.setEnabled(var.current_page_prop > 0)
+                var.ui.btnSigProp.setEnabled(end_index < total)
         except Exception as error:
             print('Error cargaTablaPropiedades: %s ' % str(error))
 
@@ -389,20 +394,15 @@ class Propiedades():
 
     def anteriorPropiedad(self):
         try:
-            fila = var.ui.tablaProp.currentRow()
-            if fila > 0:
-                fila -= 1
-                var.ui.tablaProp.selectRow(fila)
-                Propiedades.cargaOnePropiedad()
+            if var.current_page_prop > 0:
+                var.current_page_prop -= 1
+            Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("Error anterior propiedad", e)
 
     def siguientePropiedad(self):
         try:
-            fila = var.ui.tablaProp.currentRow()
-            if fila < var.ui.tablaProp.rowCount():
-                fila += 1
-                var.ui.tablaProp.selectRow(fila)
-                Propiedades.cargaOnePropiedad()
+            var.current_page_prop += 1
+            Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("Error siguiente propiedad", e)

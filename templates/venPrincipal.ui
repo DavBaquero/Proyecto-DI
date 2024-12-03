@@ -886,6 +886,22 @@
          </widget>
         </item>
         <item>
+         <spacer name="verticalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <spacer name="horizontalSpacer_13">
@@ -908,6 +924,12 @@
               <verstretch>25</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
               <width>80</width>
@@ -929,6 +951,12 @@
               <horstretch>80</horstretch>
               <verstretch>25</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>80</width>
+              <height>25</height>
+             </size>
             </property>
             <property name="maximumSize">
              <size>
@@ -968,149 +996,6 @@
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="0" column="0" rowspan="2" colspan="2">
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="3" column="0">
-           <widget class="QTableWidget" name="tablaProp">
-            <property name="minimumSize">
-             <size>
-              <width>1275</width>
-              <height>300</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="frameShape">
-             <enum>QFrame::StyledPanel</enum>
-            </property>
-            <property name="lineWidth">
-             <number>2</number>
-            </property>
-            <property name="verticalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="horizontalScrollBarPolicy">
-             <enum>Qt::ScrollBarAlwaysOff</enum>
-            </property>
-            <property name="editTriggers">
-             <set>QAbstractItemView::NoEditTriggers</set>
-            </property>
-            <property name="showDropIndicator" stdset="0">
-             <bool>true</bool>
-            </property>
-            <property name="alternatingRowColors">
-             <bool>true</bool>
-            </property>
-            <property name="selectionMode">
-             <enum>QAbstractItemView::SingleSelection</enum>
-            </property>
-            <property name="selectionBehavior">
-             <enum>QAbstractItemView::SelectRows</enum>
-            </property>
-            <property name="verticalScrollMode">
-             <enum>QAbstractItemView::ScrollPerPixel</enum>
-            </property>
-            <property name="showGrid">
-             <bool>true</bool>
-            </property>
-            <property name="sortingEnabled">
-             <bool>false</bool>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-            <property name="rowCount">
-             <number>8</number>
-            </property>
-            <attribute name="horizontalHeaderVisible">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderCascadingSectionResizes">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="horizontalHeaderHighlightSections">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="horizontalHeaderMinimumSectionSize">
-             <number>100</number>
-            </attribute>
-            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="horizontalHeaderStretchLastSection">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderVisible">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderCascadingSectionResizes">
-             <bool>false</bool>
-            </attribute>
-            <attribute name="verticalHeaderHighlightSections">
-             <bool>true</bool>
-            </attribute>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <row/>
-            <column>
-             <property name="text">
-              <string>Código</string>
-             </property>
-             <property name="font">
-              <font>
-               <kerning>true</kerning>
-              </font>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Municipio</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Tipo propiedad</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Número de habitaciones</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Número de baños</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Precio Alquiler</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Precio Venta</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Tipo de Operación</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Fecha Baja</string>
-             </property>
-            </column>
-           </widget>
-          </item>
           <item row="1" column="0">
            <widget class="QFrame" name="frame_2">
             <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -1212,6 +1097,74 @@
              <enum>Qt::Horizontal</enum>
             </property>
            </widget>
+          </item>
+          <item row="5" column="0">
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <spacer name="horizontalSpacer_15">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnAntProp">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Anterior</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnSigProp">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>80</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Siguiente</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_16">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
           </item>
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_5">
@@ -2481,73 +2434,148 @@
             </item>
            </layout>
           </item>
-          <item row="5" column="0">
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <spacer name="horizontalSpacer_15">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnAntProp">
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>80</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Anterior</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnSigProp">
-              <property name="minimumSize">
-               <size>
-                <width>80</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="maximumSize">
-               <size>
-                <width>80</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="text">
-               <string>Siguiente</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer_16">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-           </layout>
+          <item row="3" column="0">
+           <widget class="QTableWidget" name="tablaProp">
+            <property name="minimumSize">
+             <size>
+              <width>1275</width>
+              <height>300</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="lineWidth">
+             <number>2</number>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="editTriggers">
+             <set>QAbstractItemView::NoEditTriggers</set>
+            </property>
+            <property name="showDropIndicator" stdset="0">
+             <bool>true</bool>
+            </property>
+            <property name="alternatingRowColors">
+             <bool>true</bool>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
+            </property>
+            <property name="selectionBehavior">
+             <enum>QAbstractItemView::SelectRows</enum>
+            </property>
+            <property name="verticalScrollMode">
+             <enum>QAbstractItemView::ScrollPerPixel</enum>
+            </property>
+            <property name="showGrid">
+             <bool>true</bool>
+            </property>
+            <property name="sortingEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="rowCount">
+             <number>8</number>
+            </property>
+            <attribute name="horizontalHeaderVisible">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="horizontalHeaderMinimumSectionSize">
+             <number>100</number>
+            </attribute>
+            <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="horizontalHeaderStretchLastSection">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderVisible">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderCascadingSectionResizes">
+             <bool>false</bool>
+            </attribute>
+            <attribute name="verticalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <row/>
+            <column>
+             <property name="text">
+              <string>Código</string>
+             </property>
+             <property name="font">
+              <font>
+               <kerning>true</kerning>
+              </font>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Municipio</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo propiedad</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Número de habitaciones</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Número de baños</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Precio Alquiler</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Precio Venta</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Tipo de Operación</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Fecha Baja</string>
+             </property>
+            </column>
+           </widget>
           </item>
           <item row="4" column="0">
            <spacer name="verticalSpacer_2">

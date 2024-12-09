@@ -307,12 +307,19 @@ class Propiedades():
 
     @staticmethod
     def validarFechaBaja():
-        if var.ui.txtBajaprop.text() == "":
-            return True
-        elif var.ui.txtBajaprop.text() < var.ui.txtAltaprop.text():
+        try:
+            if var.ui.txtBajaprop.text() == "" or var.ui.txtAltaprop.text() is None:
+                return True
+            else:
+                fecha_baja = datetime.strptime(var.ui.txtBajaprop.text(), "%d/%m/%Y")
+                fecha_alta = datetime.strptime(var.ui.txtAltaprop.text(), "%d/%m/%Y")
+                if fecha_baja < fecha_alta:
+                    return False
+                else:
+                    return True
+        except Exception as e:
+            print("Error en validarFechaBaja: ", e)
             return False
-        else:
-            return True
 
     @staticmethod
     def manageChkBox():

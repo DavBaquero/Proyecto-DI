@@ -152,30 +152,46 @@ class Clientes:
                         var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
                         var.ui.cmbProvcli.currentText(),
                         var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
-            if conexion.Conexion.modifiCliente(modifcli):
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente modificado")
+            validarFechaBaja = Clientes.validarFechaBaja()
+            if (validarFechaBaja == False):
+                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
-                Clientes.cargaTablaClientes(self)
+            elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
+                mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
+                mbox.exec()
             else:
-                mbox = eventos.Eventos.crearMensajeError("Error","Error al modificar cliente")
-                mbox.exec()
-                Clientes.cargaTablaClientes(self)
+                if conexion.Conexion.modifiCliente(modifcli):
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente modificado")
+                    mbox.exec()
+                    Clientes.cargaTablaClientes(self)
+                else:
+                    mbox = eventos.Eventos.crearMensajeError("Error","Error al modificar cliente")
+                    mbox.exec()
+                    Clientes.cargaTablaClientes(self)
 
-            clientes.Clientes.cargaTablaClientes(self)
+                clientes.Clientes.cargaTablaClientes(self)
         except Exception as e:
             print("Error al modificar cliente ", e)
 
     def bajaCliente(self):
         try:
             datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
-            if conexion.Conexion.bajaCliente(datos):
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente dado de baja")
+            validarFechaBaja = Clientes.validarFechaBaja()
+            if (validarFechaBaja == False):
+                mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
                 mbox.exec()
-                Clientes.cargaTablaClientes(self)
+            elif var.ui.txtBajaprop.text().isalpha() or var.ui.txtAltaprop.text().isalpha():
+                mbox = eventos.Eventos.crearMensajeError("Error","Las fechas no pueden contener letras.")
+                mbox.exec()
             else:
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso","El cliente no está en la base de datos")
-                mbox.exec()
-                Clientes.cargaTablaClientes(self)
+                if conexion.Conexion.bajaCliente(datos):
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso","Cliente dado de baja")
+                    mbox.exec()
+                    Clientes.cargaTablaClientes(self)
+                else:
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso","El cliente no está en la base de datos")
+                    mbox.exec()
+                    Clientes.cargaTablaClientes(self)
         except Exception as e:
             print("error bajaCliente", e)
 
@@ -237,3 +253,21 @@ class Clientes:
     def siguienteCliente(self):
         var.current_page_cli += 1
         Clientes.cargaTablaClientes(self)
+
+    @staticmethod
+    def validarFechaBaja():
+        try:
+            if var.ui.txtBajacli.text() == "" or var.ui.txtBajacli.text() is None:
+                return True
+            else:
+                fecha_baja = datetime.datetime.strptime(var.ui.txtBajacli.text(), "%d/%m/%Y")
+                fecha_alta = datetime.datetime.strptime(var.ui.txtAltacli.text(), "%d/%m/%Y")
+                if not fecha_baja:
+                    return True
+                elif fecha_baja < fecha_alta:
+                    return False
+                else:
+                    return True
+        except Exception as e:
+            print("Error en validarFechaBaja: ", e)
+            return False

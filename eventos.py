@@ -294,6 +294,7 @@ class Eventos():
             checkeado = var.ui.btnFiltrarCli.isChecked()
             var.ui.btnFiltrarCli.setChecked(not checkeado)
             clientes.Clientes.cargaTablaClientes(self)
+            clientes.Clientes.cargaOneClienteBusq(self)
         elif var.ui.panPrincipal.currentIndex() == 1:
             checkeado = var.ui.btnBuscProp.isChecked()
             var.ui.btnBuscProp.setChecked(not checkeado)

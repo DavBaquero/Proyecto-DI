@@ -145,6 +145,25 @@ class Clientes:
         except Exception as error:
             print("Error carga cliente ", error)
 
+    def cargaOneClienteBusq(self):
+        try:
+            dni = var.ui.txtDnicli.text()
+            registro = conexion.Conexion.datosOneCliente(dni)
+            listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
+                       var.ui.txtNomcli,
+                       var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,
+                       var.ui.cmbProvcli,
+                       var.ui.cmbMunicli, var.ui.txtBajacli]
+            for i in range(len(listado)):
+                if i == 7 or i == 8:
+                    listado[i].setCurrentText(registro[i])
+                else:
+                    listado[i].setText(registro[i])
+            #Clientes.cargaCliente(registro)
+
+        except Exception as error:
+            print("Error carga cliente ", error)
+
     def modifCliente(self):
         try:
             modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
@@ -269,3 +288,8 @@ class Clientes:
         except Exception as e:
             print("Error en validarFechaBaja: ", e)
             return False
+
+
+    def filtrar(self):
+        Clientes.cargaTablaClientes(self)
+        Clientes.cargaOneClienteBusq(self)

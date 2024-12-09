@@ -81,7 +81,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 0))
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 1))
         var.ui.btnBuscProp.clicked.connect(propiedades.Propiedades.cargarTablaPropiedades)
-        var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.cargaTablaClientes)
+        var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.filtrar)
 
         var.ui.btnAntCli.clicked.connect(clientes.Clientes.anteriorCliente)
         var.ui.btnAntProp.clicked.connect(propiedades.Propiedades.anteriorPropiedad)

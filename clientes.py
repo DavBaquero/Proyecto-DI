@@ -262,9 +262,7 @@ class Clientes:
             else:
                 fecha_baja = datetime.datetime.strptime(var.ui.txtBajacli.text(), "%d/%m/%Y")
                 fecha_alta = datetime.datetime.strptime(var.ui.txtAltacli.text(), "%d/%m/%Y")
-                if not fecha_baja:
-                    return True
-                elif fecha_baja < fecha_alta:
+                if fecha_baja < fecha_alta:
                     return False
                 else:
                     return True

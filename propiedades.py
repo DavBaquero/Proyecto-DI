@@ -308,7 +308,7 @@ class Propiedades():
     @staticmethod
     def validarFechaBaja():
         try:
-            if var.ui.txtBajaprop.text() == "" or var.ui.txtAltaprop.text() is None:
+            if var.ui.txtBajaprop.text() == "" or var.ui.txtBajaprop.text() is None:
                 return True
             else:
                 fecha_baja = datetime.strptime(var.ui.txtBajaprop.text(), "%d/%m/%Y")

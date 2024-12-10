@@ -147,8 +147,8 @@ class Clientes:
 
     def cargaOneClienteBusq(self):
         try:
-            dni = var.ui.txtDnicli.text()
-            registro = conexion.Conexion.datosOneCliente(dni)
+            dni = var.ui.txtDnicli.text().upper()
+            registro = conexion.Conexion.datosOneCliente(str(dni))
             listado = [var.ui.txtDnicli, var.ui.txtAltacli, var.ui.txtApelcli,
                        var.ui.txtNomcli,
                        var.ui.txtEmailcli, var.ui.txtMovilcli, var.ui.txtDircli,

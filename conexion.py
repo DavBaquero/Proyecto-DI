@@ -373,6 +373,22 @@ class Conexion:
             print("Error al cargar UNA propiedad en conexion.", e)
 
     @staticmethod
+    def datosOnePropiedadBusq(municipio, provincia):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM propiedades WHERE muniprop = :muniprop AND provprop = :provprop AND estadoprop = 'Disponible'")
+            query.bindValue(":muniprop", str(municipio))
+            query.bindValue(":provprop", str(provincia))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as e:
+            print("Error al cargar UNA propiedad en conexion.", e)
+
+    @staticmethod
     def listadoPropiedadesExportar():
         try:
             listado = []

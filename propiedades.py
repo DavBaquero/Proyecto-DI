@@ -191,6 +191,46 @@ class Propiedades():
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 
+
+    @staticmethod
+    def cargaOnePropiedadBusq():
+        try:
+            municipio = var.ui.cmbMuniprop.currentText()
+            provincia = var.ui.cmbProvprop.currentText()
+            registro = conexion.Conexion.datosOnePropiedadBusq(str(municipio),str(provincia))
+            listado = [var.ui.lblProp,var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop,var.ui.cmbProvprop,
+                       var.ui.cmbMuniprop,var.ui.cmbTipoprop,
+                       var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop,var.ui.txtPrecioAlquilerprop,
+                       var.ui.txtPrecioVentaprop,
+                       var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
+                       var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
+
+            for i in range(len(listado)):
+                if i in (4,5,6):
+                    listado[i].setCurrentText(registro[i])
+                elif i in (7,8):
+                    listado[i].setValue(int(registro[i]))
+                elif i == 13:
+                    listado[i].setPlainText(registro[i])
+                elif i == 14:
+                    listado[i].setChecked(registro[15] == "Disponible")
+                elif i == 15:
+                    listado[i].setChecked(registro[15] == "Alquilado")
+                elif i == 16:
+                    listado[i].setChecked(registro[15] == "Vendido")
+                elif i in (17,18,19):
+                    listado[17].setChecked("Intercambio" in registro[14])
+                    listado[18].setChecked("Alquiler" in registro[14])
+                    listado[19].setChecked("Venta" in registro[14])
+                elif i == 20:
+                    listado[i].setText(registro[16])
+                elif i == 21:
+                    listado[i].setText(registro[17])
+                else:
+                    listado[i].setText(registro[i])
+        except Exception as e:
+            print("Error cargando UNA propiedad en propiedades.", e)
+
     @staticmethod
     def checkDatosVaciosAltaProp(datosPropiedades):
         datos = datosPropiedades[:]
@@ -413,3 +453,10 @@ class Propiedades():
             Propiedades.cargarTablaPropiedades()
         except Exception as e:
             print("Error siguiente propiedad", e)
+
+    def filtrarPropiedades(self):
+        try:
+            Propiedades.cargarTablaPropiedades()
+            Propiedades.cargaOnePropiedadBusq()
+        except Exception as e:
+            print("Error filtrar propiedades", e)

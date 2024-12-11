@@ -390,11 +390,19 @@ class Propiedades():
             var.ui.rbtVentaprop.setChecked(False)
             var.ui.rbtAlquilprop.setEnabled(False)
             var.ui.rbtVentaprop.setEnabled(False)
-        else:
+        elif var.ui.chkAlquilprop.isChecked():
             var.ui.rbtDisponprop.setChecked(False)
             var.ui.rbtDisponprop.setEnabled(False)
             var.ui.rbtAlquilprop.setChecked(True)
             var.ui.rbtAlquilprop.setEnabled(True)
+            var.ui.rbtVentaprop.setEnabled(False)
+            var.ui.rbtVentaprop.setChecked(False)
+        else:
+            var.ui.rbtDisponprop.setChecked(False)
+            var.ui.rbtDisponprop.setEnabled(False)
+            var.ui.rbtAlquilprop.setChecked(False)
+            var.ui.rbtAlquilprop.setEnabled(False)
+            var.ui.rbtVentaprop.setChecked(True)
             var.ui.rbtVentaprop.setEnabled(True)
 
     def exportarCSVProp(self):

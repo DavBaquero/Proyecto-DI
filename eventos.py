@@ -29,7 +29,7 @@ class Eventos():
     def crearMensajeSalida(titulo_ventana, mensaje):
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
-        mbox.setWindowIcon(QtGui.QIcon('./img/icono.svg'))
+        mbox.setWindowIcon(QtGui.QIcon('./img/logo.svg'))
         mbox.setText(mensaje)
         mbox.setWindowTitle(titulo_ventana)
         mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
@@ -42,7 +42,7 @@ class Eventos():
     def crearMensajeInfo(titulo_ventana, mensaje):
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
-        mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
+        mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
         mbox.setWindowTitle(titulo_ventana)
         mbox.setText(mensaje)
         mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)
@@ -54,7 +54,7 @@ class Eventos():
     def crearMensajeError(titulo_ventana, mensaje):
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
-        mbox.setWindowIcon(QtGui.QIcon('img/icono.svg'))
+        mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
         mbox.setWindowTitle(titulo_ventana)
         mbox.setText(mensaje)
         mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Ok)

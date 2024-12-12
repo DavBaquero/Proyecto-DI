@@ -450,7 +450,6 @@ class Conexion:
                 while query.next():
                     fila = [query.value(i) for i in range(query.record().count())]
                     listado.append(fila)
-                print(listado)
             return listado
         except Exception as e:
             print("error listado en conexion ", e)

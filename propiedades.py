@@ -46,7 +46,7 @@ class Propiedades():
 
     def altaPropiedad(self):
         try:
-            propiedad = [var.ui.txtAltaprop.text(),var.ui.txtDirprop.text(),var.ui.cmbProvprop.currentText(),
+            propiedad = [var.ui.txtAltaprop.text(),var.ui.txtDirprop.text().title(),var.ui.cmbProvprop.currentText(),
                          var.ui.cmbMuniprop.currentText(),var.ui.cmbTipoprop.currentText(),
                          var.ui.spinHabprop.text(), var.ui.spinBanosprop.text(), var.ui.txtSuperprop.text(),var.ui.txtPrecioAlquilerprop.text(),
                          var.ui.txtPrecioVentaprop.text(),
@@ -79,7 +79,7 @@ class Propiedades():
                 elif var.ui.rbtVentaprop.isChecked():
                     propiedad.append(var.ui.rbtVentaprop.text())
 
-                propiedad.append(var.ui.txtNomeprop.text())
+                propiedad.append(var.ui.txtNomeprop.text().title())
                 propiedad.append(var.ui.txtMovilprop.text())
                 if Propiedades.checkDatosVaciosAltaProp(propiedad) and conexion.Conexion.altaPropiedad(propiedad):
                     mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se ha grabado la propiedad en la base de datos.")
@@ -248,7 +248,7 @@ class Propiedades():
     @staticmethod
     def modifProp():
         try:
-            propiedad = [var.ui.lblProp.text(),var.ui.txtAltaprop.text(),var.ui.txtBajaprop.text(),var.ui.txtDirprop.text(),var.ui.cmbProvprop.currentText(),
+            propiedad = [var.ui.lblProp.text(),var.ui.txtAltaprop.text(),var.ui.txtBajaprop.text(),var.ui.txtDirprop.text().title(),var.ui.cmbProvprop.currentText(),
                          var.ui.cmbMuniprop.currentText(),var.ui.cmbTipoprop.currentText(),
                          var.ui.spinHabprop.text(), var.ui.spinBanosprop.text(), var.ui.txtSuperprop.text(),var.ui.txtPrecioAlquilerprop.text(),
                          var.ui.txtPrecioVentaprop.text(),
@@ -276,8 +276,8 @@ class Propiedades():
                 elif var.ui.rbtVentaprop.isChecked():
                     propiedad.append(var.ui.rbtVentaprop.text())
 
-                propiedad.append(var.ui.txtNomeprop.text())
-                propiedad.append(var.ui.txtMovilprop.text())
+                propiedad.append(var.ui.txtNomeprop.text().title())
+                propiedad.append(var.ui.txtMovilprop.text().title())
 
                 if propiedad[2] != "" and propiedad[1] > propiedad[2]:
                     mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser posterior a la fecha de alta.")

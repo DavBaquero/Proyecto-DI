@@ -17,7 +17,7 @@ from eventos import Eventos
 class Vendedores:
     def altaVendedores(self):
         try:
-            nuevovendedor = [var.ui.txtDNIVen.text(), var.ui.txtNomVen.text(), var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
+            nuevovendedor = [var.ui.txtDNIVen.text(), var.ui.txtNomVen.text().title(), var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
                         var.ui.txtMovilVen.text(), var.ui.txtMailVen.text(), var.ui.cmbDelegVen.currentText()]
 
             posicionObl = [0,1,4,6]
@@ -114,7 +114,7 @@ class Vendedores:
 
     def modifVen(self):
         try:
-            nuevovendedor = [var.ui.lblCodigo_2.text(), var.ui.txtNomVen.text() ,var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
+            nuevovendedor = [var.ui.lblCodVen.text(), var.ui.txtNomVen.text().title() ,var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
                              var.ui.txtMovilVen.text(), var.ui.txtMailVen.text(), var.ui.cmbDelegVen.currentText()]
             validarFechaBaja = Vendedores.validarFechaBaja()
             if (validarFechaBaja == False):
@@ -139,7 +139,7 @@ class Vendedores:
 
     def bajaVendedor(self):
         try:
-            datos = [var.ui.txtBajaVen.text(), var.ui.lblCodigo_2.text()]
+            datos = [var.ui.txtBajaVen.text(), var.ui.lblCodVen.text()]
             validarFechaBaja = Vendedores.validarFechaBaja()
             if (validarFechaBaja == False):
                 mbox = eventos.Eventos.crearMensajeError("Error","La fecha de baja no puede ser anterior a la fecha de alta.")
@@ -162,11 +162,11 @@ class Vendedores:
     @staticmethod
     def validarFechaBaja():
         try:
-            if var.ui.txtBajacli.text() == "" or var.ui.txtBajacli.text() is None:
+            if var.ui.txtBajaVen.text() == "" or var.ui.txtBajaVen.text() is None:
                 return True
             else:
-                fecha_baja = datetime.datetime.strptime(var.ui.txtBajacli.text(), "%d/%m/%Y")
-                fecha_alta = datetime.datetime.strptime(var.ui.txtAltacli.text(), "%d/%m/%Y")
+                fecha_baja = datetime.datetime.strptime(var.ui.txtBajaVen.text(), "%d/%m/%Y")
+                fecha_alta = datetime.datetime.strptime(var.ui.txtAltaVen.text(), "%d/%m/%Y")
                 if fecha_baja < fecha_alta:
                     return False
                 else:
@@ -180,7 +180,7 @@ class Vendedores:
             fila = var.ui.tablaVendedores.selectedItems()
             datos = [dato.text() for dato in fila]
             registro = conexion.Conexion.datosOneVendedor(str(datos[0]))
-            listado = [var.ui.lblCodigo_2, var.ui.txtDNIVen,var.ui.txtNomVen, var.ui.txtAltaVen, var.ui.txtBajaVen,
+            listado = [var.ui.lblCodVen, var.ui.txtDNIVen,var.ui.txtNomVen, var.ui.txtAltaVen, var.ui.txtBajaVen,
                              var.ui.txtMovilVen, var.ui.txtMailVen, var.ui.cmbDelegVen]
             for i in range(len(listado)):
                 if i == 7:

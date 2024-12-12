@@ -165,11 +165,47 @@ class Eventos():
 
                 eventos.Eventos.cargarProvprop(self)
                 eventos.Eventos.cargarTipoprop()
+            elif current_index == 2:
+                vendedor = [var.ui.lblCodVen, var.ui.txtDNIVen, var.ui.txtNomVen, var.ui.txtAltaVen,
+                            var.ui.txtBajaVen, var.ui.txtMovilVen, var.ui.txtMailVen, var.ui.cmbDelegVen]
+
+                for i, dato in enumerate(vendedor):
+                    if i != 7:
+                        dato.setText("")
+                    else:
+                        dato.setCurrentIndex(0)
+
+                eventos.Eventos.cargarDelegacion(self)
 
             else:
                 print("panPrincipal es nulo")
         except Exception as e:
             print(f"Se ha producido una excepción: {e}")
+
+    def abrirAbout(self):
+        try:
+            var.dlgabout.show()
+        except Exception as e:
+            print("error en abrir about: ", e)
+
+    def cerrarAcercaDe(self):
+        try:
+            var.dlgabout.close()
+        except Exception as e:
+            print("error en cerrar acerca de: ", e)
+
+    def filtrar(self):
+        if var.ui.panPrincipal.currentIndex() == 0:
+            checkeado = var.ui.btnFiltrarCli.isChecked()
+            var.ui.btnFiltrarCli.setChecked(not checkeado)
+            clientes.Clientes.cargaTablaClientes(self)
+            clientes.Clientes.cargaOneClienteBusq(self)
+        elif var.ui.panPrincipal.currentIndex() == 1:
+            checkeado = var.ui.btnBuscProp.isChecked()
+            var.ui.btnBuscProp.setChecked(not checkeado)
+            propiedades.Propiedades.cargarTablaPropiedades()
+
+
 
     '''
         Zona clientes
@@ -276,41 +312,18 @@ class Eventos():
         except Exception as e:
             print("error en abrir tipo prop: ", e)
 
-    def abrirAbout(self):
-        try:
-            var.dlgabout.show()
-        except Exception as e:
-            print("error en abrir about: ", e)
-
-    def cerrarAcercaDe(self):
-        try:
-            var.dlgabout.close()
-        except Exception as e:
-            print("error en cerrar acerca de: ", e)
-
     @staticmethod
     def cargarTipoprop():
         registro = conexion.Conexion.cargarTipoprop()
         var.ui.cmbTipoprop.clear()
         var.ui.cmbTipoprop.addItems(registro)
 
-    def filtrar(self):
-        if var.ui.panPrincipal.currentIndex() == 0:
-            checkeado = var.ui.btnFiltrarCli.isChecked()
-            var.ui.btnFiltrarCli.setChecked(not checkeado)
-            clientes.Clientes.cargaTablaClientes(self)
-            clientes.Clientes.cargaOneClienteBusq(self)
-        elif var.ui.panPrincipal.currentIndex() == 1:
-            checkeado = var.ui.btnBuscProp.isChecked()
-            var.ui.btnBuscProp.setChecked(not checkeado)
-            propiedades.Propiedades.cargarTablaPropiedades()
-
     '''
         Zona vendedores
     '''
 
     def cargarDelegacion(self):
-        var.ui.cmbProvcli.clear()
+        var.ui.cmbDelegVen.clear()
         listado = conexion.Conexion().listaProv(self)
         var.ui.cmbDelegVen.addItems(listado)
 

@@ -29,8 +29,8 @@ class Clientes:
 
     def altaCliente(self):
         try:
-            nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(), var.ui.txtNomcli.text(),
-                     var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(), var.ui.cmbProvcli.currentText(),
+            nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(), var.ui.txtNomcli.text().title(),
+                     var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text().title(), var.ui.cmbProvcli.currentText(),
                      var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
 
             posicionObl = [0,1,2,3,5,7,8]
@@ -166,9 +166,9 @@ class Clientes:
 
     def modifCliente(self):
         try:
-            modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text(),
-                        var.ui.txtNomcli.text(),
-                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text(),
+            modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(),
+                        var.ui.txtNomcli.text().title(),
+                        var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text().title(),
                         var.ui.cmbProvcli.currentText(),
                         var.ui.cmbMunicli.currentText(), var.ui.txtBajacli.text()]
             validarFechaBaja = Clientes.validarFechaBaja()

@@ -86,6 +86,11 @@ class Eventos():
                 var.ui.txtAltaprop.setText(str(data))
             elif var.panel == 1 and var.btn == 1:
                 var.ui.txtBajaprop.setText(str(data))
+            elif var.panel == 2 and var.btn == 0:
+                var.ui.txtAltaVen.setText(str(data))
+            elif var.panel == 2 and var.btn == 1:
+                var.ui.txtBajaVen.setText(str(data))
+
             time.sleep(0.125)
             var.uicalendar.hide()
             return data
@@ -299,3 +304,48 @@ class Eventos():
             checkeado = var.ui.btnBuscProp.isChecked()
             var.ui.btnBuscProp.setChecked(not checkeado)
             propiedades.Propiedades.cargarTablaPropiedades()
+
+    '''
+        Zona vendedores
+    '''
+
+    def cargarDelegacion(self):
+        var.ui.cmbProvcli.clear()
+        listado = conexion.Conexion().listaProv(self)
+        var.ui.cmbDelegVen.addItems(listado)
+
+    def validarDNIven(dni):
+        try:
+            tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
+            dig_ext = "XYZ"
+            reemp_dig_ext = {'X': '0', 'Y': '1', 'Z': '2'}
+            numeros = "1234567890"
+            if len(dni) == 9:
+                dig_control = dni[8]
+                dni = dni[:8]
+                if dni[0] in dig_ext:
+                    dni = dni.replace(dni[0], reemp_dig_ext[dni[0]])
+                if len(dni) == len([n for n in dni if n in numeros]) and tabla[int(dni) % 23] == dig_control:
+                    return True
+                else:
+                    return False
+
+            else:
+                return False
+        except Exception as error:
+            print("error en validar dni ", error)
+
+    def resizeTablaVendedores(self):
+        try:
+            header = var.ui.tablaVendedores.horizontalHeader()
+            for i in range(header.count()):
+
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+
+                header_items = var.ui.tablaVendedores.horizontalHeaderItem(i)
+                if header_items is not None:
+                    font = header_items.font()
+                    font.setBold(True)
+                    header_items.setFont(font)
+        except Exception as e:
+            print("error en resize tabla clientes: ", e)

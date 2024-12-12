@@ -2,6 +2,7 @@ from calendar import Calendar
 
 import dlgGestipoprop
 import propiedades
+import vendedores
 from propiedades import Propiedades
 from venAux import *
 import clientes
@@ -44,18 +45,22 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.cargarProvprop(self)
         eventos.Eventos.cargarMuniprop(self)
         eventos.Eventos.cargarTipoprop()
+        eventos.Eventos.cargarDelegacion(self)
 
         '''
         zona de eventos de las tablas
         '''
         clientes.Clientes.cargaTablaClientes(self)
         propiedades.Propiedades.cargarTablaPropiedades()
+        vendedores.Vendedores.cargaTablaVendedores(self)
 
         eventos.Eventos.resizeTablaClientes(self)
         eventos.Eventos.resizeTablaPropiedades(self)
+        eventos.Eventos.resizeTablaVendedores(self)
 
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
+        var.ui.tablaVendedores.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
 
         '''
         zona de eventos del menubar
@@ -75,6 +80,14 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0,0))
         var.ui.btnBajacli.clicked.connect(lambda: eventos.Eventos.abrirCalendar(0,1))
 
+        var.ui.btnAltaVen.clicked.connect(lambda: eventos.Eventos.abrirCalendar(2,0))
+        var.ui.btnBajaVen.clicked.connect(lambda: eventos.Eventos.abrirCalendar(2,1))
+        var.ui.btnGrabarVen.clicked.connect(vendedores.Vendedores.altaVendedores)
+        var.ui.btnModifiVen.clicked.connect(vendedores.Vendedores.modifVen)
+        var.ui.btnEliminarVen.clicked.connect(vendedores.Vendedores.bajaVendedor)
+
+
+
         var.ui.btnEliminarprop.clicked.connect(propiedades.Propiedades.bajaProp)
         var.ui.btnGrabarprop.clicked.connect(propiedades.Propiedades.altaPropiedad)
         var.ui.btnModifiprop.clicked.connect(propiedades.Propiedades.modifProp)
@@ -93,8 +106,11 @@ class Main(QtWidgets.QMainWindow):
         eventos de cajas de texto
         '''
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))
+        var.ui.txtDNIVen.editingFinished.connect(lambda: vendedores.Vendedores.checkDNIven(var.ui.txtDNIVen.text()))
         var.ui.txtEmailcli.editingFinished.connect(lambda: clientes.Clientes.checkEmail(var.ui.txtEmailcli.text()))
+        var.ui.txtMailVen.editingFinished.connect(lambda: vendedores.Vendedores.checkEmailven(var.ui.txtMailVen.text()))
         var.ui.txtMovilcli.editingFinished.connect(lambda: clientes.Clientes.checkMovil(var.ui.txtMovilcli.text()))
+        var.ui.txtMovilVen.editingFinished.connect(lambda: vendedores.Vendedores.checkMovilven(var.ui.txtMovilVen.text()))
         var.ui.txtBajaprop.textChanged.connect(lambda: propiedades.Propiedades.manageRadioButtons())
         var.ui.txtPrecioVentaprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())
         var.ui.txtPrecioAlquilerprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())

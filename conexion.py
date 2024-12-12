@@ -3,6 +3,7 @@ from datetime import datetime
 
 from PyQt6 import QtSql, QtWidgets, QtGui,QtCore
 
+import eventos
 import var
 
 
@@ -413,3 +414,105 @@ class Conexion:
                 fila = [query.value(i) for i in range(query.record().count())]
                 listado.append(fila)
         return listado
+
+
+    '''
+        Zona vendedores
+    '''
+
+    def altaVendedor(nuevoVendedor):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO VENDEDOR(dniVendedor, nombreVendedor, altaVendedor, bajaVendedor, "
+                          "movilVendedor, mailVendedor, delegacionVendedor) VALUES (:dniVendedor, :nombreVendedor,:altaVendedor,"
+                          ":bajaVendedor,:movilVendedor,:mailVendedor,:delegacionVendedor)")
+            query.bindValue(":dniVendedor", str(nuevoVendedor[0]))
+            query.bindValue(":nombreVendedor", str(nuevoVendedor[1]))
+            query.bindValue(":altaVendedor", str(nuevoVendedor[2]))
+            query.bindValue(":bajaVendedor", str(nuevoVendedor[3]))
+            query.bindValue(":movilVendedor", str(nuevoVendedor[4]))
+            query.bindValue(":mailVendedor", str(nuevoVendedor[5]))
+            query.bindValue(":delegacionVendedor", str(nuevoVendedor[6]))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("error en alta cliente ", e)
+
+    @staticmethod
+    def listadoVendedores():
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT idVendedor, nombreVendedor, movilVendedor, delegacionVendedor FROM vendedor ORDER BY idVendedor ASC ")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+                print(listado)
+            return listado
+        except Exception as e:
+            print("error listado en conexion ", e)
+
+
+    def modifiVendedores(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("Select count(*) from vendedor where idVendedor = :idVendedor")
+            query.bindValue(":idVendedor",str(registro[0]))
+            if query.exec():
+                if query.next() and query.value(0)>0:
+                    if query.exec():
+                        query.prepare("UPDATE vendedor SET nombreVendedor = :nombreVendedor,  altaVendedor = :altaVendedor, bajaVendedor = :bajaVendedor,"
+                                      "movilVendedor = :movilVendedor, mailVendedor =:mailVendedor, delegacionVendedor = :delegacionVendedor WHERE idVendedor = :idVendedor ")
+                        query.bindValue(":idVendedor", str(registro[0]))
+                        query.bindValue(":nombreVendedor", str(registro[1]))
+                        query.bindValue(":altaVendedor", str(registro[2]))
+                        query.bindValue(":movilVendedor", str(registro[4]))
+                        query.bindValue(":mailVendedor", str(registro[5]))
+                        query.bindValue(":delegacionVendedor", str(registro[6]))
+                        if registro[2] == "":
+                            query.bindValue(":bajaVendedor", QtCore.QVariant())
+                        else:
+                            query.bindValue(":bajaVendedor", str(registro[3]))
+                        if query.exec():
+                            return True
+                        else:
+                            return False
+                    else:
+                        return False
+                else:
+                    return False
+        except Exception as e:
+            print("El cliente no está registrado", e)
+
+    @staticmethod
+    def bajaVendedor(datos):
+        query = QtSql.QSqlQuery()
+        query.prepare("Select count(*) from vendedor where idVendedor = :idVendedor")
+        query.bindValue(":idVendedor", str(datos[1]))
+        query.exec()
+        if query.next() and query.value(0):
+            query = QtSql.QSqlQuery()
+            query.prepare('UPDATE vendedor SET bajaVendedor = :bajaVendedor WHERE idVendedor = :idVendedor')
+            query.bindValue(":bajaVendedor", datetime.now().strftime("%d/%m/%Y"))
+            query.bindValue(":idVendedor", str(datos[1]))
+            if query.exec():
+                return True
+            else:
+                return False
+
+    def datosOneVendedor(codigo):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT idVendedor,dniVendedor,nombreVendedor,altaVendedor,bajaVendedor, movilVendedor,mailVendedor, delegacionVendedor FROM vendedor WHERE idVendedor = :idVendedor")
+            query.bindValue(":idVendedor", str(codigo))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as e:
+            print("error en datos de cliente ", e)

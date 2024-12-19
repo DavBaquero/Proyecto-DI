@@ -3551,8 +3551,8 @@
    <widget class="QMenu" name="menuAyuda">
     <property name="geometry">
      <rect>
-      <x>624</x>
-      <y>191</y>
+      <x>602</x>
+      <y>161</y>
       <width>135</width>
       <height>72</height>
      </rect>
@@ -3568,9 +3568,17 @@
     </property>
     <addaction name="actionTipo_Propiedades"/>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="actionListado_clientes"/>
+    <addaction name="actionListado_propiedades"/>
+   </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuGesti_n"/>
    <addaction name="menuHerramientas"/>
+   <addaction name="menuInformes"/>
    <addaction name="menuAyuda"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -3688,6 +3696,16 @@
   <action name="actionAcerca_de">
    <property name="text">
     <string>Acerca de</string>
+   </property>
+  </action>
+  <action name="actionListado_clientes">
+   <property name="text">
+    <string>Listado clientes</string>
+   </property>
+  </action>
+  <action name="actionListado_propiedades">
+   <property name="text">
+    <string>Listado propiedades</string>
    </property>
   </action>
  </widget>

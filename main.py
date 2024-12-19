@@ -1,6 +1,7 @@
 from calendar import Calendar
 
 import dlgGestipoprop
+import informes
 import propiedades
 import vendedores
 from propiedades import Propiedades
@@ -127,6 +128,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExprotar_Propiedades_JSON.triggered.connect(propiedades.Propiedades.exportarJSONProp)
         var.ui.actionExportar_Clientes_CSV.triggered.connect(clientes.Clientes.exportarCSVCli)
         var.ui.actionExportar_Clientes_JSON.triggered.connect(clientes.Clientes.exportarJSONCli)
+        var.ui.actionListado_clientes.triggered.connect(informes.Informes.reportClientes)
         '''
         zona toolbar
         '''

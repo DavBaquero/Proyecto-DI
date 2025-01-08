@@ -129,7 +129,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExportar_Clientes_CSV.triggered.connect(clientes.Clientes.exportarCSVCli)
         var.ui.actionExportar_Clientes_JSON.triggered.connect(clientes.Clientes.exportarJSONCli)
         var.ui.actionListado_clientes.triggered.connect(informes.Informes.reportClientes)
-        var.ui.actionListado_propiedades.triggered.connect(informes.Informes.reportPropiedades)
+    #    var.ui.actionListado_propiedades.triggered.connect(informes.Informes.reportPropiedades)
         '''
         zona toolbar
         '''

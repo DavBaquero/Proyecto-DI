@@ -1,12 +1,13 @@
 from datetime import datetime
 
-from PyQt6.QtGui import QPixmap
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPM
-import os, shutil
+import os
 import var
 from PIL import Image
 from svglib.svglib import svg2rlg
+from PyQt6 import QtWidgets,QtSql, QtCore
+import sqlite3
 
 class Informes:
 
@@ -33,6 +34,39 @@ class Informes:
             var.report.drawString(360, 650, str(items[4]))
             var.report.drawString(450, 650, str(items[5]))
             var.report.line(50, 645, 525, 645)
+            query = QtSql.QSqlQuery()
+            query.prepare('select dnicli, apelcli, nomecli, movilcli, provcli, municli from clientes order by apelcli')
+            if query.exec():
+                x = 55
+                y = 635
+                while query.next():
+                    if y <= 90:
+                        var.report.setFont('Helvetica', size=9)
+                        var.report.drawString(450,85, "Página siguiente...")
+                        var.report.showPage() #Crea una pág nueva
+                        Informes.footInforme(titulo)
+                        Informes.topInforme(titulo)
+                        items = ['DNI', 'APELLIDOS', 'NOMBRE', 'MOVIL', 'PROVINCIA', 'MUNICIPIO']
+                        var.report.setFont('Helvetica-Bold', size=10)
+                        var.report.drawString(55, 650, str(items[0]))
+                        var.report.drawString(100, 650, str(items[1]))
+                        var.report.drawString(190, 650, str(items[2]))
+                        var.report.drawString(285, 650, str(items[3]))
+                        var.report.drawString(360, 650, str(items[4]))
+                        var.report.drawString(450, 650, str(items[5]))
+                        var.report.line(50, 645, 525, 645)
+                        x = 55
+                        y = 635
+                    var.report.setFont("Helvetica", size=9)
+                    dni = "***"+ str(query.value(0)[4:7]+"***")
+                    var.report.drawCentredString(x + 10, y , str(dni))
+                    var.report.drawString(x + 45, y, str(query.value(1).title()))
+                    var.report.drawString(x + 135, y, str(query.value(2).title()))
+                    var.report.drawString(x + 230, y, str(query.value(3).title()))
+                    var.report.drawString(x + 305, y, str(query.value(4).title()))
+                    var.report.drawString(x + 395, y, str(query.value(5).title()))
+                    y -= 20
+
             var.report.save()
 
 
@@ -41,6 +75,39 @@ class Informes:
                 if file.endswith(nompdfcli):
                     os.startfile(pdf_path)
 
+
+        except Exception as e:
+            print(e)
+
+    @staticmethod
+    def reportPropiedades(self):
+        try:
+            rootPath = '.\\informes'
+            if not os.path.exists(rootPath):
+                os.makedirs(rootPath)
+            fecha = datetime.today()
+            fecha = fecha.strftime("%Y_%m_%d_%H_%M_%S")
+            nompdfprop = fecha + "_listadopropiedades.pdf"
+            pdf_path = os.path.join(rootPath, nompdfprop)
+            var.report = canvas.Canvas(pdf_path)
+            titulo = "Listado propiedades"
+            Informes.topInforme(titulo)
+            Informes.footInforme(titulo)
+            items = ['REF', 'TIPO', 'DIRECCIÓN', 'PROVINCIA', 'MUNICIPIO', 'HABITACIONES', 'PRECIO']
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.drawString(55, 650, str(items[0]))
+            var.report.drawString(100, 650, str(items[1]))
+            var.report.drawString(140, 650, str(items[2]))
+            var.report.drawString(225, 650, str(items[3]))
+            var.report.drawString(300, 650, str(items[4]))
+            var.report.drawString(375, 650, str(items[5]))
+            var.report.drawString(475, 650, str(items[6]))
+            var.report.line(50, 645, 525, 645)
+            var.report.save()
+
+            for file in os.listdir(rootPath):
+                if file.endswith(nompdfprop):
+                    os.startfile(pdf_path)
 
         except Exception as e:
             print(e)

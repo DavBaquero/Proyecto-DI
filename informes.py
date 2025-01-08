@@ -40,9 +40,9 @@ class Informes:
                 x = 55
                 y = 635
                 while query.next():
-                    if y <= 90:
-                        var.report.setFont('Helvetica', size=9)
-                        var.report.drawString(450,85, "Página siguiente...")
+                    if y <= 95:
+                        var.report.setFont('Helvetica-Oblique', size=9)
+                        var.report.drawString(450,90, "Página siguiente...")
                         var.report.showPage() #Crea una pág nueva
                         Informes.footInforme(titulo)
                         Informes.topInforme(titulo)

@@ -498,6 +498,19 @@ class Conexion:
             print("Error al modificar cliente en conexión.",e)
 
     @staticmethod
+    def cargarMunicipios():
+        try:
+            listaMuni = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM MUNICIPIOS")
+            if query.exec():
+                while query.next():
+                    listaMuni.append(query.value(1))
+                return listaMuni
+        except Exception as e:
+            print('Error cargando municipios')
+
+    @staticmethod
     def datosOnePropiedad(codigo):
         """
 

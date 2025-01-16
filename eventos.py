@@ -4,7 +4,6 @@ from PyQt6 import QtWidgets, QtGui
 import conexion
 import propiedades
 import var
-import eventos
 import time
 import re
 from datetime import datetime
@@ -120,10 +119,10 @@ class Eventos():
                 with zipfile.ZipFile(file, 'r') as bbdd:
                     bbdd.extractall(pwd=None)
                 bbdd.close()
-                mbox = eventos.Eventos.crearMensajeInfo("Restaurar Copia de Seguridad", "Copia de seguridad restaurada.")
+                mbox = Eventos.crearMensajeInfo("Restaurar Copia de Seguridad", "Copia de seguridad restaurada.")
                 mbox.exec()
                 conexion.Conexion.db_conexion()
-                eventos.Eventos.cargarProvincias(self)
+                Eventos.cargarProvincias(self)
                 clientes.Clientes.cargaTablaClientes()
         except Exception as error:
             print("error en restaurar backup: ", error)
@@ -140,7 +139,7 @@ class Eventos():
                 for i, dato in enumerate(objetospanel):
                     if i not in {7, 8}:
                         dato.setText("")
-                eventos.Eventos.cargarProvincias(self)
+                Eventos.cargarProvincias(self)
 
             elif current_index == 1:
                 propiedad = [var.ui.lblProp, var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop,
@@ -163,8 +162,8 @@ class Eventos():
                         dato.setChecked(False)
 
 
-                eventos.Eventos.cargarProvprop(self)
-                eventos.Eventos.cargarTipoprop()
+                Eventos.cargarProvprop(self)
+                Eventos.cargarTipoprop()
             elif current_index == 2:
                 vendedor = [var.ui.lblCodVen, var.ui.txtDNIVen, var.ui.txtNomVen, var.ui.txtAltaVen,
                             var.ui.txtBajaVen, var.ui.txtMovilVen, var.ui.txtMailVen, var.ui.cmbDelegVen]
@@ -175,7 +174,7 @@ class Eventos():
                     else:
                         dato.setCurrentIndex(0)
 
-                eventos.Eventos.cargarDelegacion(self)
+                Eventos.cargarDelegacion(self)
 
             else:
                 print("panPrincipal es nulo")
@@ -278,6 +277,13 @@ class Eventos():
     '''
         Zona de propiedades
     '''
+    @staticmethod
+    def abrir_informeProp():
+        try:
+            var.dlgInformeProp.show()
+        except Exception as e:
+            print("error en abrir informe propiedades: ", e)
+
     def cargarProvprop(self):
         var.ui.cmbProvprop.clear()
         listado = conexion.Conexion().listaProv(self)

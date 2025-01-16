@@ -135,98 +135,89 @@ class Informes:
         except Exception as error:
             print('Error en cabecera informe:', error)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'''
     @staticmethod
-    def reportPropiedades(self):
+    def reportPropiedades(municipio):
         try:
+            ymax = 655
+            ymin = 90
+            ystep = 20
+            xmin = 60
             rootPath = '.\\informes'
             if not os.path.exists(rootPath):
                 os.makedirs(rootPath)
-            fecha = datetime.today()
-            fecha = fecha.strftime("%Y_%m_%d_%H_%M_%S")
-            nompdfprop = fecha + "_listadopropiedades.pdf"
-            pdf_path = os.path.join(rootPath, nompdfprop)
-    
+            titulo = "Listado Propiedades"
+            fecha = datetime.today().strftime('%Y_%m_%d_%H_%M_%S')
+            nomepdfcli = fecha + "_listadopropiedades.pdf"
+            pdf_path = os.path.join(rootPath, nomepdfcli)
+
             # Primer pase para contar páginas
             var.report = canvas.Canvas(pdf_path)
-            titulo = "Listado propiedades"
-            items = ['REF', 'TIPO', 'DIRECCIÓN', 'PROVINCIA', 'MUNICIPIO', 'HABITACIONES', 'PRECIO']
+            items = ['COD', 'DIRECCION', 'TIPO PROP.', 'OPERACION', 'PRECIO ALQ.', 'PRECIO VENTA']
             query = QtSql.QSqlQuery()
-            query.prepare('select ref, tipo, direccion, prov, muni, habitaciones, precio from propiedades order by ref')
+            query.prepare(
+                "SELECT codigo, dirprop, tipoprop, tipooper, prealquilerprop, prevenprop FROM propiedades WHERE muniprop = :municipio ORDER BY muniprop")
+            query.bindValue(":municipio", str(municipio))
             total_pages = 1
             if query.exec():
-                y = 635
+                print("Consulta ejecutada correctamente")
+                y = ymax
                 while query.next():
-                    if y <= 95:
+                    if y <= ymin:
                         total_pages += 1
-                        y = 635
-                    y -= 20
-    
+                        y = ymax
+                    y -= ystep
+            else:
+                print("Error en la consulta SQL:", query.lastError().text())
             # Segundo pase para generar el informe
             var.report = canvas.Canvas(pdf_path)
             Informes.topInforme(titulo)
             Informes.footInforme(titulo, total_pages)
             var.report.setFont('Helvetica-Bold', size=10)
-            var.report.drawString(55, 650, str(items[0]))
-            var.report.drawString(100, 650, str(items[1]))
-            var.report.drawString(140, 650, str(items[2]))
-            var.report.drawString(225, 650, str(items[3]))
-            var.report.drawString(300, 650, str(items[4]))
-            var.report.drawString(375, 650, str(items[5]))
-            var.report.drawString(475, 650, str(items[6]))
-            var.report.line(50, 645, 525, 645)
+            var.report.drawString(55, 680, str(items[0]))
+            var.report.drawString(100, 680, str(items[1]))
+            var.report.drawString(210, 680, str(items[2]))
+            var.report.drawString(295, 680, str(items[3]))
+            var.report.drawString(380, 680, str(items[4]))
+            var.report.drawString(460, 680, str(items[5]))
+            var.report.line(40, 675, 540, 675)
             if query.exec():
-                x = 55
-                y = 635
+                print("Consulta ejecutada correctamente2")
+                x = xmin
+                y = ymax
                 while query.next():
-                    if y <= 95:
-                        var.report.setFont('Helvetica-Oblique', size=9)
-                        var.report.drawString(450, 90, "Página siguiente...")
+                    if y <= ymin:
+                        var.report.setFont('Helvetica-Oblique', size=8)
+                        var.report.drawString(450, 80, "Página siguiente...")
                         var.report.showPage()
                         Informes.footInforme(titulo, total_pages)
                         Informes.topInforme(titulo)
                         var.report.setFont('Helvetica-Bold', size=10)
-                        var.report.drawString(55, 650, str(items[0]))
-                        var.report.drawString(100, 650, str(items[1]))
-                        var.report.drawString(140, 650, str(items[2]))
-                        var.report.drawString(225, 650, str(items[3]))
-                        var.report.drawString(300, 650, str(items[4]))
-                        var.report.drawString(375, 650, str(items[5]))
-                        var.report.drawString(475, 650, str(items[6]))
-                        var.report.line(50, 645, 525, 645)
-                        x = 55
-                        y = 635
-                    var.report.setFont("Helvetica", size=9)
-                    var.report.drawString(x + 10, y, str(query.value(0)))
-                    var.report.drawString(x + 45, y, str(query.value(1).title()))
-                    var.report.drawString(x + 135, y, str(query.value(2).title()))
-                    var.report.drawString(x + 230, y, str(query.value(3).title()))
-                    var.report.drawString(x + 305, y, str(query.value(4).title()))
-                    var.report.drawString(x + 395, y, str(query.value(5).title()))
-                    var.report.drawString(x + 475, y, str(query.value(6).title()))
-                    y -= 20
-    
+                        var.report.drawString(55, 700, str(items[0]))
+                        var.report.drawString(100, 700, str(items[1]))
+                        var.report.drawString(200, 700, str(items[2]))
+                        var.report.drawString(285, 700, str(items[3]))
+                        var.report.drawString(360, 700, str(items[4]))
+                        var.report.drawString(450, 700, str(items[5]))
+                        var.report.line(40, 695, 540, 695)
+                        x = xmin
+                        y = ymax
+                    var.report.setFont('Helvetica', size=9)
+                    var.report.drawString(x + 5, y, str(query.value(0)))
+                    var.report.drawString(x + 40, y, str(query.value(1)))
+                    var.report.drawString(x + 150, y, str(query.value(2)))
+                    operacion = query.value(3).replace("[", "").replace("]", "").replace("'", "")
+                    var.report.drawString(x + 240, y, str(operacion))
+                    alquiler = "-" if not str(query.value(4)) else str(query.value(4))
+                    var.report.drawRightString(x + 380, y, alquiler + " €")
+                    compra = "-" if not str(query.value(5)) else str(query.value(5))
+                    var.report.drawRightString(x + 470, y, compra + " €")
+                    y -= ystep
+            else:
+                print("Error en la consulta SQL2:", query.lastError().text())
+                print(query.lastError().text())
             var.report.save()
-    
             for file in os.listdir(rootPath):
-                if file.endswith(nompdfprop):
+                if file.endswith(nomepdfcli):
                     os.startfile(pdf_path)
-    
         except Exception as e:
-            print(e)'''
+            print(e)

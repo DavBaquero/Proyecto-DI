@@ -3,10 +3,10 @@ import json
 import shutil
 from datetime import datetime
 
-from PyQt6 import QtWidgets,QtGui,QtCore
+from PyQt6 import QtWidgets,QtCore
 
 import conexion
-from eventos import Eventos
+
 import eventos
 import var
 
@@ -287,10 +287,10 @@ class Propiedades():
                     mbox.exec()
                     Propiedades.cargarTablaPropiedades()
                 elif not Propiedades.checkDatosVaciosModifProp(propiedad):
-                    mbox = Eventos.crearMensajeError("Error","Hay algunos campos obligatorios que están vacíos.")
+                    mbox = eventos.Eventos.crearMensajeError("Error","Hay algunos campos obligatorios que están vacíos.")
                     mbox.exec()
                 else:
-                    mbox = Eventos.crearMensajeError("Error","Se ha producido un error al modificar la propiedad")
+                    mbox = eventos.Eventos.crearMensajeError("Error","Se ha producido un error al modificar la propiedad")
                     mbox.exec()
 
         except Exception as e:
@@ -468,3 +468,16 @@ class Propiedades():
             Propiedades.cargaOnePropiedadBusq()
         except Exception as e:
             print("Error filtrar propiedades", e)
+
+    def cargaMuniInformeProp(self):
+        registro = conexion.Conexion.cargarMunicipios()
+        if registro is None:
+            registro = []
+        registro.insert(0, "")
+        self.ui.cmbInformeMuniProp.setEditable(True)
+        self.ui.cmbInformeMuniProp.clear()
+        self.ui.cmbInformeMuniProp.addItems(registro)
+        completer = QtWidgets.QCompleter(registro, self.ui.cmbInformeMuniProp)
+        completer.setCaseSensitivity(QtCore.Qt.CaseSensitivity.CaseInsensitive)
+        completer.setFilterMode(QtCore.Qt.MatchFlag.MatchContains)
+        self.ui.cmbInformeMuniProp.setCompleter(completer)

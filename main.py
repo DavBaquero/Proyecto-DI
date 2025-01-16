@@ -1,10 +1,6 @@
 from calendar import Calendar
 
-import dlgGestipoprop
-import informes
-import propiedades
 import vendedores
-from propiedades import Propiedades
 from venAux import *
 import clientes
 import conexion
@@ -13,13 +9,13 @@ import styles
 from venPrincipal import *
 import sys
 import var
-import conexionserver
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         '''
             zona de inicializar de las tablas
         '''
+        conexion.Conexion.db_conexion(self)
         super(Main, self).__init__()
         var.ui = Ui_venPrincipal()
         var.ui.setupUi(self)
@@ -32,9 +28,9 @@ class Main(QtWidgets.QMainWindow):
         var.items_per_page_prop = 16
         var.dlgAbrir = FileDialogAbrir()
         var.dlggestion = dlg_Tipo_prop()
+        var.dlgInformeProp = Dlg_InformeProp()
         var.dlgabout = dlg_About()
         self.setStyleSheet(styles.load_stylesheet())
-        conexion.Conexion.db_conexion(self)
         # conexionserver.ConexionServer.crear_conexion()
 
         '''
@@ -129,7 +125,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionExportar_Clientes_CSV.triggered.connect(clientes.Clientes.exportarCSVCli)
         var.ui.actionExportar_Clientes_JSON.triggered.connect(clientes.Clientes.exportarJSONCli)
         var.ui.actionListado_clientes.triggered.connect(informes.Informes.reportClientes)
-    #    var.ui.actionListado_propiedades.triggered.connect(informes.Informes.reportPropiedades)
+        var.ui.actionListado_propiedades.triggered.connect(eventos.Eventos.abrir_informeProp)
         '''
         zona toolbar
         '''

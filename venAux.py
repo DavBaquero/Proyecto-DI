@@ -1,12 +1,14 @@
 from datetime import datetime
 
 import dlgGestipoprop
+import informes
 from dlgAbout import Ui_venAcercaDe
 from dlgGestipoprop import Ui_dlgGestipoprop
 import propiedades
 from dlgCalendar import *
 import var
 import eventos
+from dlgInformeProp import Ui_dlgInformeProp
 
 
 class Calendar(QtWidgets.QDialog):
@@ -41,3 +43,11 @@ class dlg_About(QtWidgets.QDialog):
         self.ui = Ui_venAcercaDe()
         self.ui.setupUi(self)
         self.ui.btnCerrarAbout.clicked.connect(eventos.Eventos.cerrarAcercaDe)
+
+class Dlg_InformeProp(QtWidgets.QDialog):
+    def __init__(self):
+        super(Dlg_InformeProp,self).__init__()
+        self.ui = Ui_dlgInformeProp()
+        self.ui.setupUi(self)
+        propiedades.Propiedades.cargaMuniInformeProp(self)
+        self.ui.btnInformeProp.clicked.connect(lambda: informes.Informes.reportPropiedades(self.ui.cmbInformeMuniProp.currentText()))

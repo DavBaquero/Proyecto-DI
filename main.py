@@ -1,5 +1,7 @@
 from calendar import Calendar
+from xmlrpc.client import DateTime
 
+import facturas
 import vendedores
 from venAux import *
 import clientes
@@ -54,6 +56,7 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resizeTablaClientes(self)
         eventos.Eventos.resizeTablaPropiedades(self)
         eventos.Eventos.resizeTablaVendedores(self)
+        eventos.Eventos.resizeTablaFacturas()
 
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
@@ -92,6 +95,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnBajaprop.clicked.connect(lambda: eventos.Eventos.abrirCalendar(1, 1))
         var.ui.btnBuscProp.clicked.connect(propiedades.Propiedades.filtrarPropiedades)
         var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.filtrar)
+        var.ui.btnFechaFactura.clicked.connect(lambda: eventos.Eventos.abrirCalendar(3,0))
+        var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altaFactura)
 
         var.ui.btnAntCli.clicked.connect(clientes.Clientes.anteriorCliente)
         var.ui.btnAntProp.clicked.connect(propiedades.Propiedades.anteriorPropiedad)
@@ -112,6 +117,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.txtPrecioVentaprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())
         var.ui.txtPrecioAlquilerprop.textChanged.connect(lambda: propiedades.Propiedades.manageChkBox())
         var.ui.txtMovilprop.editingFinished.connect(lambda : propiedades.Propiedades.checkMovilProp(var.ui.txtMovilprop.text()))
+        var.ui.txtFechaFactura.setText(datetime.today().strftime('%d/%m/%Y'))
         '''
         eventos combobox
         '''

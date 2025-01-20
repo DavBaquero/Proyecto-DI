@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(1582, 810)
+        venPrincipal.resize(1582, 809)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1571,8 +1571,6 @@ class Ui_venPrincipal(object):
         self.gridLayout_17.addLayout(self.gridLayout_19, 0, 2, 1, 1)
         self.gridLayout_14.addWidget(self.frame_7, 0, 2, 1, 1)
         self.gridLayout_20.addLayout(self.gridLayout_14, 0, 0, 1, 1)
-        spacerItem72 = QtWidgets.QSpacerItem(77, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_20.addItem(spacerItem72, 0, 1, 1, 1)
         self.panPrincipal.addTab(self.pesVentas, "")
         self.gridLayout_2.addWidget(self.panPrincipal, 0, 2, 1, 1)
         venPrincipal.setCentralWidget(self.centralwidget)

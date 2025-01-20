@@ -138,7 +138,7 @@ class Informes:
     @staticmethod
     def reportPropiedades(municipio):
         try:
-            ymax = 655
+            ymax = 635
             ymin = 90
             ystep = 20
             xmin = 60
@@ -159,7 +159,6 @@ class Informes:
             query.bindValue(":municipio", str(municipio))
             total_pages = 1
             if query.exec():
-                print("Consulta ejecutada correctamente")
                 y = ymax
                 while query.next():
                     if y <= ymin:
@@ -172,36 +171,33 @@ class Informes:
             var.report = canvas.Canvas(pdf_path)
             Informes.topInforme(titulo)
             Informes.footInforme(titulo, total_pages)
-            var.report.setFont('Helvetica-Bold', size=10)
-            var.report.drawString(55, 680, str(items[0]))
-            var.report.drawString(100, 680, str(items[1]))
-            var.report.drawString(210, 680, str(items[2]))
-            var.report.drawString(295, 680, str(items[3]))
-            var.report.drawString(380, 680, str(items[4]))
-            var.report.drawString(460, 680, str(items[5]))
-            var.report.line(40, 675, 540, 675)
+            var.report.drawString(55, 650, str(items[0]))
+            var.report.drawString(100, 650, str(items[1]))
+            var.report.drawString(210, 650, str(items[2]))
+            var.report.drawString(295, 650, str(items[3]))
+            var.report.drawString(380, 650, str(items[4]))
+            var.report.drawString(460, 650, str(items[5]))
             if query.exec():
-                print("Consulta ejecutada correctamente2")
                 x = xmin
                 y = ymax
                 while query.next():
                     if y <= ymin:
-                        var.report.setFont('Helvetica-Oblique', size=8)
+                        var.report.setFont('Helvetica-Oblique', size=10)
                         var.report.drawString(450, 80, "Página siguiente...")
                         var.report.showPage()
                         Informes.footInforme(titulo, total_pages)
                         Informes.topInforme(titulo)
                         var.report.setFont('Helvetica-Bold', size=10)
-                        var.report.drawString(55, 700, str(items[0]))
-                        var.report.drawString(100, 700, str(items[1]))
-                        var.report.drawString(200, 700, str(items[2]))
-                        var.report.drawString(285, 700, str(items[3]))
-                        var.report.drawString(360, 700, str(items[4]))
-                        var.report.drawString(450, 700, str(items[5]))
-                        var.report.line(40, 695, 540, 695)
+                        var.report.drawString(55, 650, str(items[0]))
+                        var.report.drawString(100, 650, str(items[1]))
+                        var.report.drawString(210, 650, str(items[2]))
+                        var.report.drawString(295, 650, str(items[3]))
+                        var.report.drawString(380, 650, str(items[4]))
+                        var.report.drawString(460, 650, str(items[5]))
+                        var.report.line(40, 625, 540, 625)
                         x = xmin
                         y = ymax
-                    var.report.setFont('Helvetica', size=9)
+                    var.report.setFont('Helvetica-Oblique', size=10)
                     var.report.drawString(x + 5, y, str(query.value(0)))
                     var.report.drawString(x + 40, y, str(query.value(1)))
                     var.report.drawString(x + 150, y, str(query.value(2)))
@@ -213,7 +209,7 @@ class Informes:
                     var.report.drawRightString(x + 470, y, compra + " €")
                     y -= ystep
             else:
-                print("Error en la consulta SQL2:", query.lastError().text())
+                print("Error en la consulta SQL:", query.lastError().text())
                 print(query.lastError().text())
             var.report.save()
             for file in os.listdir(rootPath):

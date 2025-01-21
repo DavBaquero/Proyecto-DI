@@ -90,7 +90,7 @@ class Eventos():
             elif var.panel == 2 and var.btn == 1:
                 var.ui.txtBajaVen.setText(str(data))
             elif var.panel == 3 and var.btn == 0:
-                var.ui.txtFechaInforme.setText(str(data))
+                var.ui.txtFechaFactura.setText(str(data))
 
             time.sleep(0.125)
             var.uicalendar.hide()
@@ -108,7 +108,7 @@ class Eventos():
                 fichzip.write("bbdd.sqlite",os.path.basename("bbdd.sqlite"),zipfile.ZIP_DEFLATED)
                 fichzip.close()
                 shutil.move(fichero, directorio)
-                mbox = eventos.Eventos.crearMensajeInfo("Crear Copia de Seguridad", "Copia de seguridad creada.")
+                mbox = Eventos.crearMensajeInfo("Crear Copia de Seguridad", "Copia de seguridad creada.")
                 mbox.exec()
         except Exception as error:
             print("error en crear backup: ", error)

@@ -140,6 +140,7 @@ class Clientes:
                     listado[i].setCurrentText(registro[i])
                 else:
                     listado[i].setText(registro[i])
+            var.ui.txtdniclifac.setText(registro[0])
             #Clientes.cargaCliente(registro)
 
         except Exception as error:

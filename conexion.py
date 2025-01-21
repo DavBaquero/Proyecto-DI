@@ -758,12 +758,27 @@ class Conexion:
     def altaFactura(registro):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO FACTURAS (fechafac, dnicli) values (:fechafac,:dnicli)")
-            query.bindValue(":fechafac", str(registro[0]))
-            query.bindValue(":dnicli", str(registro[1]))
+            query.prepare("INSERT INTO FACTURAS (fechafac, dnifac) VALUES (:fechafac, :dnifac)")
+            query.bindValue(":fechafac", registro[0])
+            query.bindValue(":dnifac", registro[1])
             if query.exec():
                 return True
             else:
                 return False
         except Exception as e:
-            print("Error al dar de alta factura en conexion.", e)
+            print("Error al dar de alta factura en conexion:", e)
+            return False
+
+    @staticmethod
+    def listadoFacturas():
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT id, dnifac, fechafac FROM facturas")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+        except Exception as e:
+            print("Error listando facturas en listadoFacturas - conexión", e)

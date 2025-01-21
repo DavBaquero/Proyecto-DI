@@ -782,3 +782,35 @@ class Conexion:
             return listado
         except Exception as e:
             print("Error listando facturas en listadoFacturas - conexión", e)
+
+    @staticmethod
+    def bajaFactura(idFactura):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM facturas WHERE id = :id")
+            query.bindValue(":id", str(idFactura))
+            if query.exec():
+                return True
+            else:
+                error = query.lastError()
+                if error is not None:
+                    print("Error en la ejecución de la consulta:", error.text())
+                return False
+        except Exception as e:
+            print("Error eliminando factura en bajaFactura - conexión:", e)
+            return False
+
+    @staticmethod
+    def cargaOneFactura(idFactura):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM facturas WHERE id = :id")
+            query.bindValue(":id", idFactura)
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as e:
+            print("Error cargando factura en cargaOneFactura - conexión", e)

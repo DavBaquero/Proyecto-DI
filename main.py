@@ -61,6 +61,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)
+        var.ui.tablaFacturas.clicked.connect(facturas.Facturas.cargaOneFactura)
         var.ui.tablaVendedores.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
 
         '''

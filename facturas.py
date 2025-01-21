@@ -4,6 +4,7 @@ import var
 from PyQt6 import QtWidgets,QtGui, QtCore
 
 class Facturas:
+
     @staticmethod
     def altaFactura():
         try:
@@ -33,6 +34,46 @@ class Facturas:
                 var.ui.tablaClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                 var.ui.tablaClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 var.ui.tablaClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                botondelfac = QtWidgets.QPushButton()
+                botondelfac.setFixedSize(30, 24)
+                botondelfac.setIcon(QtGui.QIcon('img/papelera.ico'))
+                botondelfac.setProperty("row", index)
+                botondelfac.clicked.connect(Facturas.eliminarFactura)
+                contenedor = QtWidgets.QWidget()
+                layout = QtWidgets.QHBoxLayout()
+                layout.addWidget(botondelfac)
+                layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                layout.setContentsMargins(0, 0, 0, 0)
+                contenedor.setLayout(layout)
+                var.ui.tablaFacturas.setCellWidget(index, 3, contenedor)
                 index += 1
         except Exception as e:
             print("Error cargaFacturas en cargaTablaFacturas", e)
+
+    @staticmethod
+    def cargaOneFactura():
+        try:
+            fila = var.ui.tablaFacturas.currentRow()
+            idFactura = var.ui.tablaFacturas.item(fila, 0).text()
+            if idFactura:
+                factura = conexion.Conexion.cargaOneFactura(idFactura)
+                var.ui.lblNumFactura.setText(factura[0])
+                var.ui.txtFechaFactura.setText(factura[1])
+                var.ui.txtdniclifac.setText(factura[2])
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la factura")
+        except Exception as e:
+            print("Error en cargaOneFactura",e)
+
+    @staticmethod
+    def eliminarFactura():
+        try:
+            fila = var.ui.tablaFacturas.currentRow()
+            idFactura = var.ui.tablaFacturas.item(fila, 0).text()
+            if conexion.Conexion.bajaFactura(idFactura):
+                eventos.Eventos.crearMensajeInfo("Factura eliminada","Se ha eliminado la factura")
+                Facturas.cargaTablaFacturas()
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la factura")
+        except Exception as e:
+            print("Error en eliminarFactura",e)

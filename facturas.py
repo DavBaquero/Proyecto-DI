@@ -38,7 +38,7 @@ class Facturas:
                 botondelfac.setFixedSize(30, 24)
                 botondelfac.setIcon(QtGui.QIcon('img/papelera.ico'))
                 botondelfac.setProperty("row", index)
-                botondelfac.clicked.connect(Facturas.eliminarFactura)
+                botondelfac.clicked.connect(lambda checked, idFactura=str(registro[0]) : Facturas.eliminarFactura(idFactura))
                 contenedor = QtWidgets.QWidget()
                 layout = QtWidgets.QHBoxLayout()
                 layout.addWidget(botondelfac)
@@ -66,10 +66,8 @@ class Facturas:
             print("Error en cargaOneFactura",e)
 
     @staticmethod
-    def eliminarFactura():
+    def eliminarFactura(idFactura):
         try:
-            fila = var.ui.tablaFacturas.currentRow()
-            idFactura = var.ui.tablaFacturas.item(fila, 0).text()
             if conexion.Conexion.bajaFactura(idFactura):
                 eventos.Eventos.crearMensajeInfo("Factura eliminada","Se ha eliminado la factura")
                 Facturas.cargaTablaFacturas()

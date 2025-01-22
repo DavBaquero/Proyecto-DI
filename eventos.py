@@ -177,6 +177,15 @@ class Eventos():
                         dato.setCurrentIndex(0)
 
                 Eventos.cargarDelegacion(self)
+            elif current_index == 3:
+                ventas = [var.ui.lblNumFactura, var.ui.txtdniclifac, var.ui.txtFechaFactura, var.ui.txtnomeclifac, var.ui.txtapelclifac,
+                          var.ui.txtidclifac,var.ui.txtidvenfac, var.ui.txtcodpropfac, var.ui.txttipopropfac, var.ui.txtpreciofac, var.ui.txtmunipropfac,
+                          var.ui.txtdirpropfac]
+                for i, dato in enumerate(ventas):
+                    if i != 2:
+                        dato.setText("")
+                    else:
+                        dato.setText(datetime.today().strftime('%d/%m/%Y'))
 
             else:
                 print("panPrincipal es nulo")

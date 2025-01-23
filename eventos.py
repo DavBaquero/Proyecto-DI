@@ -179,7 +179,7 @@ class Eventos():
                 Eventos.cargarDelegacion(self)
             elif current_index == 3:
                 ventas = [var.ui.lblNumFactura, var.ui.txtdniclifac, var.ui.txtFechaFactura, var.ui.txtnomeclifac, var.ui.txtapelclifac,
-                          var.ui.txtidclifac,var.ui.txtidvenfac, var.ui.txtcodpropfac, var.ui.txttipopropfac, var.ui.txtpreciofac, var.ui.txtmunipropfac,
+                          var.ui.txtidvenfac, var.ui.txtcodpropfac, var.ui.txttipopropfac, var.ui.txtpreciofac, var.ui.txtmunipropfac,
                           var.ui.txtdirpropfac]
                 for i, dato in enumerate(ventas):
                     if i != 2:

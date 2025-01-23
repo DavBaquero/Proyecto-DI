@@ -62,6 +62,7 @@ class Facturas:
                 var.ui.txtdniclifac.setText(factura[2])
             else:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la factura")
+            Facturas.cargarClienteVenta()
         except Exception as e:
             print("Error en cargaOneFactura",e)
 
@@ -75,3 +76,40 @@ class Facturas:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la factura")
         except Exception as e:
             print("Error en eliminarFactura",e)
+
+    @staticmethod
+    def cargarClienteVenta():
+        try:
+            dniCliente = var.ui.txtdniclifac.text()
+            if conexion.Conexion.datosOneCliente(dniCliente):
+                datosCliente = conexion.Conexion.datosOneCliente(dniCliente)
+                var.ui.txtnomeclifac.setText(datosCliente[3])
+                var.ui.txtapelclifac.setText(datosCliente[2])
+                return True
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar el cliente")
+                return False
+        except Exception as e:
+            print("Error en cargarClienteVenta",e)
+
+    @staticmethod
+    def cargarPropiedadVenta(propiedad):
+        try:
+            if not "Venta" in str(propiedad[19]):
+                var.ui.txtcodpropfac.setText("")
+                var.ui.txttipopropfac.setText("")
+                var.ui.txtpreciofac.setText("")
+                var.ui.txtdirpropfac.setText("")
+                var.ui.txtmunipropfac.setText("")
+                return False
+            else:
+                if str(propiedad[14]).lower() == "disponible" and "venta" in str(propiedad[19]).lower():
+                    var.ui.txtcodpropfac.setText(str(propiedad[0]))
+                    var.ui.txttipopropfac.setText(str(propiedad[6]))
+                    var.ui.txtpreciofac.setText(str(propiedad[11]) + " €")
+                    var.ui.txtdirpropfac.setText(str(propiedad[3]).title())
+                    var.ui.txtmunipropfac.setText(str(propiedad[5]))
+                    return True
+                return False
+        except Exception as e:
+            print("Error en cargarPropiedadVenta", e)

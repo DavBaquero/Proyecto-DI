@@ -8,6 +8,7 @@ from PyQt6 import QtWidgets,QtCore
 import conexion
 
 import eventos
+import facturas
 import var
 
 
@@ -158,36 +159,49 @@ class Propiedades():
             fila = var.ui.tablaProp.selectedItems()
             datos = [dato.text() for dato in fila]
             registro = conexion.Conexion.datosOnePropiedad(str(datos[0]))
-            listado = [var.ui.lblProp,var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop,var.ui.cmbProvprop,
-                       var.ui.cmbMuniprop,var.ui.cmbTipoprop,
+            listado = [var.ui.lblProp, var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop, var.ui.cmbProvprop,
+                       var.ui.cmbMuniprop, var.ui.cmbTipoprop,
                        var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop,var.ui.txtPrecioAlquilerprop,
                        var.ui.txtPrecioVentaprop,
                        var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
                        var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
-
+            listadoVentas =[]
             for i in range(len(listado)):
                 if i in (4,5,6):
                     listado[i].setCurrentText(registro[i])
+                    listadoVentas.append(registro[i].currentText())
                 elif i in (7,8):
                     listado[i].setValue(int(registro[i]))
+                    listadoVentas.append(registro[i].text())
                 elif i == 13:
                     listado[i].setPlainText(registro[i])
+                    listadoVentas.append(registro[i].toPlainText())
                 elif i == 14:
                     listado[i].setChecked(registro[15] == "Disponible")
+                    listadoVentas.append(registro[15].text())
                 elif i == 15:
                     listado[i].setChecked(registro[15] == "Alquilado")
+                    listadoVentas.append(registro[15].text())
                 elif i == 16:
                     listado[i].setChecked(registro[15] == "Vendido")
+                    listadoVentas.append(registro[15].text())
                 elif i in (17,18,19):
                     listado[17].setChecked("Intercambio" in registro[14])
+                    listadoVentas.append(registro[14].text())
                     listado[18].setChecked("Alquiler" in registro[14])
                     listado[19].setChecked("Venta" in registro[14])
                 elif i == 20:
                     listado[i].setText(registro[16])
+                    listadoVentas.append(registro[16].text())
                 elif i == 21:
                     listado[i].setText(registro[17])
+                    listadoVentas.append(registro[16].text())
                 else:
                     listado[i].setText(registro[i])
+                    listadoVentas.append(registro[i].text())
+
+            facturas.Facturas.cargarPropiedadVenta(listadoVenta)
+
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 

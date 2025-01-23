@@ -3912,6 +3912,22 @@
                  </item>
                  <item row="0" column="0">
                   <layout class="QGridLayout" name="gridLayout_15">
+                   <item row="1" column="0">
+                    <spacer name="horizontalSpacer_57">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Fixed</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>20</width>
+                       <height>13</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
                    <item row="0" column="0" colspan="2">
                     <widget class="QLabel" name="label_26">
                      <property name="minimumSize">
@@ -3936,22 +3952,6 @@
                       <string>Datos de cliente:</string>
                      </property>
                     </widget>
-                   </item>
-                   <item row="1" column="0">
-                    <spacer name="horizontalSpacer_57">
-                     <property name="orientation">
-                      <enum>Qt::Horizontal</enum>
-                     </property>
-                     <property name="sizeType">
-                      <enum>QSizePolicy::Fixed</enum>
-                     </property>
-                     <property name="sizeHint" stdset="0">
-                      <size>
-                       <width>20</width>
-                       <height>13</height>
-                      </size>
-                     </property>
-                    </spacer>
                    </item>
                    <item row="1" column="1">
                     <layout class="QHBoxLayout" name="horizontalLayout_42">
@@ -4030,48 +4030,6 @@
                        <property name="maximumSize">
                         <size>
                          <width>220</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </item>
-                   <item row="1" column="3">
-                    <layout class="QHBoxLayout" name="horizontalLayout_44">
-                     <item>
-                      <widget class="QLabel" name="label_29">
-                       <property name="minimumSize">
-                        <size>
-                         <width>30</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>30</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                       <property name="text">
-                        <string>Id:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item>
-                      <widget class="QLineEdit" name="txtidclifac">
-                       <property name="enabled">
-                        <bool>false</bool>
-                       </property>
-                       <property name="minimumSize">
-                        <size>
-                         <width>50</width>
-                         <height>20</height>
-                        </size>
-                       </property>
-                       <property name="maximumSize">
-                        <size>
-                         <width>50</width>
                          <height>20</height>
                         </size>
                        </property>
@@ -4217,7 +4175,7 @@
                     </spacer>
                    </item>
                    <item row="0" column="1">
-                    <widget class="QPushButton" name="btnGrabarFactura_2">
+                    <widget class="QPushButton" name="btnGrabarVenta">
                      <property name="minimumSize">
                       <size>
                        <width>100</width>

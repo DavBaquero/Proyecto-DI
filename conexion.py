@@ -814,3 +814,26 @@ class Conexion:
             return registro
         except Exception as e:
             print("Error cargando factura en cargaOneFactura - conexión", e)
+
+
+
+
+    '''
+        Zona de ventas
+    '''
+
+    @staticmethod
+    def altaVenta(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO ventas (fecventa, codprop, agente) VALUES (:fecventa, :codprop, :)")
+            query.bindValue(":fecventa", registro[0])
+            query.bindValue(":codprop", registro[1])
+            query.bindValue(":agente", registro[2])
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al dar de alta factura en conexion:", e)
+            return False

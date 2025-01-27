@@ -845,8 +845,8 @@ class Conexion:
             listado = []
             query = QtSql.QSqlQuery()
             query.prepare(
-                "SELECT v.idventa, v.codprop, p.direccion, p.municipio, p.tipo_propiedad, "
-                "p.precio_venta FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
+                "SELECT v.idventa, v.codprop, p.dirprop, p.muniprop, p.tipoprop, "
+                "p.prevenprop FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
             query.bindValue(":facventa", str(idFactura))
             if query.exec():
                 while query.next():
@@ -862,7 +862,9 @@ class Conexion:
             registro = []
             query = QtSql.QSqlQuery()
             query.prepare(
-                "SELECT v.agente, v.codprop, p.tipo_propiedad, p.precio_venta, p.municipio, p.direccion  FROM ventas as v INNER JOIN propiedades as p ON v.codprop = p.codigo WHERE v.idventa = :idventa")
+                "SELECT v.agente, v.codprop, p.tipo_propiedad, p.precio_venta,"
+                " p.municipio, p.direccion  FROM ventas as v "
+                "INNER JOIN propiedades as p ON v.codprop = p.codigo WHERE v.idventa = :idventa")
             query.bindValue(":idventa", str(idVenta))
             if query.exec():
                 while query.next():

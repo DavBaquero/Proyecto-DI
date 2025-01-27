@@ -53,6 +53,7 @@ class Main(QtWidgets.QMainWindow):
         propiedades.Propiedades.cargarTablaPropiedades()
         vendedores.Vendedores.cargaTablaVendedores(self)
         facturas.Facturas.cargaTablaFacturas()
+        facturas.Facturas.cargaTablaVentas()
 
         eventos.Eventos.resizeTablaClientes(self)
         eventos.Eventos.resizeTablaPropiedades(self)

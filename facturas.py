@@ -85,6 +85,7 @@ class Facturas:
                 datosCliente = conexion.Conexion.datosOneCliente(dniCliente)
                 var.ui.txtnomeclifac.setText(datosCliente[3])
                 var.ui.txtapelclifac.setText(datosCliente[2])
+                Facturas.cargaTablaVentas()
                 return True
             else:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido cargar el cliente")
@@ -122,3 +123,37 @@ class Facturas:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido grabar venta")
         except Exception as e:
             print("venta",e)
+
+
+    @staticmethod
+    def cargaTablaVentas():
+        idFactura = var.ui.lblNumFactura.text()
+        listado = conexion.Conexion.listadoVentas(idFactura)
+        var.ui.tablaVentas.setRowCount(len(listado))
+        index = 0
+        for registro in listado:
+            var.ui.tablaVentas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+            var.ui.tablaVentas.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[1])))
+            var.ui.tablaVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
+            var.ui.tablaVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
+            var.ui.tablaVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
+            var.ui.tablaVentas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5])))
+
+            if var.ui.tablaVentas.item(index, 0):
+                var.ui.tablaVentas.item(index, 0).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            if var.ui.tablaVentas.item(index, 1):
+                var.ui.tablaVentas.item(index, 1).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            if var.ui.tablaVentas.item(index, 2):
+                var.ui.tablaVentas.item(index, 2).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            if var.ui.tablaVentas.item(index, 3):
+                var.ui.tablaVentas.item(index, 3).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            if var.ui.tablaVentas.item(index, 4):
+                var.ui.tablaVentas.item(index, 4).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            if var.ui.tablaVentas.item(index, 5):
+                var.ui.tablaVentas.item(index, 5).setTextAlignment(
+                    QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)

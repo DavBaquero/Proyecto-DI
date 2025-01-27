@@ -161,52 +161,47 @@ class Propiedades():
             registro = conexion.Conexion.datosOnePropiedad(str(datos[0]))
             listado = [var.ui.lblProp, var.ui.txtAltaprop, var.ui.txtBajaprop, var.ui.txtDirprop, var.ui.cmbProvprop,
                        var.ui.cmbMuniprop, var.ui.cmbTipoprop,
-                       var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop,var.ui.txtPrecioAlquilerprop,
+                       var.ui.spinHabprop, var.ui.spinBanosprop, var.ui.txtSuperprop, var.ui.txtPrecioAlquilerprop,
                        var.ui.txtPrecioVentaprop,
-                       var.ui.txtCpprop,var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,var.ui.rbtVentaprop,var.ui.chkInterprop,
-                       var.ui.chkAlquilprop,var.ui.chkVentaprop,var.ui.txtNomeprop,var.ui.txtMovilprop]
+                       var.ui.txtCpprop, var.ui.areatxtDescriprop, var.ui.rbtDisponprop, var.ui.rbtAlquilprop,
+                       var.ui.rbtVentaprop, var.ui.chkInterprop,
+                       var.ui.chkAlquilprop, var.ui.chkVentaprop, var.ui.txtNomeprop, var.ui.txtMovilprop]
             listadoVentas = []
             for i in range(len(listado)):
-                if i in (4,5,6):
+                if i in (4, 5, 6):
                     listado[i].setCurrentText(registro[i])
-                    listadoVentas.append(listado[i].currentText())
-                elif i in (7,8):
+                elif i in (7, 8):
                     listado[i].setValue(int(registro[i]))
-                    listadoVentas.append(listado[i].text())
                 elif i == 13:
                     listado[i].setPlainText(registro[i])
-                    listadoVentas.append(listado[i].toPlainText())
                 elif i == 14:
                     listado[i].setChecked(registro[14] == "Disponible")
-                    listadoVentas.append(listado[14].text())
                 elif i == 15:
                     listado[i].setChecked(registro[15] == "Alquilado")
-                    listadoVentas.append(listado[15].text())
                 elif i == 16:
                     listado[i].setChecked(registro[15] == "Vendido")
-                    listadoVentas.append(listado[15].text())
-                elif i in (17,18,19):
+                elif i in (17, 18, 19):
                     listado[17].setChecked("Intercambio" in registro[14])
                     listado[18].setChecked("Alquiler" in registro[14])
                     listado[19].setChecked("Venta" in registro[14])
-                    if listado[19].isChecked():
-                        listadoVentas.append(listado[19].text())
-                    elif listado[18].isChecked():
-                        listadoVentas.append(listado[18].text())
-                    elif listado[17].isChecked():
-                        listadoVentas.append(listado[17].text())
-
+                    if "Venta" in registro[14] and "Venta" not in listadoVentas:
+                        listadoVentas.append("Venta")
                 elif i == 20:
                     listado[i].setText(registro[16])
-                    listadoVentas.append(listado[16].text())
                 elif i == 21:
                     listado[i].setText(registro[17])
-                    listadoVentas.append(listado[16].text())
                 else:
                     listado[i].setText(registro[i])
-                    listadoVentas.append(listado[i].text())
-            print(listadoVentas)
-            facturas.Facturas.cargarPropiedadVenta(listadoVentas)
+
+            listadoVentas.append(registro[0])
+            listadoVentas.append(registro[6])
+            listadoVentas.append(registro[11])
+            listadoVentas.append(registro[3])
+            listadoVentas.append(registro[5])
+            if "Disponible" in registro and "Disponible" not in listadoVentas:
+                listadoVentas.append("Disponible")
+            if listadoVentas[0] == "Venta":
+                facturas.Facturas.cargarPropiedadVenta(listadoVentas)
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 

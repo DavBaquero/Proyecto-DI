@@ -95,21 +95,15 @@ class Facturas:
     @staticmethod
     def cargarPropiedadVenta(propiedad):
         try:
-            if not "Venta" in str(propiedad[19]):
-                var.ui.txtcodpropfac.setText("")
-                var.ui.txttipopropfac.setText("")
-                var.ui.txtpreciofac.setText("")
-                var.ui.txtdirpropfac.setText("")
-                var.ui.txtmunipropfac.setText("")
-                return False
+            if str(propiedad[6]).lower() == "disponible":
+                var.ui.txtcodpropfac.setText(str(propiedad[1]))
+                var.ui.txttipopropfac.setText(str(propiedad[2]))
+                var.ui.txtpreciofac.setText(str(propiedad[3]) + " €")
+                var.ui.txtdirpropfac.setText(str(propiedad[4]).title())
+                var.ui.txtmunipropfac.setText(str(propiedad[5]))
+                return True
             else:
-                if str(propiedad[14]).lower() == "disponible" and "venta" in str(propiedad[19]).lower():
-                    var.ui.txtcodpropfac.setText(str(propiedad[0]))
-                    var.ui.txttipopropfac.setText(str(propiedad[6]))
-                    var.ui.txtpreciofac.setText(str(propiedad[11]) + " €")
-                    var.ui.txtdirpropfac.setText(str(propiedad[3]).title())
-                    var.ui.txtmunipropfac.setText(str(propiedad[5]))
-                    return True
+                eventos.Eventos.crearMensajeError("Error","La propiedad seleccionada no está disponible")
                 return False
         except Exception as e:
             print("Error en cargarPropiedadVenta", e)

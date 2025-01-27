@@ -188,6 +188,7 @@ class Vendedores:
                 else:
                     listado[i].setText(registro[i])
             #Clientes.cargaCliente(registro)
+            var.ui.txtidvenfac.setText(str(registro[0]))
 
         except Exception as error:
             print("Error carga un vendedor ", error)

@@ -107,3 +107,18 @@ class Facturas:
                 return False
         except Exception as e:
             print("Error en cargarPropiedadVenta", e)
+
+    @staticmethod
+    def altaVenta():
+        try:
+            nuevaVenta = [var.ui.lblNumFactura.text(), var.ui.txtcodpropfac.text(), var.ui.txtidvenfac.text()]
+            if var.ui.txtcodpropfac.text() == "" or var.ui.txtcodpropfac.text() is None:
+                eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar una propiedad antes de grabar una venta")
+            elif var.ui.txtidvenfac.text() == "" or var.ui.txtidvenfac.text() is None:
+                eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar un vendedor antes de grabar una venta")
+            elif conexion.Conexion.altaVenta(nuevaVenta):
+                eventos.Eventos.crearMensajeInfo("Venta grabada", "Se ha grabado una nueva venta")
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido grabar venta")
+        except Exception as e:
+            print("venta",e)

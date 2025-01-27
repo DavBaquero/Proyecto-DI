@@ -100,6 +100,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFiltrarCli.clicked.connect(clientes.Clientes.filtrar)
         var.ui.btnFechaFactura.clicked.connect(lambda: eventos.Eventos.abrirCalendar(3,0))
         var.ui.btnGrabarFactura.clicked.connect(facturas.Facturas.altaFactura)
+        var.ui.btnGrabarVenta.clicked.connect(facturas.Facturas.altaVenta)
 
         var.ui.btnAntCli.clicked.connect(clientes.Clientes.anteriorCliente)
         var.ui.btnAntProp.clicked.connect(propiedades.Propiedades.anteriorPropiedad)

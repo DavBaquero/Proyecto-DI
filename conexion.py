@@ -826,14 +826,48 @@ class Conexion:
     def altaVenta(registro):
         try:
             query = QtSql.QSqlQuery()
-            query.prepare("INSERT INTO ventas (fecventa, codprop, agente) VALUES (:fecventa, :codprop, :)")
-            query.bindValue(":fecventa", registro[0])
-            query.bindValue(":codprop", registro[1])
-            query.bindValue(":agente", registro[2])
+            query.prepare("INSERT INTO ventas (facventa, codprop, agente) VALUES (:facventa, :codprop, :agente)")
+            query.bindValue(":facventa", str(registro[0]))
+            query.bindValue(":codprop", str(registro[1]))
+            query.bindValue(":agente", str(registro[2]))
             if query.exec():
                 return True
             else:
+                print("Error en la ejecución de la consulta:", query.lastError().text())
                 return False
         except Exception as e:
             print("Error al dar de alta factura en conexion:", e)
             return False
+
+    @staticmethod
+    def listadoVentas(idFactura):
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "SELECT v.idventa, v.codprop, p.direccion, p.municipio, p.tipo_propiedad, "
+                "p.precio_venta FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
+            query.bindValue(":facventa", str(idFactura))
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+        except Exception as e:
+            print("Error listando facturas en listadoFacturas - conexión", e)
+
+    @staticmethod
+    def datosOneVenta(idVenta):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "SELECT v.agente, v.codprop, p.tipo_propiedad, p.precio_venta, p.municipio, p.direccion  FROM ventas as v INNER JOIN propiedades as p ON v.codprop = p.codigo WHERE v.idventa = :idventa")
+            query.bindValue(":idventa", str(idVenta))
+            if query.exec():
+                while query.next():
+                    for i in range(query.record().count()):
+                        registro.append(query.value(i))
+            return registro
+        except Exception as e:
+            print("Error en datosOneVenta en conexion", e)

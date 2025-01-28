@@ -786,16 +786,22 @@ class Conexion:
     @staticmethod
     def bajaFactura(idFactura):
         try:
-            query = QtSql.QSqlQuery()
-            query.prepare("DELETE FROM facturas WHERE id = :id")
-            query.bindValue(":id", str(idFactura))
-            if query.exec():
-                return True
+            query1 = QtSql.QSqlQuery()
+            query1.prepare("Select count(*) from ventas where facventa = :facventa")
+            query1.bindValue(":facventa", str(idFactura))
+            if not query1.exec():
+                query = QtSql.QSqlQuery()
+                query.prepare("DELETE FROM facturas WHERE id = :id")
+                query.bindValue(":id", str(idFactura))
+                if query.exec():
+                    return True
+                else:
+                    error = query.lastError()
+                    if error is not None:
+                        print("Error en la ejecución de la consulta:", error.text())
+                    return False
             else:
-                error = query.lastError()
-                if error is not None:
-                    print("Error en la ejecución de la consulta:", error.text())
-                return False
+                eventos.Eventos.crearMensajeError("Error baja factura","No se puede eliminar la factura porque tiene ventas asociadas")
         except Exception as e:
             print("Error eliminando factura en bajaFactura - conexión:", e)
             return False
@@ -814,8 +820,6 @@ class Conexion:
             return registro
         except Exception as e:
             print("Error cargando factura en cargaOneFactura - conexión", e)
-
-
 
 
     '''

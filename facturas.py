@@ -157,3 +157,24 @@ class Facturas:
             if var.ui.tablaVentas.item(index, 5):
                 var.ui.tablaVentas.item(index, 5).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+
+
+    @staticmethod
+    def cargaOneVenta():
+        try:
+            fila = var.ui.tablaVentas.currentRow()
+            idVenta = var.ui.tablaVentas.item(fila, 0).text()
+            print("idVenta",idVenta)
+            if idVenta:
+                venta = conexion.Conexion.datosOneVenta(idVenta)
+                print(venta)
+                var.ui.txtidvenfac.setText(venta[0])
+                var.ui.txtcodpropfac.setText(str(venta[1]))
+                var.ui.txttipopropfac.setText(venta[2])
+                var.ui.txtpreciofac.setText(str(venta[3]))
+                var.ui.txtmunipropfac.setText(venta[4])
+                var.ui.txtdirpropfac.setText(venta[5])
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la venta")
+        except Exception as e:
+            print("Error en cargaOneVenta",e)

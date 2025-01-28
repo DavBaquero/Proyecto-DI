@@ -3546,32 +3546,37 @@
                </attribute>
                <column>
                 <property name="text">
-                 <string>idventa</string>
+                 <string>ID Venta</string>
                 </property>
                </column>
                <column>
                 <property name="text">
-                 <string>idpropiedad</string>
+                 <string>ID propiedad</string>
                 </property>
                </column>
                <column>
                 <property name="text">
-                 <string>direccion</string>
+                 <string>Direccion</string>
                 </property>
                </column>
                <column>
                 <property name="text">
-                 <string>localidad</string>
+                 <string>Localidad</string>
                 </property>
                </column>
                <column>
                 <property name="text">
-                 <string>tipo</string>
+                 <string>Tipo</string>
                 </property>
                </column>
                <column>
                 <property name="text">
-                 <string>precio</string>
+                 <string>Precio</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Gestión</string>
                 </property>
                </column>
               </widget>

@@ -789,7 +789,7 @@ class Conexion:
             query1 = QtSql.QSqlQuery()
             query1.prepare("Select count(*) from ventas where facventa = :facventa")
             query1.bindValue(":facventa", str(idFactura))
-            if not query1.exec():
+            if query1.exec() and query1.next() and query1.value(0) == 0:
                 query = QtSql.QSqlQuery()
                 query.prepare("DELETE FROM facturas WHERE id = :id")
                 query.bindValue(":id", str(idFactura))
@@ -887,6 +887,35 @@ class Conexion:
             query.prepare("UPDATE propiedades SET estadoprop = 'Vendido', bajaprop = :fechaBaja WHERE codigo = :codigo")
             query.bindValue(":codigo", str(codigoPropiedad))
             query.bindValue(":fechaBaja", datetime.now().strftime("%d/%m/%Y"))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al vender una Propiedad en conexion.", e)
+
+
+    def bajaVenta(idVenta):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM ventas WHERE idventa = :idventa")
+            query.bindValue(":idventa", str(idVenta))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al eliminar una venta en conexion.", e)
+            return False
+
+    @staticmethod
+    def altaPropiedadVenta(codigoPropiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "UPDATE propiedades SET estadoprop = 'Disponible', bajaprop = :fechaBaja WHERE codigo = :codigo")
+            query.bindValue(":codigo", str(codigoPropiedad))
+            query.bindValue(":fechaBaja", QtCore.QVariant())
             if query.exec():
                 return True
             else:

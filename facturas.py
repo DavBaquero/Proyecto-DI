@@ -29,9 +29,9 @@ class Facturas:
             var.ui.tablaFacturas.setRowCount(len(listado))
             index = 0
             for registro in listado:
-                var.ui.tablaFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))  # idFactura
-                var.ui.tablaFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))  # dniCliente
-                var.ui.tablaFacturas.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))  # fechaFactura
+                var.ui.tablaFacturas.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tablaFacturas.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
+                var.ui.tablaFacturas.setItem(index, 2, QtWidgets.QTableWidgetItem(registro[2]))
                 var.ui.tablaClientes.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                 var.ui.tablaClientes.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
                 var.ui.tablaClientes.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
@@ -71,12 +71,12 @@ class Facturas:
     def eliminarFactura(idFactura):
         try:
             if conexion.Conexion.bajaFactura(idFactura):
-                eventos.Eventos.crearMensajeInfo("Factura eliminada","Se ha eliminado la factura")
+                eventos.Eventos.crearMensajeInfo("Factura eliminada", "Se ha eliminado la factura")
                 Facturas.cargaTablaFacturas()
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la factura")
+                eventos.Eventos.crearMensajeError("Error", "No se ha podido eliminar la factura")
         except Exception as e:
-            print("Error en eliminarFactura",e)
+            print("Error en eliminarFactura", e)
 
     @staticmethod
     def cargarClienteVenta():
@@ -142,6 +142,19 @@ class Facturas:
             var.ui.tablaVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
             var.ui.tablaVentas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5]) + " € "))
 
+            botondelfac = QtWidgets.QPushButton()
+            botondelfac.setFixedSize(30, 24)
+            botondelfac.setIcon(QtGui.QIcon('img/papelera.ico'))
+            botondelfac.setProperty("row", index)
+            botondelfac.clicked.connect(lambda checked, idVenta=str(registro[0]), idpropiedad=str(registro[1]): Facturas.eliminarVenta(idVenta, idpropiedad))
+            contenedor = QtWidgets.QWidget()
+            layout = QtWidgets.QHBoxLayout()
+            layout.addWidget(botondelfac)
+            layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+            layout.setContentsMargins(0, 0, 0, 0)
+            contenedor.setLayout(layout)
+            var.ui.tablaVentas.setCellWidget(index, 6, contenedor)
+
             if var.ui.tablaVentas.item(index, 0):
                 var.ui.tablaVentas.item(index, 0).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignLeft | QtCore.Qt.AlignmentFlag.AlignVCenter)
@@ -160,6 +173,7 @@ class Facturas:
             if var.ui.tablaVentas.item(index, 5):
                 var.ui.tablaVentas.item(index, 5).setTextAlignment(
                     QtCore.Qt.AlignmentFlag.AlignCenter | QtCore.Qt.AlignmentFlag.AlignVCenter)
+            index += 1
 
 
     @staticmethod
@@ -174,10 +188,21 @@ class Facturas:
                 var.ui.txtidvenfac.setText(venta[0])
                 var.ui.txtcodpropfac.setText(str(venta[1]))
                 var.ui.txttipopropfac.setText(venta[2])
-                var.ui.txtpreciofac.setText(str(venta[3]))
+                var.ui.txtpreciofac.setText(str(venta[3]) + " € ")
                 var.ui.txtmunipropfac.setText(venta[4])
                 var.ui.txtdirpropfac.setText(venta[5])
             else:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la venta")
         except Exception as e:
             print("Error en cargaOneVenta",e)
+
+    def eliminarVenta(idVenta, idpropiedad):
+        try:
+            if conexion.Conexion.bajaVenta(idVenta) and conexion.Conexion.altaPropiedadVenta(str(idpropiedad)):
+                eventos.Eventos.crearMensajeInfo("Venta eliminada","Se ha eliminado la venta")
+                Facturas.cargaTablaVentas()
+                propiedades.Propiedades.cargarTablaPropiedades()
+            else:
+                eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la venta")
+        except Exception as e:
+            print("Error en eliminarVenta",e)

@@ -2,6 +2,7 @@ import os
 import sys
 from PyQt6 import QtWidgets, QtGui
 import conexion
+import facturas
 import propiedades
 import var
 import time
@@ -186,6 +187,7 @@ class Eventos():
                         dato.setText("")
                     else:
                         dato.setText(datetime.today().strftime('%d/%m/%Y'))
+                facturas.Facturas.cargaTablaVentas()
 
             else:
                 print("panPrincipal es nulo")

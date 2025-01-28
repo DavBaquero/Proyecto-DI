@@ -1,5 +1,6 @@
 import conexion
 import eventos
+import propiedades
 import var
 from PyQt6 import QtWidgets,QtGui, QtCore
 
@@ -117,8 +118,10 @@ class Facturas:
                 eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar una propiedad antes de grabar una venta")
             elif var.ui.txtidvenfac.text() == "" or var.ui.txtidvenfac.text() is None:
                 eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar un vendedor antes de grabar una venta")
-            elif conexion.Conexion.altaVenta(nuevaVenta):
+            elif conexion.Conexion.altaVenta(nuevaVenta) and conexion.Conexion.actualizaPropiedadVenta(nuevaVenta[1]):
                 eventos.Eventos.crearMensajeInfo("Venta grabada", "Se ha grabado una nueva venta")
+                Facturas.cargaTablaVentas()
+                propiedades.Propiedades.cargarTablaPropiedades()
             else:
                 eventos.Eventos.crearMensajeError("Error","No se ha podido grabar venta")
         except Exception as e:
@@ -137,7 +140,7 @@ class Facturas:
             var.ui.tablaVentas.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
             var.ui.tablaVentas.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
             var.ui.tablaVentas.setItem(index, 4, QtWidgets.QTableWidgetItem(str(registro[4])))
-            var.ui.tablaVentas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5])))
+            var.ui.tablaVentas.setItem(index, 5, QtWidgets.QTableWidgetItem(str(registro[5]) + " € "))
 
             if var.ui.tablaVentas.item(index, 0):
                 var.ui.tablaVentas.item(index, 0).setTextAlignment(

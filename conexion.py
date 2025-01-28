@@ -879,3 +879,17 @@ class Conexion:
             return registro
         except Exception as e:
             print("Error en datosOneVenta en conexion", e)
+
+    @staticmethod
+    def actualizaPropiedadVenta(codigoPropiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE propiedades SET estadoprop = 'Vendido', bajaprop = :fechaBaja WHERE codigo = :codigo")
+            query.bindValue(":codigo", str(codigoPropiedad))
+            query.bindValue(":fechaBaja", datetime.now().strftime("%d/%m/%Y"))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al vender una Propiedad en conexion.", e)

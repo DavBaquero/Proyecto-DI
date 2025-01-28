@@ -200,7 +200,11 @@ class Propiedades():
             listadoVentas.append(registro[5])
             if "Disponible" in registro and "Disponible" not in listadoVentas:
                 listadoVentas.append("Disponible")
-            if listadoVentas[0] == "Venta":
+            if "Alquilado" in registro and "Alquilado" not in listadoVentas:
+                listadoVentas.append("Alquilado")
+            if "Vendido" in registro and "Vendido" not in listadoVentas:
+                listadoVentas.append("Vendido")
+            if listadoVentas[0] == "Venta" and listadoVentas[6] == "Disponible":
                 facturas.Facturas.cargarPropiedadVenta(listadoVentas)
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)

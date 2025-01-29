@@ -13,4 +13,7 @@
   <component name="PyDocumentationSettings">
     <option name="renderExternalDocumentation" value="true" />
   </component>
+  <component name="ReSTService">
+    <option name="DOC_DIR" value="C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\docs" />
+  </component>
 </module>

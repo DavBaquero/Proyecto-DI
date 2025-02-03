@@ -739,7 +739,8 @@ class Conexion:
         try:
             registro = []
             query = QtSql.QSqlQuery()
-            query.prepare("SELECT idVendedor,dniVendedor,nombreVendedor,altaVendedor,bajaVendedor, movilVendedor,mailVendedor, delegacionVendedor FROM vendedor WHERE idVendedor = :idVendedor")
+            query.prepare("SELECT idVendedor,dniVendedor,nombreVendedor,altaVendedor,bajaVendedor,"
+                          " movilVendedor,mailVendedor, delegacionVendedor FROM vendedor WHERE idVendedor = :idVendedor")
             query.bindValue(":idVendedor", str(codigo))
             if query.exec():
                 while query.next():

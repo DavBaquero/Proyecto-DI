@@ -237,22 +237,54 @@ class Informes:
                 items = ['IDVENTA', 'IDPROPIEDAD', 'TIPO', 'DIRECCION', 'LOCALIDAD', 'PRECIO']
                 query = QtSql.QSqlQuery()
                 query.prepare(
-                    "SELECT v.idventa, v.codprop, p.dirprop, p.muniprop, p.tipoprop, "
+                    "SELECT v.idventa, v.codprop,p.tipoprop, p.dirprop, p.muniprop,  "
                     "p.prevenprop FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
                 query.bindValue(":facventa", str(idFactura))
-                total_pages = 1
+                var.report = canvas.Canvas(pdf_path)
+                Informes.topInforme(titulo)
+                Informes.footInforme(titulo, "1")
+                var.report.setFont('Helvetica-Bold', size=10)
+                var.report.drawString(55, 650, str(items[0]))
+                var.report.drawString(120, 650, str(items[1]))
+                var.report.drawString(210, 650, str(items[2]))
+                var.report.drawString(285, 650, str(items[3]))
+                var.report.drawString(360, 650, str(items[4]))
+                var.report.drawString(450, 650, str(items[5]))
+                var.report.line(50, 645, 525, 645)
                 if query.exec():
+                    x = 55
                     y = 635
                     while query.next():
                         if y <= 95:
-                            total_pages += 1
+                            var.report.setFont('Helvetica-Oblique', size=9)
+                            var.report.drawString(450, 90, "Página siguiente...")
+                            var.report.showPage()
+                            Informes.footInforme(titulo, "1")
+                            Informes.topInforme(titulo)
+                            var.report.setFont('Helvetica-Bold', size=10)
+                            var.report.drawString(55, 650, str(items[0]))
+                            var.report.drawString(120, 650, str(items[1]))
+                            var.report.drawString(210, 650, str(items[2]))
+                            var.report.drawString(285, 650, str(items[3]))
+                            var.report.drawString(360, 650, str(items[4]))
+                            var.report.drawString(450, 650, str(items[5]))
+                            var.report.line(50, 645, 525, 645)
+                            x = 55
                             y = 635
+                        var.report.setFont("Helvetica", size=9)
+                        var.report.drawString(x + 10, y, str(query.value(0)))
+                        var.report.drawString(x + 65, y, str(query.value(1)))
+                        var.report.drawString(x + 155, y, str(query.value(2).title()))
+                        var.report.drawString(x + 230, y, str(query.value(3).title()))
+                        var.report.drawString(x + 335, y, str(query.value(4).title()))
+                        var.report.drawString(x + 395, y, str(query.value(5)) + " €")
                         y -= 20
 
-                # Segundo pase para generar el informe
-                var.report = canvas.Canvas(pdf_path)
-                Informes.topInforme(titulo)
-                Informes.footInforme(titulo, total_pages)
+                var.report.save()
+
+                for file in os.listdir(rootPath):
+                    if file.endswith(nompdfcli):
+                        os.startfile(pdf_path)
             else:
                 mbox = eventos.Eventos.crearMensajeError("Error ifrome factura", "No se ha seleccionado ninguna factura")
                 mbox.exec()

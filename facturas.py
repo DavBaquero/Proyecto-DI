@@ -11,14 +11,18 @@ class Facturas:
         try:
             nuevaFactura = [var.ui.txtFechaFactura.text(),var.ui.txtdniclifac.text()]
             if var.ui.txtdniclifac.text() == "" or var.ui.txtdniclifac.text() is None:
-                eventos.Eventos.crearMensajeError("Error al grabar factura","Recuerda seleccionar un cliente antes de grabar una factura")
+                mbox = eventos.Eventos.crearMensajeError("Error al grabar factura","Recuerda seleccionar un cliente antes de grabar una factura")
+                mbox.exec()
             elif var.ui.txtFechaFactura.text() == "" or var.ui.txtFechaFactura.text() is None:
-                eventos.Eventos.crearMensajeError("Error al grabar factura","No es posible grabar una factura sin seleccionar una fecha")
+                mbox = eventos.Eventos.crearMensajeError("Error al grabar factura","No es posible grabar una factura sin seleccionar una fecha")
+                mbox.exec()
             elif conexion.Conexion.altaFactura(nuevaFactura):
-                eventos.Eventos.crearMensajeInfo("Factura grabada", "Se ha grabado una nueva factura")
+                mbox = eventos.Eventos.crearMensajeInfo("Factura grabada", "Se ha grabado una nueva factura")
+                mbox.exec()
                 Facturas.cargaTablaFacturas()
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido grabar factura")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido grabar factura")
+                mbox.exec()
         except Exception as e:
             print("factura",e)
 
@@ -62,7 +66,8 @@ class Facturas:
                 var.ui.txtFechaFactura.setText(factura[1])
                 var.ui.txtdniclifac.setText(factura[2])
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la factura")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la factura")
+                mbox.exec()
             Facturas.cargarClienteVenta()
         except Exception as e:
             print("Error en cargaOneFactura",e)
@@ -71,10 +76,12 @@ class Facturas:
     def eliminarFactura(idFactura):
         try:
             if conexion.Conexion.bajaFactura(idFactura):
-                eventos.Eventos.crearMensajeInfo("Factura eliminada", "Se ha eliminado la factura")
+                mbox = eventos.Eventos.crearMensajeInfo("Factura eliminada", "Se ha eliminado la factura")
+                mbox.exec()
                 Facturas.cargaTablaFacturas()
             else:
-                eventos.Eventos.crearMensajeError("Error", "No se ha podido eliminar la factura")
+                mbox = eventos.Eventos.crearMensajeError("Error", "No se ha podido eliminar la factura")
+                mbox.exec()
         except Exception as e:
             print("Error en eliminarFactura", e)
 
@@ -89,7 +96,8 @@ class Facturas:
                 Facturas.cargaTablaVentas()
                 return True
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar el cliente")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido cargar el cliente")
+                mbox.exec()
                 return False
         except Exception as e:
             print("Error en cargarClienteVenta",e)
@@ -105,7 +113,8 @@ class Facturas:
                 var.ui.txtmunipropfac.setText(str(propiedad[5]))
                 return True
             else:
-                eventos.Eventos.crearMensajeError("Error","La propiedad seleccionada no está disponible")
+                mbox = eventos.Eventos.crearMensajeError("Error","La propiedad seleccionada no está disponible")
+                mbox.exec()
                 return False
         except Exception as e:
             print("Error en cargarPropiedadVenta", e)
@@ -115,15 +124,19 @@ class Facturas:
         try:
             nuevaVenta = [var.ui.lblNumFactura.text(), var.ui.txtcodpropfac.text(), var.ui.txtidvenfac.text()]
             if var.ui.txtcodpropfac.text() == "" or var.ui.txtcodpropfac.text() is None:
-                eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar una propiedad antes de grabar una venta")
+                mbox = eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar una propiedad antes de grabar una venta")
+                mbox.exec()
             elif var.ui.txtidvenfac.text() == "" or var.ui.txtidvenfac.text() is None:
-                eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar un vendedor antes de grabar una venta")
+                mbox = eventos.Eventos.crearMensajeError("Error al grabar venta","Recuerda seleccionar un vendedor antes de grabar una venta")
+                mbox.exec()
             elif conexion.Conexion.altaVenta(nuevaVenta) and conexion.Conexion.actualizaPropiedadVenta(nuevaVenta[1]):
-                eventos.Eventos.crearMensajeInfo("Venta grabada", "Se ha grabado una nueva venta")
+                mbox = eventos.Eventos.crearMensajeInfo("Venta grabada", "Se ha grabado una nueva venta")
+                mbox.exec()
                 Facturas.cargaTablaVentas()
                 propiedades.Propiedades.cargarTablaPropiedades()
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido grabar venta")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido grabar venta")
+                mbox.exec()
         except Exception as e:
             print("venta",e)
 
@@ -192,7 +205,6 @@ class Facturas:
         try:
             fila = var.ui.tablaVentas.currentRow()
             idVenta = var.ui.tablaVentas.item(fila, 0).text()
-            print("idVenta",idVenta)
             if idVenta:
                 venta = conexion.Conexion.datosOneVenta(idVenta)
                 print(venta)
@@ -203,17 +215,20 @@ class Facturas:
                 var.ui.txtmunipropfac.setText(venta[4])
                 var.ui.txtdirpropfac.setText(venta[5])
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la venta")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido cargar la venta")
+                mbox.exec()
         except Exception as e:
             print("Error en cargaOneVenta",e)
 
     def eliminarVenta(idVenta, idpropiedad):
         try:
             if conexion.Conexion.bajaVenta(idVenta) and conexion.Conexion.altaPropiedadVenta(str(idpropiedad)):
-                eventos.Eventos.crearMensajeInfo("Venta eliminada","Se ha eliminado la venta")
+                mbox = eventos.Eventos.crearMensajeInfo("Venta eliminada","Se ha eliminado la venta")
+                mbox.exec()
                 Facturas.cargaTablaVentas()
                 propiedades.Propiedades.cargarTablaPropiedades()
             else:
-                eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la venta")
+                mbox = eventos.Eventos.crearMensajeError("Error","No se ha podido eliminar la venta")
+                mbox.exec()
         except Exception as e:
             print("Error en eliminarVenta",e)

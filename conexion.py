@@ -802,7 +802,8 @@ class Conexion:
                         print("Error en la ejecución de la consulta:", error.text())
                     return False
             else:
-                eventos.Eventos.crearMensajeError("Error baja factura","No se puede eliminar la factura porque tiene ventas asociadas")
+                mbox = eventos.Eventos.crearMensajeError("Error baja factura","No se puede eliminar la factura porque tiene ventas asociadas")
+                mbox.exec()
         except Exception as e:
             print("Error eliminando factura en bajaFactura - conexión:", e)
             return False

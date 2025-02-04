@@ -3763,7 +3763,7 @@
                     <string>Abrir calendario</string>
                    </property>
                    <property name="styleSheet">
-                    <string notr="true">background-color : rgb(143, 197, 200)</string>
+                    <string notr="true">background-color: rgb(222,238,239);</string>
                    </property>
                    <property name="text">
                     <string/>
@@ -3847,6 +3847,26 @@
                     </size>
                    </property>
                   </spacer>
+                 </item>
+                 <item row="4" column="3">
+                  <widget class="QPushButton" name="btnIformeFac">
+                   <property name="styleSheet">
+                    <string notr="true">background-color: rgb(222,238,239);</string>
+                   </property>
+                   <property name="text">
+                    <string/>
+                   </property>
+                   <property name="icon">
+                    <iconset>
+                     <normaloff>../img/informe.ico</normaloff>../img/informe.ico</iconset>
+                   </property>
+                   <property name="iconSize">
+                    <size>
+                     <width>24</width>
+                     <height>24</height>
+                    </size>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>

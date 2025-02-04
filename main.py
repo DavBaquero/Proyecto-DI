@@ -2,6 +2,7 @@ from calendar import Calendar
 from xmlrpc.client import DateTime
 
 import facturas
+import informes
 import vendedores
 from venAux import *
 import clientes
@@ -109,6 +110,8 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnSigCli.clicked.connect(clientes.Clientes.siguienteCliente)
         var.ui.btnSigProp.clicked.connect(propiedades.Propiedades.siguientePropiedad)
+
+        var.ui.btnIformeFac.clicked.connect(lambda: informes.Informes.reportFact(var.ui.lblNumFactura.text()))
 
         '''
         eventos de cajas de texto

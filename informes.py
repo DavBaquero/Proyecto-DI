@@ -3,6 +3,8 @@ from datetime import datetime
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPM
 import os
+
+import eventos
 import var
 from PIL import Image
 from svglib.svglib import svg2rlg
@@ -217,3 +219,42 @@ class Informes:
                     os.startfile(pdf_path)
         except Exception as e:
             print(e)
+
+    @staticmethod
+    def reportFact(idFactura):
+        try:
+            if ((idFactura != None) and (idFactura != "")):
+                rootPath = '.\\informes'
+                if not os.path.exists(rootPath):
+                    os.makedirs(rootPath)
+                fecha = datetime.today()
+                fecha = fecha.strftime("%Y_%m_%d_%H_%M_%S")
+                nompdfcli = fecha + "_FacturaVentas.pdf"
+                pdf_path = os.path.join(rootPath, nompdfcli)
+
+                var.report = canvas.Canvas(pdf_path)
+                titulo = "Listado Factura"
+                items = ['IDVENTA', 'IDPROPIEDAD', 'TIPO', 'DIRECCION', 'LOCALIDAD', 'PRECIO']
+                query = QtSql.QSqlQuery()
+                query.prepare(
+                    "SELECT v.idventa, v.codprop, p.dirprop, p.muniprop, p.tipoprop, "
+                    "p.prevenprop FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
+                query.bindValue(":facventa", str(idFactura))
+                total_pages = 1
+                if query.exec():
+                    y = 635
+                    while query.next():
+                        if y <= 95:
+                            total_pages += 1
+                            y = 635
+                        y -= 20
+
+                # Segundo pase para generar el informe
+                var.report = canvas.Canvas(pdf_path)
+                Informes.topInforme(titulo)
+                Informes.footInforme(titulo, total_pages)
+            else:
+                mbox = eventos.Eventos.crearMensajeError("Error ifrome factura", "No se ha seleccionado ninguna factura")
+                mbox.exec()
+        except Exception as e:
+            print("Error reportFact = ",e )

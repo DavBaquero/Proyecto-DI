@@ -4,6 +4,7 @@ from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPM
 import os
 
+import conexion
 import eventos
 import var
 from PIL import Image
@@ -222,6 +223,12 @@ class Informes:
 
     @staticmethod
     def reportFact(idFactura):
+        xidventa = 55
+        xidpropiedad = xidventa + 35
+        xdireccion = xidpropiedad + 50
+        xlocalidad = xdireccion + 150
+        xtipo = xlocalidad + 100
+        xprecio = xtipo + 50
         try:
             if ((idFactura != None) and (idFactura != "")):
                 rootPath = '.\\informes'
@@ -233,52 +240,33 @@ class Informes:
                 pdf_path = os.path.join(rootPath, nompdfcli)
 
                 var.report = canvas.Canvas(pdf_path)
-                titulo = "Listado Factura"
-                items = ['IDVENTA', 'IDPROPIEDAD', 'TIPO', 'DIRECCION', 'LOCALIDAD', 'PRECIO']
-                query = QtSql.QSqlQuery()
-                query.prepare(
-                    "SELECT v.idventa, v.codprop,p.tipoprop, p.dirprop, p.muniprop,  "
-                    "p.prevenprop FROM ventas AS v INNER JOIN propiedades as p on v.codprop = p.codigo WHERE v.facventa = :facventa")
-                query.bindValue(":facventa", str(idFactura))
-                var.report = canvas.Canvas(pdf_path)
+                titulo = "Factura Código " + idFactura
+                listado_ventas = conexion.Conexion.listadoVentas(idFactura)
+                factura = conexion.Conexion.cargaOneFactura(idFactura)
+                cliente = conexion.Conexion.datosOneCliente(factura[2])
                 Informes.topInforme(titulo)
+                Informes.topDatosCliente(cliente, factura[1])
+                Informes.footInforme(titulo, 1)
+                items = ["ID VENTA", "CÓDIGO", "DIRECCIÓN", "LOCALIDAD", "TIPO", "PRECIO"]
                 Informes.footInforme(titulo, "1")
-                var.report.setFont('Helvetica-Bold', size=10)
+                var.report.setFont("Helvetica-Bold", size=10)
                 var.report.drawString(55, 650, str(items[0]))
-                var.report.drawString(120, 650, str(items[1]))
-                var.report.drawString(210, 650, str(items[2]))
-                var.report.drawString(285, 650, str(items[3]))
-                var.report.drawString(360, 650, str(items[4]))
-                var.report.drawString(450, 650, str(items[5]))
+                var.report.drawString(110, 650, str(items[1]))
+                var.report.drawString(160, 650, str(items[2]))
+                var.report.drawString(290, 650, str(items[3]))
+                var.report.drawString(390, 650, str(items[4]))
+                var.report.drawString(440, 650, str(items[5]))
                 var.report.line(50, 645, 525, 645)
-                if query.exec():
-                    x = 55
-                    y = 635
-                    while query.next():
-                        if y <= 95:
-                            var.report.setFont('Helvetica-Oblique', size=9)
-                            var.report.drawString(450, 90, "Página siguiente...")
-                            var.report.showPage()
-                            Informes.footInforme(titulo, "1")
-                            Informes.topInforme(titulo)
-                            var.report.setFont('Helvetica-Bold', size=10)
-                            var.report.drawString(55, 650, str(items[0]))
-                            var.report.drawString(120, 650, str(items[1]))
-                            var.report.drawString(210, 650, str(items[2]))
-                            var.report.drawString(285, 650, str(items[3]))
-                            var.report.drawString(360, 650, str(items[4]))
-                            var.report.drawString(450, 650, str(items[5]))
-                            var.report.line(50, 645, 525, 645)
-                            x = 55
-                            y = 635
-                        var.report.setFont("Helvetica", size=9)
-                        var.report.drawString(x + 10, y, str(query.value(0)))
-                        var.report.drawString(x + 65, y, str(query.value(1)))
-                        var.report.drawString(x + 155, y, str(query.value(2).title()))
-                        var.report.drawString(x + 230, y, str(query.value(3).title()))
-                        var.report.drawString(x + 335, y, str(query.value(4).title()))
-                        var.report.drawString(x + 395, y, str(query.value(5)) + " €")
-                        y -= 20
+                y = 630
+                for registro in listado_ventas:
+                    var.report.setFont("Helvetica", size=8)
+                    var.report.drawCentredString(75, y, str(registro[0]))
+                    var.report.drawCentredString(120, y, str(registro[1]).title())
+                    var.report.drawString(170, y, str(registro[2]).title())
+                    var.report.drawString(300, y, str(registro[3]).title())
+                    var.report.drawString(390, y, str(registro[4]).title())
+                    var.report.drawCentredString(470, y, str(registro[5]).title() + " €")
+                    y -= 30
 
                 var.report.save()
 
@@ -290,3 +278,23 @@ class Informes:
                 mbox.exec()
         except Exception as e:
             print("Error reportFact = ",e )
+
+
+    @staticmethod
+    def topDatosCliente(cliente, fecha):
+        try:
+            var.report.setFont('Helvetica-Bold', size=8)
+            var.report.drawString(300, 770, 'DNI Cliente:')
+            var.report.drawString(300, 752, 'Nombre:')
+            var.report.drawString(300, 734, 'Dirección:')
+            var.report.drawString(300, 716, 'Localidad:')
+            var.report.drawString(55, 682, "Fecha Factura:")
+            var.report.setFont('Helvetica', size=8)
+            var.report.drawString(360, 770, cliente[0])
+            var.report.drawString(360, 752, cliente[3] + " " + cliente[2])
+            var.report.drawString(360, 734, cliente[6])
+            var.report.drawString(360, 716, cliente[8])
+            var.report.drawString(120, 682, fecha)
+        except Exception as error:
+            print('Error en cabecera informe:', error)
+

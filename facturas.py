@@ -207,7 +207,6 @@ class Facturas:
             idVenta = var.ui.tablaVentas.item(fila, 0).text()
             if idVenta:
                 venta = conexion.Conexion.datosOneVenta(idVenta)
-                print(venta)
                 var.ui.txtidvenfac.setText(venta[0])
                 var.ui.txtcodpropfac.setText(str(venta[1]))
                 var.ui.txttipopropfac.setText(venta[2])

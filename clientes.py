@@ -14,6 +14,15 @@ import var
 class Clientes:
 
     def checkDNI(dni):
+        """
+        :param dni: Es el dni del cliente
+        :type dni: String
+        :return: None
+        :rtype: None
+
+        Metodo encargado de comprobar si el DNI introducido es válido
+
+        """
         try:
             dni = str(dni).upper()
             var.ui.txtDnicli.setText(str(dni))

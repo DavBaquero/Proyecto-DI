@@ -757,6 +757,16 @@ class Conexion:
 
     @staticmethod
     def altaFactura(registro):
+        """
+
+        :param registro: Una lista que contiene la fecha de la factura y el dni del cliente
+        :type registro: List
+        :return: True or false
+        :rtype: Boolean
+
+        Metodo encargado de dar de alta una factura en la BD
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO FACTURAS (fechafac, dnifac) VALUES (:fechafac, :dnifac)")
@@ -772,6 +782,14 @@ class Conexion:
 
     @staticmethod
     def listadoFacturas():
+        """
+
+        :return: Lista de facturas
+        :rtype: List
+
+        Metodo encargado de devolver una lista con todas las facturas
+
+        """
         try:
             listado = []
             query = QtSql.QSqlQuery()
@@ -786,6 +804,16 @@ class Conexion:
 
     @staticmethod
     def bajaFactura(idFactura):
+        """
+
+        :param idFactura: La id de la factura
+        :type idFactura: String
+        :return: True or false
+        :rtype: Boolean
+
+        Metodo encargado de dar de baja una factura
+
+        """
         try:
             query1 = QtSql.QSqlQuery()
             query1.prepare("Select count(*) from ventas where facventa = :facventa")
@@ -810,6 +838,15 @@ class Conexion:
 
     @staticmethod
     def cargaOneFactura(idFactura):
+        """
+
+        :param idFactura: La id de la factura
+        :type idFactura: String
+        :return: Lista con los datos de una factura
+        :rtype: List
+
+        Metodo para buscar una factura en concreto
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -830,6 +867,16 @@ class Conexion:
 
     @staticmethod
     def altaVenta(registro):
+        """
+
+        :param registro: Lista con los datos de la venta
+        :type registro: List
+        :return: True or false
+        :rtype: Boolean
+
+        Metodo para dar de alta una venta
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("INSERT INTO ventas (facventa, codprop, agente) VALUES (:facventa, :codprop, :agente)")
@@ -847,6 +894,16 @@ class Conexion:
 
     @staticmethod
     def listadoVentas(idFactura):
+        """
+
+        :param idFactura: La id de la factura a la que está asociada la venta
+        :type idFactura: String
+        :return: Listado con todas las ventas y sus datos asociados a la factura
+        :rtype: List
+
+        Metodo encargado de buscar las ventas en la BD
+
+        """
         try:
             listado = []
             query = QtSql.QSqlQuery()
@@ -864,6 +921,16 @@ class Conexion:
 
     @staticmethod
     def datosOneVenta(idVenta):
+        """
+
+        :param idVenta: La id de la venta
+        :type idVenta: String
+        :return: Lista con los datos de una venta
+        :rtype: List
+
+        Metodo para buscar una venta
+
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -884,6 +951,16 @@ class Conexion:
 
     @staticmethod
     def actualizaPropiedadVenta(codigoPropiedad):
+        """
+
+        :param codigoPropiedad: Es la id de la propiedad
+        :type codigoPropiedad: String
+        :return: True o false
+        :rtype: Boolean
+
+        Metodo para dar de baja una propiedad justo después de que se asocie a una venta
+
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("UPDATE propiedades SET estadoprop = 'Vendido', bajaprop = :fechaBaja WHERE codigo = :codigo")
@@ -898,6 +975,15 @@ class Conexion:
 
 
     def bajaVenta(idVenta):
+        """
+
+        :param idVenta: La id de la venta
+        :type idVenta: String
+        :return: True or false
+        :rtype: Boolean
+
+        Metodo para borrar una venta de la bd
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare("DELETE FROM ventas WHERE idventa = :idventa")
@@ -912,6 +998,16 @@ class Conexion:
 
     @staticmethod
     def altaPropiedadVenta(codigoPropiedad):
+        """
+
+               :param codigoPropiedad: Es la id de la propiedad
+               :type codigoPropiedad: String
+               :return: True o false
+               :rtype: Boolean
+
+               Metodo para dar de alta una propiedad justo después de que se deje de asociar a una venta
+
+               """
         try:
             query = QtSql.QSqlQuery()
             query.prepare(

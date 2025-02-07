@@ -849,7 +849,8 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
-            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT idVendedor,dniVendedor,nombreVendedor,altaVendedor,bajaVendedor, movilVendedor,mailVendedor, delegacionVendedor FROM vendedor WHERE idVendedor = :idVendedor&quot;</span><span class="p">)</span>
+            <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;SELECT idVendedor,dniVendedor,nombreVendedor,altaVendedor,bajaVendedor,&quot;</span>
+                          <span class="s2">&quot; movilVendedor,mailVendedor, delegacionVendedor FROM vendedor WHERE idVendedor = :idVendedor&quot;</span><span class="p">)</span>
             <span class="n">query</span><span class="o">.</span><span class="n">bindValue</span><span class="p">(</span><span class="s2">&quot;:idVendedor&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">codigo</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">query</span><span class="o">.</span><span class="n">exec</span><span class="p">():</span>
                 <span class="k">while</span> <span class="n">query</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
@@ -869,6 +870,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.altaFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaFactura</span><span class="p">(</span><span class="n">registro</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param registro: Una lista que contiene la fecha de la factura y el dni del cliente</span>
+<span class="sd">        :type registro: List</span>
+<span class="sd">        :return: True or false</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo encargado de dar de alta una factura en la BD</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO FACTURAS (fechafac, dnifac) VALUES (:fechafac, :dnifac)&quot;</span><span class="p">)</span>
@@ -887,6 +898,14 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.listadoFacturas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">listadoFacturas</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return: Lista de facturas</span>
+<span class="sd">        :rtype: List</span>
+
+<span class="sd">        Metodo encargado de devolver una lista con todas las facturas</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">listado</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
@@ -904,6 +923,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.bajaFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">bajaFactura</span><span class="p">(</span><span class="n">idFactura</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idFactura: La id de la factura</span>
+<span class="sd">        :type idFactura: String</span>
+<span class="sd">        :return: True or false</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo encargado de dar de baja una factura</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query1</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query1</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;Select count(*) from ventas where facventa = :facventa&quot;</span><span class="p">)</span>
@@ -920,7 +949,8 @@
                         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error en la ejecución de la consulta:&quot;</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
                     <span class="k">return</span> <span class="kc">False</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">crearMensajeError</span><span class="p">(</span><span class="s2">&quot;Error baja factura&quot;</span><span class="p">,</span><span class="s2">&quot;No se puede eliminar la factura porque tiene ventas asociadas&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span> <span class="o">=</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">crearMensajeError</span><span class="p">(</span><span class="s2">&quot;Error baja factura&quot;</span><span class="p">,</span><span class="s2">&quot;No se puede eliminar la factura porque tiene ventas asociadas&quot;</span><span class="p">)</span>
+                <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error eliminando factura en bajaFactura - conexión:&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span></div>
@@ -930,6 +960,15 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.cargaOneFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneFactura</span><span class="p">(</span><span class="n">idFactura</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idFactura: La id de la factura</span>
+<span class="sd">        :type idFactura: String</span>
+<span class="sd">        :return: Lista con los datos de una factura</span>
+<span class="sd">        :rtype: List</span>
+
+<span class="sd">        Metodo para buscar una factura en concreto</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
@@ -953,6 +992,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.altaVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaVenta</span><span class="p">(</span><span class="n">registro</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param registro: Lista con los datos de la venta</span>
+<span class="sd">        :type registro: List</span>
+<span class="sd">        :return: True or false</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para dar de alta una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;INSERT INTO ventas (facventa, codprop, agente) VALUES (:facventa, :codprop, :agente)&quot;</span><span class="p">)</span>
@@ -973,6 +1022,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.listadoVentas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">listadoVentas</span><span class="p">(</span><span class="n">idFactura</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idFactura: La id de la factura a la que está asociada la venta</span>
+<span class="sd">        :type idFactura: String</span>
+<span class="sd">        :return: Listado con todas las ventas y sus datos asociados a la factura</span>
+<span class="sd">        :rtype: List</span>
+
+<span class="sd">        Metodo encargado de buscar las ventas en la BD</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">listado</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
@@ -993,6 +1052,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.datosOneVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">datosOneVenta</span><span class="p">(</span><span class="n">idVenta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idVenta: La id de la venta</span>
+<span class="sd">        :type idVenta: String</span>
+<span class="sd">        :return: Lista con los datos de una venta</span>
+<span class="sd">        :rtype: List</span>
+
+<span class="sd">        Metodo para buscar una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
@@ -1016,6 +1085,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.actualizaPropiedadVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">actualizaPropiedadVenta</span><span class="p">(</span><span class="n">codigoPropiedad</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param codigoPropiedad: Es la id de la propiedad</span>
+<span class="sd">        :type codigoPropiedad: String</span>
+<span class="sd">        :return: True o false</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para dar de baja una propiedad justo después de que se asocie a una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;UPDATE propiedades SET estadoprop = &#39;Vendido&#39;, bajaprop = :fechaBaja WHERE codigo = :codigo&quot;</span><span class="p">)</span>
@@ -1033,6 +1112,15 @@
 <div class="viewcode-block" id="Conexion.bajaVenta">
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.bajaVenta">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">bajaVenta</span><span class="p">(</span><span class="n">idVenta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idVenta: La id de la venta</span>
+<span class="sd">        :type idVenta: String</span>
+<span class="sd">        :return: True or false</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para borrar una venta de la bd</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="s2">&quot;DELETE FROM ventas WHERE idventa = :idventa&quot;</span><span class="p">)</span>
@@ -1050,6 +1138,16 @@
 <a class="viewcode-back" href="../src/conexion.html#conexion.Conexion.altaPropiedadVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaPropiedadVenta</span><span class="p">(</span><span class="n">codigoPropiedad</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">               :param codigoPropiedad: Es la id de la propiedad</span>
+<span class="sd">               :type codigoPropiedad: String</span>
+<span class="sd">               :return: True o false</span>
+<span class="sd">               :rtype: Boolean</span>
+
+<span class="sd">               Metodo para dar de alta una propiedad justo después de que se deje de asociar a una venta</span>
+
+<span class="sd">               &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">query</span> <span class="o">=</span> <span class="n">QtSql</span><span class="o">.</span><span class="n">QSqlQuery</span><span class="p">()</span>
             <span class="n">query</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span>

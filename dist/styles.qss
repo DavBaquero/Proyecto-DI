@@ -1,0 +1,55 @@
+QMainWindow {
+    background-color:#b0e2e3;
+}
+
+QTabWidget {
+    background-color: #8fc7c8;
+}
+
+QMenuBar {
+    background-color: whitesmoke;
+}
+
+QPushButton {
+    background-color: #6fabad;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+}
+
+QLineEdit {
+    background-color: whitesmoke;
+}
+
+QComboBox{
+    background-color: whitesmoke;
+}
+
+QTableWidget::item:alternate {
+    background-color: whitesmoke;
+}
+
+QTableWidget::item:selected {
+    color: black;
+}
+
+QCheckBox::indicator:disabled {
+    border: 1px solid #a6a6a6;
+    border-radius: 5px;
+}
+QRadioButton::indicator:disabled {
+    border: 1px solid #a6a6a6;
+    border-radius: 8px;
+}
+
+QCheckBox:disabled {
+    color: rgba(0, 0, 0, 0.3); /* Color más claro */
+}
+
+QCheckBox:disabled:checked {
+    color: black; /* Color normal */
+}
+
+QCheckBox::indicator:disabled:checked {
+    image: url(data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23007AFF' d='M20.66 5.34a1 1 0 010 1.41l-10 10a1 1 0 01-1.41 0l-4-4a1 1 0 011.41-1.41L10 14.59l9.25-9.25a1 1 0 011.41 0z'/></svg>);
+}

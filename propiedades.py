@@ -14,6 +14,14 @@ import var
 
 class Propiedades():
     def altaTipopropiedad(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para añadir un tipo de propiedad a la base de datos.
+        """
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().title()
             registro = conexion.Conexion.altaTipoprop(tipo)
@@ -32,6 +40,15 @@ class Propiedades():
 
 
     def bajaTipopropiedad(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para eliminar un tipo de propiedad de la base de datos.
+
+        """
         try:
             tipo = var.dlggestion.ui.txtGestipoprop.text().title()
             if conexion.Conexion.bajaTipoprop(tipo):
@@ -46,6 +63,15 @@ class Propiedades():
             print("Error baja tipo propiedad" + e)
 
     def altaPropiedad(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para añadir una propiedad a la base de datos.
+
+        """
         try:
             propiedad = [var.ui.txtAltaprop.text(),var.ui.txtDirprop.text().title(),var.ui.cmbProvprop.currentText(),
                          var.ui.cmbMuniprop.currentText(),var.ui.cmbTipoprop.currentText(),
@@ -97,6 +123,15 @@ class Propiedades():
 
     @staticmethod
     def checkMovilProp(movil):
+        """
+        :param movil: Número de teléfono móvil
+        :type movil: String
+        :return: None
+        :rtype: None
+
+        Metodo para validar el número de teléfono móvil introducido en la ventana de propiedades.
+
+        """
         try:
             if eventos.Eventos.validarMovil(movil):
                 var.ui.txtMovilprop.setStyleSheet('background-color: rgb(255, 255, 255);')
@@ -110,6 +145,15 @@ class Propiedades():
 
     @staticmethod
     def cargarTablaPropiedades():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar la tabla de propiedades en la ventana de propiedades.
+
+        """
         try:
             var.ui.tablaProp.setRowCount(0)
             listado = conexion.Conexion.listadoPropiedades()
@@ -155,6 +199,15 @@ class Propiedades():
 
     @staticmethod
     def cargaOnePropiedad():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar una propiedad en la ventana de propiedades.
+
+        """
         try:
             fila = var.ui.tablaProp.selectedItems()
             datos = [dato.text() for dato in fila]
@@ -212,6 +265,15 @@ class Propiedades():
 
     @staticmethod
     def cargaOnePropiedadBusq():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar una propiedad en la ventana de propiedades cuando se realiza una busqueda.
+
+        """
         try:
             municipio = var.ui.cmbMuniprop.currentText()
             provincia = var.ui.cmbProvprop.currentText()
@@ -251,6 +313,15 @@ class Propiedades():
 
     @staticmethod
     def checkDatosVaciosAltaProp(datosPropiedades):
+        """
+        :param datosPropiedades: Lista con los datos de la propiedad
+        :type datosPropiedades: List
+        :return: True si no hay campos vacíos, False si hay campos vacíos
+        :rtype: Boolean
+
+        Metodo para comprobar si hay campos vacíos en la ventana de propiedades.
+
+        """
         datos = datosPropiedades[:]
         oberprop= datos.pop(11)
         prealquilerprop = datos.pop(9)
@@ -265,6 +336,15 @@ class Propiedades():
 
     @staticmethod
     def modifProp():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para modificar una propiedad en la base de datos.
+
+        """
         try:
             propiedad = [var.ui.lblProp.text(),var.ui.txtAltaprop.text(),var.ui.txtBajaprop.text(),var.ui.txtDirprop.text().title(),var.ui.cmbProvprop.currentText(),
                          var.ui.cmbMuniprop.currentText(),var.ui.cmbTipoprop.currentText(),
@@ -316,6 +396,16 @@ class Propiedades():
 
     @staticmethod
     def checkDatosVaciosModifProp(datosPropiedades):
+        """
+
+        :param datosPropiedades: Lista con los datos de la propiedad
+        :type datosPropiedades: List
+        :return: True si no hay campos vacíos, False si hay campos vacíos
+        :rtype: Boolean
+
+        Metodo para comprobar si hay campos vacíos en la ventana de propiedades.
+
+        """
         datos = datosPropiedades[:]
         descripcion = datos.pop(13)
         precio_venta = datos.pop(11)
@@ -330,6 +420,15 @@ class Propiedades():
         return True
 
     def bajaProp(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para dar de baja una propiedad en la base de datos.
+
+        """
         try:
             datos = [var.ui.txtBajaprop.text(), var.ui.lblProp.text()]
             validarFechaBaja = Propiedades.validarFechaBaja()
@@ -356,6 +455,15 @@ class Propiedades():
             print("error bajaCliente", e)
 
     def historicoProp(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para mostrar el historico de una propiedad en la ventana de propiedades.
+
+        """
         try:
             Propiedades.cargarTablaPropiedades()
         except Exception as e:
@@ -365,6 +473,15 @@ class Propiedades():
 
     @staticmethod
     def validarFechaBaja():
+        """
+        :param self: None
+        :type self: None
+        :return: True or False
+        :rtype: Boolean
+
+        Metodo para validar la fecha de baja de una propiedad.
+
+        """
         try:
             if var.ui.txtBajaprop.text() == "" or var.ui.txtBajaprop.text() is None:
                 return True
@@ -381,6 +498,15 @@ class Propiedades():
 
     @staticmethod
     def manageChkBox():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para gestionar los checkbox de la ventana de propiedades.
+
+        """
         if var.ui.txtPrecioAlquilerprop.text() == "":
             var.ui.chkAlquilprop.setChecked(False)
             var.ui.chkAlquilprop.setEnabled(False)
@@ -401,6 +527,15 @@ class Propiedades():
 
     @staticmethod
     def manageRadioButtons():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para gestionar los radio buttons de la ventana de propiedades.
+
+        """
         if var.ui.txtBajaprop.text() == "":
             var.ui.rbtDisponprop.setEnabled(True)
             var.ui.rbtDisponprop.setChecked(True)
@@ -424,6 +559,15 @@ class Propiedades():
             var.ui.rbtVentaprop.setEnabled(True)
 
     def exportarCSVProp(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para exportar los datos de las propiedades en un archivo CSV.
+
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -446,6 +590,15 @@ class Propiedades():
             print("Error exportar CSV", e)
 
     def exportarJSONProp(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para exportar los datos de las propiedades en un archivo JSON.
+
+        """
         fecha = datetime.today()
         fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
         file = str(fecha + "_DatosPropiedades.json")
@@ -466,6 +619,15 @@ class Propiedades():
 
 
     def anteriorPropiedad(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para mostrar la página de propiedades anterior en la ventana de propiedades.
+
+        """
         try:
             if var.current_page_prop > 0:
                 var.current_page_prop -= 1
@@ -474,6 +636,15 @@ class Propiedades():
             print("Error anterior propiedad", e)
 
     def siguientePropiedad(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para mostrar la página de propiedades siguiente en la ventana de propiedades.
+
+        """
         try:
             var.current_page_prop += 1
             Propiedades.cargarTablaPropiedades()
@@ -481,6 +652,15 @@ class Propiedades():
             print("Error siguiente propiedad", e)
 
     def filtrarPropiedades(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para filtrar las propiedades en la ventana de propiedades.
+
+        """
         try:
             Propiedades.cargarTablaPropiedades()
             Propiedades.cargaOnePropiedadBusq()
@@ -488,6 +668,15 @@ class Propiedades():
             print("Error filtrar propiedades", e)
 
     def cargaMuniInformeProp(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar los municipios en el informe de propiedades.
+
+        """
         registro = conexion.Conexion.cargarMunicipios()
         if registro is None:
             registro = []

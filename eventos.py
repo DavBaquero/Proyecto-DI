@@ -336,13 +336,32 @@ class Eventos():
     '''
         Zona clientes
     '''
+
     def cargarProvincias(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que carga las provincias en el combo box de provincias
+
+        """
         var.ui.cmbProvcli.clear()
         listado = conexion.Conexion().listaProv(self)
         # listado = conexionserver.ConexionServer.listaProv()
         var.ui.cmbProvcli.addItems(listado)
 
     def cargarMunicipio(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que carga los municipios en el combo box de municipios según la provincia seleccionada
+
+        """
         var.ui.cmbMunicli.clear()
         provActual = var.ui.cmbProvcli.currentText()
         listado = conexion.Conexion().listaMuni(provActual)
@@ -350,6 +369,15 @@ class Eventos():
         var.ui.cmbMunicli.addItems(listado)
 
     def validarDNIcli(dni):
+        """
+        :param dni: DNI a validar
+        :type dni: String
+        :return: True si el DNI es válido, False si no lo es
+        :rtype: Boolean
+
+        Metodo que valida un DNI
+
+        """
         try:
             tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
             dig_ext = "XYZ"
@@ -370,6 +398,15 @@ class Eventos():
             print("error en validar dni ", error)
 
     def validarMail(mail):
+        """
+        :param mail: Mail a validar
+        :type mail: String
+        :return: True si el mail es válido, False si no lo es
+        :rtype: Boolean
+
+        Metodo que valida un mail
+
+        """
         mail = mail.lower()
         regex = r'^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$'
         if re.match(regex, mail) or mail == '':
@@ -378,6 +415,15 @@ class Eventos():
             return False
 
     def validarMovil(movil):
+        """
+        :param movil: Móvil a validar
+        :type movil: String
+        :return: True si el móvil es válido, False si no lo es
+        :rtype: Boolean
+
+        Metodo que valida un móvil
+
+        """
         regex = r'^(6\d{8}|7\d{8})$'
         if (re.match(regex, movil) and len(movil) == 9) or (movil == ''):
             return True
@@ -385,6 +431,15 @@ class Eventos():
             return False
 
     def resizeTablaClientes(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que redimensiona la tabla de clientes
+
+        """
         try:
             header = var.ui.tablaClientes.horizontalHeader()
             for i in range(header.count()):
@@ -406,17 +461,41 @@ class Eventos():
     '''
     @staticmethod
     def abrir_informeProp():
+        """
+        :return: None
+        :rtype: None
+
+        Metodo que abre la ventana para generar un informe de propiedades según municipio
+
+        """
         try:
             var.dlgInformeProp.show()
         except Exception as e:
             print("error en abrir informe propiedades: ", e)
 
     def cargarProvprop(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que carga las provincias en el combo box de provincias de propiedades
+
+        """
         var.ui.cmbProvprop.clear()
         listado = conexion.Conexion().listaProv(self)
         var.ui.cmbProvprop.addItems(listado)
 
     def cargarMuniprop(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que carga los municipios en el combo box de municipios de propiedades según la provincia seleccionada
+        """
         var.ui.cmbMuniprop.clear()
         provActual = var.ui.cmbProvprop.currentText()
         listado = conexion.Conexion().listaMuni(provActual)

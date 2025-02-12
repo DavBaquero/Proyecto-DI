@@ -19,6 +19,15 @@ locale.setlocale(locale.LC_MONETARY,'es_ES.UTF-8')
 
 class Eventos():
     def mensajeSalir(self=None):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Mensaje de salida de la aplicación
+
+        """
         mbox = Eventos.crearMensajeSalida('Salir',"¿Desea salir?")
         if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
             sys.exit()
@@ -27,6 +36,16 @@ class Eventos():
 
     @staticmethod
     def crearMensajeSalida(titulo_ventana, mensaje):
+        """
+        :param titulo_ventana: Título de la ventana
+        :type titulo_ventana: String
+        :param mensaje: Mensaje a mostrar
+        :type mensaje: String
+        :return: Mensaje de salida
+        :rtype: QtWidgets.QMessageBox
+
+        Metodo que crea un mensaje de salida de la aplicación
+        """
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
         mbox.setWindowIcon(QtGui.QIcon('./img/logo.svg'))
@@ -40,6 +59,18 @@ class Eventos():
 
     @staticmethod
     def crearMensajeInfo(titulo_ventana, mensaje):
+        """
+
+        :param titulo_ventana: Título de la ventana
+        :type titulo_ventana: String
+        :param mensaje: Mensaje a mostrar
+        :type mensaje: String
+        :return: Mensaje de información
+        :rtype: QtWidgets.QMessageBox
+
+        Metodo que crea un mensaje de información
+
+        """
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
         mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
@@ -52,6 +83,18 @@ class Eventos():
 
     @staticmethod
     def crearMensajeError(titulo_ventana, mensaje):
+        """
+
+        :param titulo_ventana: Título de la ventana
+        :type titulo_ventana: String
+        :param mensaje: Mensaje a mostrar
+        :type mensaje: String
+        :return: Mensaje de error
+        :rtype: QtWidgets.QMessageBox
+
+        Metodo que crea un mensaje de error
+
+        """
         mbox = QtWidgets.QMessageBox()
         mbox.setIcon(QtWidgets.QMessageBox.Icon.Critical)
         mbox.setWindowIcon(QtGui.QIcon('img/logo.svg'))
@@ -68,6 +111,15 @@ class Eventos():
     '''
 
     def abrirCalendar(pan, btn):
+        """
+        :param pan: Indica el panel
+        :type pan: int
+        :param btn: Indica el botón
+        :type btn: int
+
+        Metodo que abre el calendario
+
+        """
         try:
             var.panel = pan
             var.btn = btn
@@ -76,6 +128,15 @@ class Eventos():
             print("error en abrir calendar ", error)
 
     def cargarFecha(qDate):
+        """
+        :param qDate: Fecha seleccionada
+        :type qDate: Date
+        :return: Fecha seleccionada
+        :rtype: date
+
+        Metodo que carga la fecha seleccionada en el calendario
+
+        """
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
             if var.panel == 0 and var.btn == 0:
@@ -100,6 +161,15 @@ class Eventos():
             print("error en cargar fecha: ", error)
 
     def crearBackup(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que crea una copia de seguridad de la base de datos
+
+        """
         try:
             fecha = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
             copia = str(fecha)+'_backup.zip'
@@ -115,6 +185,15 @@ class Eventos():
             print("error en crear backup: ", error)
 
     def restaurarBackup(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que restaura una copia de seguridad de la base de datos
+
+        """
         try:
             filename = var.dlgAbrir.getOpenFileName(None, "Restaurar Copia Seguridad", "", "*.zip;;All Files (*)")
             file = filename[0]
@@ -131,6 +210,14 @@ class Eventos():
             print("error en restaurar backup: ", error)
 
     def limpiarPanel(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que limpia los campos del panel seleccionado
+        """
         try:
             current_index = var.ui.panPrincipal.currentIndex()
 
@@ -195,18 +282,45 @@ class Eventos():
             print(f"Se ha producido una excepción: {e}")
 
     def abrirAbout(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que abre la ventana de acerca de
+
+        """
         try:
             var.dlgabout.show()
         except Exception as e:
             print("error en abrir about: ", e)
 
     def cerrarAcercaDe(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que cierra la ventana de acerca de
+
+        """
         try:
             var.dlgabout.close()
         except Exception as e:
             print("error en cerrar acerca de: ", e)
 
     def filtrar(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que filtra los registros de la tabla seleccionada
+
+        """
         if var.ui.panPrincipal.currentIndex() == 0:
             checkeado = var.ui.btnFiltrarCli.isChecked()
             var.ui.btnFiltrarCli.setChecked(not checkeado)

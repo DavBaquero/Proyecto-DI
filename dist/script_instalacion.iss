@@ -3,14 +3,14 @@
 
 #define MyAppName "ImmoTeis"
 #define MyAppVersion "1"
-#define MyAppPublisher "ImmoDBTeis"
+#define MyAppPublisher "ImmoTeis DB"
 #define MyAppURL "https://www.example.com/"
 #define MyAppExeName "main.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{B673D0A7-1C83-4D82-9AE0-3AB8AAFDFE49}
+AppId={{26A62CD4-0913-4532-824C-D11D7FFEF313}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -31,10 +31,12 @@ ArchitecturesInstallIn64BitMode=x64compatible
 DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only).
 ;PrivilegesRequired=lowest
-OutputDir=C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\dist
 OutputBaseFilename=setup
 SolidCompression=yes
 WizardStyle=modern
+OutputDir=C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\dist
+
+
 
 [Languages]
 Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
@@ -49,9 +51,6 @@ Source: "C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\bbdd.sqlite"; 
 Source: "C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\styles.qss"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\a23davidba\Desktop\PythonProjects\baqueroamaral\informes"; DestDir: "{app}/informes"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-
-[Dirs]
-Name: "{app}\informes"
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

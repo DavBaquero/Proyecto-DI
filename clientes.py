@@ -37,6 +37,15 @@ class Clientes:
             print("Error check cliente ", e)
 
     def altaCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de dar de alta un cliente en la base de datos
+
+        """
         try:
             nuevocli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(), var.ui.txtNomcli.text().title(),
                      var.ui.txtEmailcli.text(), var.ui.txtMovilcli.text(), var.ui.txtDircli.text().title(), var.ui.cmbProvcli.currentText(),
@@ -61,6 +70,15 @@ class Clientes:
             print("Error alta cliente ", e)
 
     def checkEmail(mail):
+        """
+        :param mail: Es el email del cliente
+        :type mail: String
+        :return: None
+        :rtype: None
+
+        Metodo encargado de comprobar si el email introducido es válido
+
+        """
         try:
             mail = str(var.ui.txtEmailcli.text())
             if eventos.Eventos.validarMail(mail):
@@ -77,6 +95,15 @@ class Clientes:
             print("error check cliente", error)
 
     def checkMovil(movil):
+        """
+        :param movil: Es el movil del cliente
+        :type movil: String
+        :return: None
+        :rtype: None
+
+        Metodo encargado de comprobar si el movil introducido es válido
+
+        """
         try:
             tlf = str(var.ui.txtMovilcli.text())
             if eventos.Eventos.validarMovil(tlf):
@@ -92,6 +119,15 @@ class Clientes:
             print("error check cliente", error)
 
     def cargaTablaClientes(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de cargar la tabla de clientes con los datos de la base de datos
+
+        """
         try:
             var.ui.tablaClientes.setRowCount(0)
             listado = conexion.Conexion.listadoClientes()
@@ -135,6 +171,15 @@ class Clientes:
             print("Error carga tabla clientes ",e)
 
     def cargaOneCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de cargar los datos de un cliente en los campos de texto
+
+        """
         try:
             fila = var.ui.tablaClientes.selectedItems()
             datos = [dato.text() for dato in fila]
@@ -158,6 +203,15 @@ class Clientes:
             print("Error carga cliente ", error)
 
     def cargaOneClienteBusq(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de cargar los datos de un cliente en los campos de texto cuando se filtra
+
+        """
         try:
             dni = var.ui.txtDnicli.text().upper()
             registro = conexion.Conexion.datosOneCliente(str(dni))
@@ -177,6 +231,15 @@ class Clientes:
             print("Error carga cliente ", error)
 
     def modifCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de modificar los datos de un cliente en la base de datos
+
+        """
         try:
             modifcli = [var.ui.txtDnicli.text(), var.ui.txtAltacli.text(), var.ui.txtApelcli.text().title(),
                         var.ui.txtNomcli.text().title(),
@@ -205,6 +268,15 @@ class Clientes:
             print("Error al modificar cliente ", e)
 
     def bajaCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de dar de baja un cliente en la base de datos
+
+        """
         try:
             datos = [var.ui.txtBajacli.text(), var.ui.txtDnicli.text()]
             validarFechaBaja = Clientes.validarFechaBaja()

@@ -502,6 +502,15 @@ class Eventos():
         var.ui.cmbMuniprop.addItems(listado)
 
     def resizeTablaPropiedades(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que redimensiona la tabla de propiedades
+
+        """
         try:
             header = var.ui.tablaProp.horizontalHeader()
             for i in range(header.count()):
@@ -519,6 +528,15 @@ class Eventos():
             print("error en resize tabla prop", e)
 
     def abrirTipoprop(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que abre la ventana de gestión de tipos de propiedades
+
+        """
         try:
             var.dlggestion.show()
         except Exception as e:
@@ -535,11 +553,29 @@ class Eventos():
     '''
 
     def cargarDelegacion(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que carga las delegaciones en el combo box de delegaciones
+
+        """
         var.ui.cmbDelegVen.clear()
         listado = conexion.Conexion().listaProv(self)
         var.ui.cmbDelegVen.addItems(listado)
 
     def validarDNIven(dni):
+        """
+        :param dni: DNI a validar
+        :type dni: String
+        :return: True si el DNI es válido, False si no lo es
+        :rtype: Boolean
+
+        Metodo que valida un DNI
+
+        """
         try:
             tabla = "TRWAGMYFPDXBNJZSQVHLCKE"
             dig_ext = "XYZ"
@@ -561,6 +597,15 @@ class Eventos():
             print("error en validar dni ", error)
 
     def resizeTablaVendedores(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que redimensiona la tabla de vendedores
+
+        """
         try:
             header = var.ui.tablaVendedores.horizontalHeader()
             for i in range(header.count()):
@@ -577,6 +622,16 @@ class Eventos():
 
     @staticmethod
     def resizeTablaFacturas():
+        """
+
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que redimensiona la tabla de facturas
+
+        """
         try:
             header = var.ui.tablaFacturas.horizontalHeader()
             for i in range(header.count()):
@@ -594,6 +649,15 @@ class Eventos():
 
     @staticmethod
     def resizeTablaVentas():
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo que redimensiona la tabla de ventas
+
+        """
         try:
             header = var.ui.tablaVentas.horizontalHeader()
             for i in range(header.count()):

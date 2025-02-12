@@ -57,6 +57,15 @@
 <div class="viewcode-block" id="Eventos.mensajeSalir">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.mensajeSalir">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">mensajeSalir</span><span class="p">(</span><span class="bp">self</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Mensaje de salida de la aplicación</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mbox</span> <span class="o">=</span> <span class="n">Eventos</span><span class="o">.</span><span class="n">crearMensajeSalida</span><span class="p">(</span><span class="s1">&#39;Salir&#39;</span><span class="p">,</span><span class="s2">&quot;¿Desea salir?&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">mbox</span><span class="o">.</span><span class="n">exec</span><span class="p">()</span> <span class="o">==</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">StandardButton</span><span class="o">.</span><span class="n">Yes</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
@@ -68,6 +77,16 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.crearMensajeSalida">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">crearMensajeSalida</span><span class="p">(</span><span class="n">titulo_ventana</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param titulo_ventana: Título de la ventana</span>
+<span class="sd">        :type titulo_ventana: String</span>
+<span class="sd">        :param mensaje: Mensaje a mostrar</span>
+<span class="sd">        :type mensaje: String</span>
+<span class="sd">        :return: Mensaje de salida</span>
+<span class="sd">        :rtype: QtWidgets.QMessageBox</span>
+
+<span class="sd">        Metodo que crea un mensaje de salida de la aplicación</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Question</span><span class="p">)</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;./img/logo.svg&#39;</span><span class="p">))</span>
@@ -84,6 +103,18 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.crearMensajeInfo">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">crearMensajeInfo</span><span class="p">(</span><span class="n">titulo_ventana</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param titulo_ventana: Título de la ventana</span>
+<span class="sd">        :type titulo_ventana: String</span>
+<span class="sd">        :param mensaje: Mensaje a mostrar</span>
+<span class="sd">        :type mensaje: String</span>
+<span class="sd">        :return: Mensaje de información</span>
+<span class="sd">        :rtype: QtWidgets.QMessageBox</span>
+
+<span class="sd">        Metodo que crea un mensaje de información</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Information</span><span class="p">)</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;img/logo.svg&#39;</span><span class="p">))</span>
@@ -99,6 +130,18 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.crearMensajeError">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">crearMensajeError</span><span class="p">(</span><span class="n">titulo_ventana</span><span class="p">,</span> <span class="n">mensaje</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param titulo_ventana: Título de la ventana</span>
+<span class="sd">        :type titulo_ventana: String</span>
+<span class="sd">        :param mensaje: Mensaje a mostrar</span>
+<span class="sd">        :type mensaje: String</span>
+<span class="sd">        :return: Mensaje de error</span>
+<span class="sd">        :rtype: QtWidgets.QMessageBox</span>
+
+<span class="sd">        Metodo que crea un mensaje de error</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mbox</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="p">()</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setIcon</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QMessageBox</span><span class="o">.</span><span class="n">Icon</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
         <span class="n">mbox</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;img/logo.svg&#39;</span><span class="p">))</span>
@@ -118,6 +161,15 @@
 <div class="viewcode-block" id="Eventos.abrirCalendar">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.abrirCalendar">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">abrirCalendar</span><span class="p">(</span><span class="n">pan</span><span class="p">,</span> <span class="n">btn</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param pan: Indica el panel</span>
+<span class="sd">        :type pan: int</span>
+<span class="sd">        :param btn: Indica el botón</span>
+<span class="sd">        :type btn: int</span>
+
+<span class="sd">        Metodo que abre el calendario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">panel</span> <span class="o">=</span> <span class="n">pan</span>
             <span class="n">var</span><span class="o">.</span><span class="n">btn</span> <span class="o">=</span> <span class="n">btn</span>
@@ -129,6 +181,15 @@
 <div class="viewcode-block" id="Eventos.cargarFecha">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarFecha">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarFecha</span><span class="p">(</span><span class="n">qDate</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param qDate: Fecha seleccionada</span>
+<span class="sd">        :type qDate: Date</span>
+<span class="sd">        :return: Fecha seleccionada</span>
+<span class="sd">        :rtype: date</span>
+
+<span class="sd">        Metodo que carga la fecha seleccionada en el calendario</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{:02d}</span><span class="s1">/</span><span class="si">{:02d}</span><span class="s1">/</span><span class="si">{:4d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">qDate</span><span class="o">.</span><span class="n">day</span><span class="p">(),</span> <span class="n">qDate</span><span class="o">.</span><span class="n">month</span><span class="p">(),</span> <span class="n">qDate</span><span class="o">.</span><span class="n">year</span><span class="p">()))</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">panel</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">var</span><span class="o">.</span><span class="n">btn</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -156,6 +217,15 @@
 <div class="viewcode-block" id="Eventos.crearBackup">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.crearBackup">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">crearBackup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que crea una copia de seguridad de la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y_%m_</span><span class="si">%d</span><span class="s2">_%H_%M_%S&quot;</span><span class="p">)</span>
             <span class="n">copia</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;_backup.zip&#39;</span>
@@ -174,6 +244,15 @@
 <div class="viewcode-block" id="Eventos.restaurarBackup">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.restaurarBackup">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">restaurarBackup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que restaura una copia de seguridad de la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">filename</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dlgAbrir</span><span class="o">.</span><span class="n">getOpenFileName</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Restaurar Copia Seguridad&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;*.zip;;All Files (*)&quot;</span><span class="p">)</span>
             <span class="n">file</span> <span class="o">=</span> <span class="n">filename</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -193,6 +272,14 @@
 <div class="viewcode-block" id="Eventos.limpiarPanel">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.limpiarPanel">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">limpiarPanel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que limpia los campos del panel seleccionado</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">current_index</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">panPrincipal</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span>
 
@@ -260,6 +347,15 @@
 <div class="viewcode-block" id="Eventos.abrirAbout">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.abrirAbout">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">abrirAbout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que abre la ventana de acerca de</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgabout</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -269,6 +365,15 @@
 <div class="viewcode-block" id="Eventos.cerrarAcercaDe">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cerrarAcercaDe">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cerrarAcercaDe</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que cierra la ventana de acerca de</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgabout</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -278,6 +383,15 @@
 <div class="viewcode-block" id="Eventos.filtrar">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.filtrar">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">filtrar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que filtra los registros de la tabla seleccionada</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">panPrincipal</span><span class="o">.</span><span class="n">currentIndex</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">checkeado</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">btnFiltrarCli</span><span class="o">.</span><span class="n">isChecked</span><span class="p">()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">btnFiltrarCli</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="ow">not</span> <span class="n">checkeado</span><span class="p">)</span>
@@ -294,9 +408,19 @@
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        Zona clientes</span>
 <span class="sd">    &#39;&#39;&#39;</span>
+
 <div class="viewcode-block" id="Eventos.cargarProvincias">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarProvincias">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarProvincias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que carga las provincias en el combo box de provincias</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvcli</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="p">()</span><span class="o">.</span><span class="n">listaProv</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="c1"># listado = conexionserver.ConexionServer.listaProv()</span>
@@ -306,6 +430,15 @@
 <div class="viewcode-block" id="Eventos.cargarMunicipio">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarMunicipio">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarMunicipio</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que carga los municipios en el combo box de municipios según la provincia seleccionada</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbMunicli</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">provActual</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvcli</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="p">()</span><span class="o">.</span><span class="n">listaMuni</span><span class="p">(</span><span class="n">provActual</span><span class="p">)</span>
@@ -316,6 +449,15 @@
 <div class="viewcode-block" id="Eventos.validarDNIcli">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.validarDNIcli">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarDNIcli</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param dni: DNI a validar</span>
+<span class="sd">        :type dni: String</span>
+<span class="sd">        :return: True si el DNI es válido, False si no lo es</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo que valida un DNI</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">tabla</span> <span class="o">=</span> <span class="s2">&quot;TRWAGMYFPDXBNJZSQVHLCKE&quot;</span>
             <span class="n">dig_ext</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
@@ -339,6 +481,15 @@
 <div class="viewcode-block" id="Eventos.validarMail">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.validarMail">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarMail</span><span class="p">(</span><span class="n">mail</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param mail: Mail a validar</span>
+<span class="sd">        :type mail: String</span>
+<span class="sd">        :return: True si el mail es válido, False si no lo es</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo que valida un mail</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">mail</span> <span class="o">=</span> <span class="n">mail</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w+$&#39;</span>
         <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">mail</span><span class="p">)</span> <span class="ow">or</span> <span class="n">mail</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
@@ -350,6 +501,15 @@
 <div class="viewcode-block" id="Eventos.validarMovil">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.validarMovil">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarMovil</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param movil: Móvil a validar</span>
+<span class="sd">        :type movil: String</span>
+<span class="sd">        :return: True si el móvil es válido, False si no lo es</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo que valida un móvil</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;^(6\d</span><span class="si">{8}</span><span class="s1">|7\d</span><span class="si">{8}</span><span class="s1">)$&#39;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">regex</span><span class="p">,</span> <span class="n">movil</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">movil</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">movil</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="kc">True</span>
@@ -360,6 +520,15 @@
 <div class="viewcode-block" id="Eventos.resizeTablaClientes">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.resizeTablaClientes">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resizeTablaClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que redimensiona la tabla de clientes</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaClientes</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
@@ -384,6 +553,13 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.abrir_informeProp">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">abrir_informeProp</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que abre la ventana para generar un informe de propiedades según municipio</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlgInformeProp</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -393,6 +569,15 @@
 <div class="viewcode-block" id="Eventos.cargarProvprop">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarProvprop">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarProvprop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que carga las provincias en el combo box de provincias de propiedades</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="p">()</span><span class="o">.</span><span class="n">listaProv</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">listado</span><span class="p">)</span></div>
@@ -401,6 +586,14 @@
 <div class="viewcode-block" id="Eventos.cargarMuniprop">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarMuniprop">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarMuniprop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que carga los municipios en el combo box de municipios de propiedades según la provincia seleccionada</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbMuniprop</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">provActual</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="p">()</span><span class="o">.</span><span class="n">listaMuni</span><span class="p">(</span><span class="n">provActual</span><span class="p">)</span>
@@ -410,6 +603,15 @@
 <div class="viewcode-block" id="Eventos.resizeTablaPropiedades">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.resizeTablaPropiedades">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resizeTablaPropiedades</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que redimensiona la tabla de propiedades</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaProp</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
@@ -430,6 +632,15 @@
 <div class="viewcode-block" id="Eventos.abrirTipoprop">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.abrirTipoprop">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">abrirTipoprop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que abre la ventana de gestión de tipos de propiedades</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">dlggestion</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -452,6 +663,15 @@
 <div class="viewcode-block" id="Eventos.cargarDelegacion">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.cargarDelegacion">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarDelegacion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que carga las delegaciones en el combo box de delegaciones</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbDelegVen</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="p">()</span><span class="o">.</span><span class="n">listaProv</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbDelegVen</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">listado</span><span class="p">)</span></div>
@@ -460,6 +680,15 @@
 <div class="viewcode-block" id="Eventos.validarDNIven">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.validarDNIven">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarDNIven</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param dni: DNI a validar</span>
+<span class="sd">        :type dni: String</span>
+<span class="sd">        :return: True si el DNI es válido, False si no lo es</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo que valida un DNI</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">tabla</span> <span class="o">=</span> <span class="s2">&quot;TRWAGMYFPDXBNJZSQVHLCKE&quot;</span>
             <span class="n">dig_ext</span> <span class="o">=</span> <span class="s2">&quot;XYZ&quot;</span>
@@ -484,6 +713,15 @@
 <div class="viewcode-block" id="Eventos.resizeTablaVendedores">
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.resizeTablaVendedores">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resizeTablaVendedores</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que redimensiona la tabla de vendedores</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVendedores</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
@@ -503,6 +741,16 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.resizeTablaFacturas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">resizeTablaFacturas</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que redimensiona la tabla de facturas</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaFacturas</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>
@@ -523,6 +771,15 @@
 <a class="viewcode-back" href="../src/eventos.html#eventos.Eventos.resizeTablaVentas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">resizeTablaVentas</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo que redimensiona la tabla de ventas</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">header</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVentas</span><span class="o">.</span><span class="n">horizontalHeader</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">header</span><span class="o">.</span><span class="n">count</span><span class="p">()):</span>

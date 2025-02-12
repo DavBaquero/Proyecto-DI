@@ -16,6 +16,15 @@ from eventos import Eventos
 
 class Vendedores:
     def altaVendedores(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para dar de alta un vendedor en la base de datos
+
+        """
         try:
             nuevovendedor = [var.ui.txtDNIVen.text(), var.ui.txtNomVen.text().title(), var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
                         var.ui.txtMovilVen.text(), var.ui.txtMailVen.text(), var.ui.cmbDelegVen.currentText()]
@@ -38,6 +47,15 @@ class Vendedores:
             print("Error alta cliente ", e)
 
     def checkDNIven(dni):
+        """
+        :param dni: DNI del vendedor
+        :type dni: String
+        :return: None
+        :rtype: None
+
+        Metodo para comprobar si el DNI introducido es correcto
+
+        """
         try:
             dni = str(dni).upper()
             var.ui.txtDNIVen.setText(str(dni))
@@ -53,6 +71,15 @@ class Vendedores:
 
 
     def checkEmailven(mail):
+        """
+        :param mail: Email del vendedor
+        :type mail: String
+        :return: None
+        :rtype: None
+
+        Metodo para comprobar si el email introducido es correcto
+
+        """
         try:
             mail = str(var.ui.txtMailVen.text())
             if eventos.Eventos.validarMail(mail):
@@ -69,6 +96,15 @@ class Vendedores:
             print("error check cliente", error)
 
     def checkMovilven(movil):
+        """
+        :param movil: Movil del vendedor
+        :type movil: String
+        :return: None
+        :rtype: None
+
+        Metodo para comprobar si el movil introducido es correcto
+
+        """
         try:
             tlf = str(var.ui.txtMovilVen.text())
             if eventos.Eventos.validarMovil(tlf):
@@ -85,6 +121,15 @@ class Vendedores:
 
 
     def cargaTablaVendedores(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar la tabla de vendedores
+
+        """
         try:
             listado = conexion.Conexion.listadoVendedores()
             total = len(listado)
@@ -113,6 +158,15 @@ class Vendedores:
 
 
     def modifVen(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para modificar un vendedor
+
+        """
         try:
             nuevovendedor = [var.ui.lblCodVen.text(), var.ui.txtNomVen.text().title() ,var.ui.txtAltaVen.text(), var.ui.txtBajaVen.text(),
                              var.ui.txtMovilVen.text(), var.ui.txtMailVen.text(), var.ui.cmbDelegVen.currentText()]
@@ -138,6 +192,15 @@ class Vendedores:
             print("Error al modificar cliente ", e)
 
     def bajaVendedor(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para dar de baja un vendedor
+
+        """
         try:
             datos = [var.ui.txtBajaVen.text(), var.ui.lblCodVen.text()]
             validarFechaBaja = Vendedores.validarFechaBaja()
@@ -161,6 +224,16 @@ class Vendedores:
 
     @staticmethod
     def validarFechaBaja():
+        """
+
+        :param self: None
+        :type self: None
+        :return: True or False
+        :rtype: Boolean
+
+        Metodo para validar la fecha de baja
+
+        """
         try:
             if var.ui.txtBajaVen.text() == "" or var.ui.txtBajaVen.text() is None:
                 return True
@@ -176,6 +249,16 @@ class Vendedores:
             return False
 
     def cargaOneVendedor(self):
+        """
+
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo para cargar un vendedor
+
+        """
         try:
             fila = var.ui.tablaVendedores.selectedItems()
             datos = [dato.text() for dato in fila]

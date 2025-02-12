@@ -52,6 +52,14 @@
 <div class="viewcode-block" id="Propiedades.altaTipopropiedad">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.altaTipopropiedad">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaTipopropiedad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para añadir un tipo de propiedad a la base de datos.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">tipo</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dlggestion</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtGestipoprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">altaTipoprop</span><span class="p">(</span><span class="n">tipo</span><span class="p">)</span>
@@ -73,6 +81,15 @@
 <div class="viewcode-block" id="Propiedades.bajaTipopropiedad">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.bajaTipopropiedad">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">bajaTipopropiedad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para eliminar un tipo de propiedad de la base de datos.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">tipo</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">dlggestion</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtGestipoprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">bajaTipoprop</span><span class="p">(</span><span class="n">tipo</span><span class="p">):</span>
@@ -90,6 +107,15 @@
 <div class="viewcode-block" id="Propiedades.altaPropiedad">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.altaPropiedad">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaPropiedad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para añadir una propiedad a la base de datos.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">propiedad</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltaprop</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDirprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span>
                          <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbMuniprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbTipoprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span>
@@ -144,6 +170,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.checkMovilProp">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkMovilProp</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param movil: Número de teléfono móvil</span>
+<span class="sd">        :type movil: String</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para validar el número de teléfono móvil introducido en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarMovil</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilprop</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s1">&#39;background-color: rgb(255, 255, 255);&#39;</span><span class="p">)</span>
@@ -160,6 +195,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.cargarTablaPropiedades">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarTablaPropiedades</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para cargar la tabla de propiedades en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaProp</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">listadoPropiedades</span><span class="p">()</span>
@@ -208,6 +252,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.cargaOnePropiedad">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOnePropiedad</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para cargar una propiedad en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaProp</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">dato</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="k">for</span> <span class="n">dato</span> <span class="ow">in</span> <span class="n">fila</span><span class="p">]</span>
@@ -268,6 +321,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.cargaOnePropiedadBusq">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOnePropiedadBusq</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para cargar una propiedad en la ventana de propiedades cuando se realiza una busqueda.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">municipio</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbMuniprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
             <span class="n">provincia</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">()</span>
@@ -310,6 +372,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.checkDatosVaciosAltaProp">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkDatosVaciosAltaProp</span><span class="p">(</span><span class="n">datosPropiedades</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param datosPropiedades: Lista con los datos de la propiedad</span>
+<span class="sd">        :type datosPropiedades: List</span>
+<span class="sd">        :return: True si no hay campos vacíos, False si hay campos vacíos</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para comprobar si hay campos vacíos en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">datos</span> <span class="o">=</span> <span class="n">datosPropiedades</span><span class="p">[:]</span>
         <span class="n">oberprop</span><span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
         <span class="n">prealquilerprop</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
@@ -327,6 +398,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.modifProp">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">modifProp</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para modificar una propiedad en la base de datos.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">propiedad</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblProp</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltaprop</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaprop</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDirprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span>
                          <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbMuniprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbTipoprop</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span>
@@ -381,6 +461,16 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.checkDatosVaciosModifProp">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkDatosVaciosModifProp</span><span class="p">(</span><span class="n">datosPropiedades</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param datosPropiedades: Lista con los datos de la propiedad</span>
+<span class="sd">        :type datosPropiedades: List</span>
+<span class="sd">        :return: True si no hay campos vacíos, False si hay campos vacíos</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para comprobar si hay campos vacíos en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">datos</span> <span class="o">=</span> <span class="n">datosPropiedades</span><span class="p">[:]</span>
         <span class="n">descripcion</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
         <span class="n">precio_venta</span> <span class="o">=</span> <span class="n">datos</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
@@ -398,6 +488,15 @@
 <div class="viewcode-block" id="Propiedades.bajaProp">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.bajaProp">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">bajaProp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para dar de baja una propiedad en la base de datos.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaprop</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblProp</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span>
             <span class="n">validarFechaBaja</span> <span class="o">=</span> <span class="n">Propiedades</span><span class="o">.</span><span class="n">validarFechaBaja</span><span class="p">()</span>
@@ -427,6 +526,15 @@
 <div class="viewcode-block" id="Propiedades.historicoProp">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.historicoProp">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">historicoProp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para mostrar el historico de una propiedad en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">Propiedades</span><span class="o">.</span><span class="n">cargarTablaPropiedades</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -439,6 +547,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.validarFechaBaja">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarFechaBaja</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: True or False</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para validar la fecha de baja de una propiedad.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
@@ -458,6 +575,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.manageChkBox">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">manageChkBox</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para gestionar los checkbox de la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtPrecioAlquilerprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">chkAlquilprop</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">chkAlquilprop</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -481,6 +607,15 @@
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.manageRadioButtons">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">manageRadioButtons</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para gestionar los radio buttons de la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajaprop</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rbtDisponprop</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">rbtDisponprop</span><span class="o">.</span><span class="n">setChecked</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
@@ -507,6 +642,15 @@
 <div class="viewcode-block" id="Propiedades.exportarCSVProp">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.exportarCSVProp">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">exportarCSVProp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para exportar los datos de las propiedades en un archivo CSV.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
             <span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y_%m_</span><span class="si">%d</span><span class="s1">_%H_%M_%S&#39;</span><span class="p">)</span>
@@ -532,6 +676,15 @@
 <div class="viewcode-block" id="Propiedades.exportarJSONProp">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.exportarJSONProp">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">exportarJSONProp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para exportar los datos de las propiedades en un archivo JSON.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
         <span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y_%m_</span><span class="si">%d</span><span class="s1">_%H_%M_%S&#39;</span><span class="p">)</span>
         <span class="n">file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span> <span class="o">+</span> <span class="s2">&quot;_DatosPropiedades.json&quot;</span><span class="p">)</span>
@@ -555,6 +708,15 @@
 <div class="viewcode-block" id="Propiedades.anteriorPropiedad">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.anteriorPropiedad">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">anteriorPropiedad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para mostrar la página de propiedades anterior en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">current_page_prop</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">current_page_prop</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -566,6 +728,15 @@
 <div class="viewcode-block" id="Propiedades.siguientePropiedad">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.siguientePropiedad">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">siguientePropiedad</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para mostrar la página de propiedades siguiente en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">current_page_prop</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">Propiedades</span><span class="o">.</span><span class="n">cargarTablaPropiedades</span><span class="p">()</span>
@@ -576,6 +747,15 @@
 <div class="viewcode-block" id="Propiedades.filtrarPropiedades">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.filtrarPropiedades">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">filtrarPropiedades</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para filtrar las propiedades en la ventana de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">Propiedades</span><span class="o">.</span><span class="n">cargarTablaPropiedades</span><span class="p">()</span>
             <span class="n">Propiedades</span><span class="o">.</span><span class="n">cargaOnePropiedadBusq</span><span class="p">()</span>
@@ -586,6 +766,15 @@
 <div class="viewcode-block" id="Propiedades.cargaMuniInformeProp">
 <a class="viewcode-back" href="../src/propiedades.html#propiedades.Propiedades.cargaMuniInformeProp">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaMuniInformeProp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo para cargar los municipios en el informe de propiedades.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">registro</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargarMunicipios</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">registro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="p">[]</span>

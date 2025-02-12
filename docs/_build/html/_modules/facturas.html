@@ -46,6 +46,16 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.altaFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaFactura</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para dar de alta una factura</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">nuevaFactura</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtFechaFactura</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtdniclifac</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtdniclifac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtdniclifac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -69,6 +79,15 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargaTablaFacturas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaTablaFacturas</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        ç</span>
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para cargar la tabla de facturas</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">listadoFacturas</span><span class="p">()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaFacturas</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listado</span><span class="p">))</span>
@@ -101,6 +120,15 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargaOneFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneFactura</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para cargar una factura</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaFacturas</span><span class="o">.</span><span class="n">currentRow</span><span class="p">()</span>
             <span class="n">idFactura</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaFacturas</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">fila</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
@@ -121,6 +149,16 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.eliminarFactura">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">eliminarFactura</span><span class="p">(</span><span class="n">idFactura</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param idFactura:</span>
+<span class="sd">        :type idFactura:</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para eliminar una factura</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">bajaFactura</span><span class="p">(</span><span class="n">idFactura</span><span class="p">):</span>
                 <span class="n">mbox</span> <span class="o">=</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">crearMensajeInfo</span><span class="p">(</span><span class="s2">&quot;Factura eliminada&quot;</span><span class="p">,</span> <span class="s2">&quot;Se ha eliminado la factura&quot;</span><span class="p">)</span>
@@ -137,6 +175,16 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargarClienteVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarClienteVenta</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return:</span>
+<span class="sd">        :rtype:</span>
+
+<span class="sd">        Metodo para cargar el cliente en la venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dniCliente</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtdniclifac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">datosOneCliente</span><span class="p">(</span><span class="n">dniCliente</span><span class="p">):</span>
@@ -157,6 +205,16 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargarPropiedadVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargarPropiedadVenta</span><span class="p">(</span><span class="n">propiedad</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param propiedad: Lista con los datos de la propiedad</span>
+<span class="sd">        :type propiedad: List</span>
+<span class="sd">        :return: True si la propiedad está disponible, False si no lo está</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo para cargar la propiedad en la venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">propiedad</span><span class="p">[</span><span class="mi">6</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;disponible&quot;</span><span class="p">:</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtcodpropfac</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">propiedad</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
@@ -177,6 +235,15 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.altaVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaVenta</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para dar de alta una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">nuevaVenta</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblNumFactura</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtcodpropfac</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtidvenfac</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtcodpropfac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtcodpropfac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -202,6 +269,15 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargaTablaVentas">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaTablaVentas</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para cargar la tabla de ventas</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">idFactura</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblNumFactura</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
         <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">listadoVentas</span><span class="p">(</span><span class="n">idFactura</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVentas</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">listado</span><span class="p">))</span>
@@ -264,6 +340,15 @@
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.cargaOneVenta">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneVenta</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param: None</span>
+<span class="sd">        :type: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para cargar una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVentas</span><span class="o">.</span><span class="n">currentRow</span><span class="p">()</span>
             <span class="n">idVenta</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaVentas</span><span class="o">.</span><span class="n">item</span><span class="p">(</span><span class="n">fila</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
@@ -285,6 +370,17 @@
 <div class="viewcode-block" id="Facturas.eliminarVenta">
 <a class="viewcode-back" href="../src/facturas.html#facturas.Facturas.eliminarVenta">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">eliminarVenta</span><span class="p">(</span><span class="n">idVenta</span><span class="p">,</span> <span class="n">idpropiedad</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param idVenta: La id de la venta</span>
+<span class="sd">        :type idVenta: int</span>
+<span class="sd">        :param idpropiedad: La id de la propiedad</span>
+<span class="sd">        :type idpropiedad:  int</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Función para eliminar una venta</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">bajaVenta</span><span class="p">(</span><span class="n">idVenta</span><span class="p">)</span> <span class="ow">and</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">altaPropiedadVenta</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">idpropiedad</span><span class="p">)):</span>
                 <span class="n">mbox</span> <span class="o">=</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">crearMensajeInfo</span><span class="p">(</span><span class="s2">&quot;Venta eliminada&quot;</span><span class="p">,</span><span class="s2">&quot;Se ha eliminado la venta&quot;</span><span class="p">)</span>

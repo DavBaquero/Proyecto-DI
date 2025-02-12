@@ -52,6 +52,15 @@
 <div class="viewcode-block" id="Clientes.checkDNI">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.checkDNI">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkDNI</span><span class="p">(</span><span class="n">dni</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param dni: Es el dni del cliente</span>
+<span class="sd">        :type dni: String</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de comprobar si el DNI introducido es válido</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dni</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDnicli</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">))</span>
@@ -69,6 +78,15 @@
 <div class="viewcode-block" id="Clientes.altaCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.altaCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">altaCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de dar de alta un cliente en la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">nuevocli</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDnicli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltacli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtApelcli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNomcli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
                      <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtEmailcli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilcli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDircli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">cmbProvcli</span><span class="o">.</span><span class="n">currentText</span><span class="p">(),</span>
@@ -96,6 +114,15 @@
 <div class="viewcode-block" id="Clientes.checkEmail">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.checkEmail">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkEmail</span><span class="p">(</span><span class="n">mail</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param mail: Es el email del cliente</span>
+<span class="sd">        :type mail: String</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de comprobar si el email introducido es válido</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">mail</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtEmailcli</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarMail</span><span class="p">(</span><span class="n">mail</span><span class="p">):</span>
@@ -115,6 +142,15 @@
 <div class="viewcode-block" id="Clientes.checkMovil">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.checkMovil">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">checkMovil</span><span class="p">(</span><span class="n">movil</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param movil: Es el movil del cliente</span>
+<span class="sd">        :type movil: String</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de comprobar si el movil introducido es válido</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">tlf</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtMovilcli</span><span class="o">.</span><span class="n">text</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">eventos</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">validarMovil</span><span class="p">(</span><span class="n">tlf</span><span class="p">):</span>
@@ -133,6 +169,15 @@
 <div class="viewcode-block" id="Clientes.cargaTablaClientes">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.cargaTablaClientes">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaTablaClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de cargar la tabla de clientes con los datos de la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaClientes</span><span class="o">.</span><span class="n">setRowCount</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">listado</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">listadoClientes</span><span class="p">()</span>
@@ -179,6 +224,15 @@
 <div class="viewcode-block" id="Clientes.cargaOneCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.cargaOneCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de cargar los datos de un cliente en los campos de texto</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tablaClientes</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">dato</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="k">for</span> <span class="n">dato</span> <span class="ow">in</span> <span class="n">fila</span><span class="p">]</span>
@@ -205,6 +259,15 @@
 <div class="viewcode-block" id="Clientes.cargaOneClienteBusq">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.cargaOneClienteBusq">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">cargaOneClienteBusq</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de cargar los datos de un cliente en los campos de texto cuando se filtra</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">dni</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDnicli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
             <span class="n">registro</span> <span class="o">=</span> <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">datosOneCliente</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dni</span><span class="p">))</span>
@@ -227,6 +290,15 @@
 <div class="viewcode-block" id="Clientes.modifCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.modifCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">modifCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de modificar los datos de un cliente en la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">modifcli</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDnicli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtAltacli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtApelcli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
                         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtNomcli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span><span class="o">.</span><span class="n">title</span><span class="p">(),</span>
@@ -258,6 +330,15 @@
 <div class="viewcode-block" id="Clientes.bajaCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.bajaCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">bajaCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de dar de baja un cliente en la base de datos</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">datos</span> <span class="o">=</span> <span class="p">[</span><span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajacli</span><span class="o">.</span><span class="n">text</span><span class="p">(),</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtDnicli</span><span class="o">.</span><span class="n">text</span><span class="p">()]</span>
             <span class="n">validarFechaBaja</span> <span class="o">=</span> <span class="n">Clientes</span><span class="o">.</span><span class="n">validarFechaBaja</span><span class="p">()</span>
@@ -283,6 +364,15 @@
 <div class="viewcode-block" id="Clientes.historicoCli">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.historicoCli">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">historicoCli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de asignar si se muestra el historico de clientes en la tabla</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">chkHistoriacli</span><span class="o">.</span><span class="n">isChecked</span><span class="p">():</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">historicocli</span> <span class="o">=</span> <span class="mi">0</span>
@@ -297,6 +387,15 @@
 <div class="viewcode-block" id="Clientes.exportarCSVCli">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.exportarCSVCli">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">exportarCSVCli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de exportar los datos de los clientes en un archivo CSV</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
             <span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y_%m_</span><span class="si">%d</span><span class="s1">_%H_%M_%S&#39;</span><span class="p">)</span>
@@ -320,6 +419,15 @@
 <div class="viewcode-block" id="Clientes.exportarJSONCli">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.exportarJSONCli">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">exportarJSONCli</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de exportar los datos de los clientes en un archivo JSON</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">fecha</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">today</span><span class="p">()</span>
         <span class="n">fecha</span> <span class="o">=</span> <span class="n">fecha</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y_%m_</span><span class="si">%d</span><span class="s1">_%H_%M_%S&#39;</span><span class="p">)</span>
         <span class="n">file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">fecha</span> <span class="o">+</span> <span class="s2">&quot;_DatosClientes.json&quot;</span><span class="p">)</span>
@@ -341,6 +449,15 @@
 <div class="viewcode-block" id="Clientes.anteriorCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.anteriorCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">anteriorCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de mostrar la página de clientes anterior en la tabla</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">current_page_cli</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">current_page_cli</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">Clientes</span><span class="o">.</span><span class="n">cargaTablaClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
@@ -350,6 +467,15 @@
 <div class="viewcode-block" id="Clientes.siguienteCliente">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.siguienteCliente">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">siguienteCliente</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de mostrar la página de clientes siguiente en la tabla</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">var</span><span class="o">.</span><span class="n">current_page_cli</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="n">Clientes</span><span class="o">.</span><span class="n">cargaTablaClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
@@ -358,6 +484,15 @@
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.validarFechaBaja">[documentos]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">validarFechaBaja</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param None: None</span>
+<span class="sd">        :type None: None</span>
+<span class="sd">        :return: True or False</span>
+<span class="sd">        :rtype: Boolean</span>
+
+<span class="sd">        Metodo encargado de validar si la fecha de baja es válida</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajacli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="ow">or</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">txtBajacli</span><span class="o">.</span><span class="n">text</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
@@ -377,6 +512,14 @@
 <div class="viewcode-block" id="Clientes.filtrar">
 <a class="viewcode-back" href="../src/clientes.html#clientes.Clientes.filtrar">[documentos]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">filtrar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        :param self: None</span>
+<span class="sd">        :type self: None</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        Metodo encargado de filtrar los clientes en la tabla</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">Clientes</span><span class="o">.</span><span class="n">cargaTablaClientes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">Clientes</span><span class="o">.</span><span class="n">cargaOneClienteBusq</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </div>

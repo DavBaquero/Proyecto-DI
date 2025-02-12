@@ -8,6 +8,16 @@ class Facturas:
 
     @staticmethod
     def altaFactura():
+        """
+
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para dar de alta una factura
+
+        """
         try:
             nuevaFactura = [var.ui.txtFechaFactura.text(),var.ui.txtdniclifac.text()]
             if var.ui.txtdniclifac.text() == "" or var.ui.txtdniclifac.text() is None:
@@ -28,6 +38,15 @@ class Facturas:
 
     @staticmethod
     def cargaTablaFacturas():
+        """
+        ç
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para cargar la tabla de facturas
+        """
         try:
             listado = conexion.Conexion.listadoFacturas()
             var.ui.tablaFacturas.setRowCount(len(listado))
@@ -57,6 +76,15 @@ class Facturas:
 
     @staticmethod
     def cargaOneFactura():
+        """
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para cargar una factura
+
+        """
         try:
             fila = var.ui.tablaFacturas.currentRow()
             idFactura = var.ui.tablaFacturas.item(fila, 0).text()
@@ -74,6 +102,16 @@ class Facturas:
 
     @staticmethod
     def eliminarFactura(idFactura):
+        """
+
+        :param idFactura:
+        :type idFactura:
+        :return: None
+        :rtype: None
+
+        Función para eliminar una factura
+
+        """
         try:
             if conexion.Conexion.bajaFactura(idFactura):
                 mbox = eventos.Eventos.crearMensajeInfo("Factura eliminada", "Se ha eliminado la factura")
@@ -87,6 +125,16 @@ class Facturas:
 
     @staticmethod
     def cargarClienteVenta():
+        """
+
+        :param: None
+        :type: None
+        :return:
+        :rtype:
+
+        Metodo para cargar el cliente en la venta
+
+        """
         try:
             dniCliente = var.ui.txtdniclifac.text()
             if conexion.Conexion.datosOneCliente(dniCliente):
@@ -104,6 +152,16 @@ class Facturas:
 
     @staticmethod
     def cargarPropiedadVenta(propiedad):
+        """
+
+        :param propiedad: Lista con los datos de la propiedad
+        :type propiedad: List
+        :return: True si la propiedad está disponible, False si no lo está
+        :rtype: Boolean
+
+        Metodo para cargar la propiedad en la venta
+
+        """
         try:
             if str(propiedad[6]).lower() == "disponible":
                 var.ui.txtcodpropfac.setText(str(propiedad[1]))
@@ -121,6 +179,15 @@ class Facturas:
 
     @staticmethod
     def altaVenta():
+        """
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para dar de alta una venta
+
+        """
         try:
             nuevaVenta = [var.ui.lblNumFactura.text(), var.ui.txtcodpropfac.text(), var.ui.txtidvenfac.text()]
             if var.ui.txtcodpropfac.text() == "" or var.ui.txtcodpropfac.text() is None:
@@ -143,6 +210,15 @@ class Facturas:
 
     @staticmethod
     def cargaTablaVentas():
+        """
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para cargar la tabla de ventas
+
+        """
         idFactura = var.ui.lblNumFactura.text()
         listado = conexion.Conexion.listadoVentas(idFactura)
         var.ui.tablaVentas.setRowCount(len(listado))
@@ -202,6 +278,15 @@ class Facturas:
 
     @staticmethod
     def cargaOneVenta():
+        """
+        :param: None
+        :type: None
+        :return: None
+        :rtype: None
+
+        Función para cargar una venta
+
+        """
         try:
             fila = var.ui.tablaVentas.currentRow()
             idVenta = var.ui.tablaVentas.item(fila, 0).text()
@@ -220,6 +305,17 @@ class Facturas:
             print("Error en cargaOneVenta",e)
 
     def eliminarVenta(idVenta, idpropiedad):
+        """
+        :param idVenta: La id de la venta
+        :type idVenta: int
+        :param idpropiedad: La id de la propiedad
+        :type idpropiedad:  int
+        :return: None
+        :rtype: None
+
+        Función para eliminar una venta
+
+        """
         try:
             if conexion.Conexion.bajaVenta(idVenta) and conexion.Conexion.altaPropiedadVenta(str(idpropiedad)):
                 mbox = eventos.Eventos.crearMensajeInfo("Venta eliminada","Se ha eliminado la venta")

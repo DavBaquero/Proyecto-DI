@@ -299,6 +299,15 @@ class Clientes:
             print("error bajaCliente", e)
 
     def historicoCli(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de asignar si se muestra el historico de clientes en la tabla
+
+        """
         try:
             if var.ui.chkHistoriacli.isChecked():
                 var.historicocli = 0
@@ -310,6 +319,15 @@ class Clientes:
 
 
     def exportarCSVCli(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de exportar los datos de los clientes en un archivo CSV
+
+        """
         try:
             fecha = datetime.datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -330,6 +348,15 @@ class Clientes:
             print("Error exportar CSV", e)
 
     def exportarJSONCli(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de exportar los datos de los clientes en un archivo JSON
+
+        """
         fecha = datetime.datetime.today()
         fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
         file = str(fecha + "_DatosClientes.json")
@@ -348,17 +375,44 @@ class Clientes:
 
 
     def anteriorCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de mostrar la página de clientes anterior en la tabla
+
+        """
         if var.current_page_cli > 0:
             var.current_page_cli -= 1
         Clientes.cargaTablaClientes(self)
 
 
     def siguienteCliente(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de mostrar la página de clientes siguiente en la tabla
+
+        """
         var.current_page_cli += 1
         Clientes.cargaTablaClientes(self)
 
     @staticmethod
     def validarFechaBaja():
+        """
+        :param None: None
+        :type None: None
+        :return: True or False
+        :rtype: Boolean
+
+        Metodo encargado de validar si la fecha de baja es válida
+
+        """
         try:
             if var.ui.txtBajacli.text() == "" or var.ui.txtBajacli.text() is None:
                 return True
@@ -375,5 +429,13 @@ class Clientes:
 
 
     def filtrar(self):
+        """
+        :param self: None
+        :type self: None
+        :return: None
+        :rtype: None
+
+        Metodo encargado de filtrar los clientes en la tabla
+        """
         Clientes.cargaTablaClientes(self)
         Clientes.cargaOneClienteBusq(self)

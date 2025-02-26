@@ -279,7 +279,16 @@ class Eventos():
                     else:
                         dato.setText(datetime.today().strftime('%d/%m/%Y'))
                 facturas.Facturas.cargaTablaVentas()
-
+            elif current_index == 4:
+                alquileres = [var.ui.lblnumalq, var.ui.txtfechainicioalq, var.ui.txtfechafinalq, var.ui.txtnomeclialq,
+                              var.ui.txtapelclialq, var.ui.txtdniclialq, var.ui.txtidvenalq, var.ui.txtcodpropalq,
+                              var.ui.txttipopropalq, var.ui.txtprecioalq, var.ui.txtmunipropalq, var.ui.txtdirpropalq]
+                for i, dato in enumerate(alquileres):
+                    if i != 2 or i !=3:
+                        dato.setText("")
+                    else:
+                        dato.setText(datetime.today().strftime('%d/%m/%Y'))
+                #alquileres.Alquileres.cargaTablaAlquiler()
             else:
                 print("panPrincipal es nulo")
         except Exception as e:

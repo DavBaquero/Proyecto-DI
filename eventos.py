@@ -685,3 +685,17 @@ class Eventos():
                     header_items.setFont(font)
         except Exception as e:
             print("error en resize tabla clientes ", e)
+
+    @staticmethod
+    def resizeTablaContratos():
+        header = var.ui.tablacontratosalq.horizontalHeader()
+        for i in range(header.count()):
+            if i != 0:
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+            else:
+                header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+            header_items = var.ui.tablacontratosalq.horizontalHeaderItem(i)
+            if header_items is not None:
+                font = header_items.font()
+                font.setBold(True)
+                header_items.setFont(font)

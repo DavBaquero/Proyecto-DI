@@ -1089,3 +1089,17 @@ class Conexion:
         except Exception as e:
             print("Error al comprobar si una propiedad está vendida en conexion.", e)
             return False
+
+    @staticmethod
+    def listadoContrato():
+        try:
+            listado = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT a.id, a.cliente_dni FROM alquileres AS a")
+            if query.exec():
+                while query.next():
+                    fila = [query.value(i) for i in range(query.record().count())]
+                    listado.append(fila)
+            return listado
+        except Exception as e:
+            print("Error listando contratos en listadoContrato - conexión", e)

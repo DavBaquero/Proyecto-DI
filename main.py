@@ -56,12 +56,14 @@ class Main(QtWidgets.QMainWindow):
         vendedores.Vendedores.cargaTablaVendedores(self)
         facturas.Facturas.cargaTablaFacturas()
         facturas.Facturas.cargaTablaVentas()
+        alquileres.Alquileres.cargarTablaContratos()
 
         eventos.Eventos.resizeTablaClientes(self)
         eventos.Eventos.resizeTablaPropiedades(self)
         eventos.Eventos.resizeTablaVendedores(self)
         eventos.Eventos.resizeTablaFacturas()
         eventos.Eventos.resizeTablaVentas()
+        eventos.Eventos.resizeTablaContratos()
 
         var.ui.tablaProp.clicked.connect(propiedades.Propiedades.cargaOnePropiedad)
         var.ui.tablaClientes.clicked.connect(clientes.Clientes.cargaOneCliente)

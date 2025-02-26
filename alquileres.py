@@ -2,6 +2,7 @@ import conexion
 import eventos
 import propiedades
 import var
+from PyQt6 import QtWidgets,QtGui, QtCore
 
 
 class Alquileres:
@@ -48,3 +49,19 @@ class Alquileres:
                 return False
         except Exception as e:
             print("Error en cargarPropiedadVenta", e)
+
+
+    @staticmethod
+    def cargarTablaContratos():
+        try:
+            listado = conexion.Conexion.listadoContrato()
+            var.ui.tablacontratosalq.setRowCount(len(listado))
+            index = 0
+            for registro in listado:
+                var.ui.tablacontratosalq.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tablacontratosalq.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
+                var.ui.tablacontratosalq.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablacontratosalq.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                index += 1
+        except Exception as e:
+            print("Error cargaFacturas en cargaTablaFacturas", e)

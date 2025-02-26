@@ -1020,3 +1020,72 @@ class Conexion:
                 return False
         except Exception as e:
             print("Error al vender una Propiedad en conexion.", e)
+
+
+    '''
+        Zona de Alquileres
+    '''
+
+    @staticmethod
+    def altaAlquiler(Alquiler):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO ALQUILERES (propiedad_id,cliente_dni,fecha_inicio,fecha_fin,vendedor) "
+                          "VALUES (:propiedad_id,:cliente_dni,:fecha_inicio,:fecha_fin,:vendedor)")
+            query.bindValue(":propiedad_id", str(Alquiler[0]))
+            query.bindValue(":cliente_dni", str(Alquiler[1]))
+            query.bindValue(":fecha_inicio", str(Alquiler[2]))
+            query.bindValue(":fecha_fin", str(Alquiler[3]))
+            query.bindValue(":vendedor", str(Alquiler[4]))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al dar de alta alquiler en conexion:", e)
+            return False
+
+    @staticmethod
+    def actualizaPropiedadAlquiler(codigoPropiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE propiedades SET estadoprop = 'Alquilado', bajaprop = :fechaBaja WHERE codigo = :codigo")
+            query.bindValue(":codigo", str(codigoPropiedad))
+            query.bindValue(":fechaBaja", datetime.now().strftime("%d/%m/%Y"))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al alquilar una Propiedad en conexion.", e)
+            return False
+
+    @staticmethod
+    def checkPropiedadAlq(idPropiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM alquileres WHERE propiedad_id = :idPropiedad")
+            query.bindValue(":idPropiedad", str(idPropiedad))
+            if query.exec():
+                if query.next():
+                    return True
+                else:
+                    return False
+        except Exception as e:
+            print("Error al comprobar si una propiedad está alquilada en conexion.", e)
+            return False
+
+    @staticmethod
+    def checkPorpiedadVen(idPropiedad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM ventas WHERE codprop = :idPropiedad")
+            query.bindValue(":idPropiedad", str(idPropiedad))
+            if query.exec():
+                if query.next():
+                    return True
+                else:
+                    return False
+        except Exception as e:
+            print("Error al comprobar si una propiedad está vendida en conexion.", e)
+            return False

@@ -281,6 +281,9 @@ class Propiedades():
 
             if listadoAlquier[0] == "Alquiler" and listadoAlquier[6] == "Disponible":
                 alquileres.Alquileres.cargarPropiedadAlquiler(listadoAlquier)
+
+
+            Propiedades.manageRadioButtons()
         except Exception as e:
             print("Error cargando UNA propiedad en propiedades.", e)
 
@@ -562,23 +565,23 @@ class Propiedades():
             var.ui.rbtDisponprop.setEnabled(True)
             var.ui.rbtDisponprop.setChecked(True)
             var.ui.rbtAlquilprop.setChecked(False)
-            var.ui.rbtVentaprop.setChecked(False)
             var.ui.rbtAlquilprop.setEnabled(False)
+            var.ui.rbtVentaprop.setChecked(False)
             var.ui.rbtVentaprop.setEnabled(False)
-        elif var.ui.chkAlquilprop.isChecked():
+        elif conexion.Conexion.checkPropiedadAlq(var.ui.lblProp.text()):
             var.ui.rbtDisponprop.setChecked(False)
             var.ui.rbtDisponprop.setEnabled(False)
-            var.ui.rbtAlquilprop.setChecked(True)
             var.ui.rbtAlquilprop.setEnabled(True)
-            var.ui.rbtVentaprop.setEnabled(False)
+            var.ui.rbtAlquilprop.setChecked(True)
             var.ui.rbtVentaprop.setChecked(False)
-        else:
+            var.ui.rbtVentaprop.setEnabled(False)
+        elif conexion.Conexion.checkPorpiedadVen(var.ui.lblProp.text()):
             var.ui.rbtDisponprop.setChecked(False)
             var.ui.rbtDisponprop.setEnabled(False)
             var.ui.rbtAlquilprop.setChecked(False)
             var.ui.rbtAlquilprop.setEnabled(False)
-            var.ui.rbtVentaprop.setChecked(True)
             var.ui.rbtVentaprop.setEnabled(True)
+            var.ui.rbtVentaprop.setChecked(True)
 
     def exportarCSVProp(self):
         """

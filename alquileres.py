@@ -1,4 +1,6 @@
+import conexion
 import eventos
+import propiedades
 import var
 
 
@@ -9,6 +11,22 @@ class Alquileres:
         try:
             nuevoAlquiler =[var.ui.txtcodpropalq.text(), var.ui.txtdniclialq.text(), var.ui.txtfechainicioalq.text(),
                             var.ui.txtfechafinalq.text(), var.ui.txtidvenalq.text()]
+            if nuevoAlquiler[0] == "":
+                mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Debe seleccionar una propiedad")
+                mbox.exec()
+            elif nuevoAlquiler[1] == "":
+                mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Debe seleccionar un cliente")
+                mbox.exec()
+            elif nuevoAlquiler[4] == "":
+                mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Debe seleccionar un vendedor")
+                mbox.exec()
+            else:
+                conexion.Conexion.altaAlquiler(nuevoAlquiler)
+                conexion.Conexion.actualizaPropiedadAlquiler(nuevoAlquiler[0])
+                mbox = eventos.Eventos.crearMensajeInfo("Alta alquiler","Alquiler dado de alta correctamente")
+                mbox.exec()
+                propiedades.Propiedades.cargarTablaPropiedades()
+                #eventos.Eventos.cargarTablaAlquiler()
         except Exception as e:
             mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Error al dar alta alquiler")
             print("Error al dar de alta un alquiler", e)

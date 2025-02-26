@@ -1,6 +1,7 @@
 from calendar import Calendar
 from xmlrpc.client import DateTime
 
+import alquileres
 import facturas
 import informes
 import vendedores
@@ -115,6 +116,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnfechainiciocontrato.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4,0))
         var.ui.btnfechafincontrato.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4,1))
+        var.ui.btnCrearContrato.clicked.connect(alquileres.Alquileres.altaAlquiler)
 
         '''
         eventos de cajas de texto

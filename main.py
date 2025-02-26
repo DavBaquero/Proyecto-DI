@@ -113,6 +113,9 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnIformeFac.clicked.connect(lambda: informes.Informes.reportFact(var.ui.lblNumFactura.text()))
 
+        var.ui.btnfechainiciocontrato.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4,0))
+        var.ui.btnfechafincontrato.clicked.connect(lambda: eventos.Eventos.abrirCalendar(4,1))
+
         '''
         eventos de cajas de texto
         '''

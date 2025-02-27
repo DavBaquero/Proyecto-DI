@@ -65,3 +65,24 @@ class Alquileres:
                 index += 1
         except Exception as e:
             print("Error cargaFacturas en cargaTablaFacturas", e)
+
+
+    @staticmethod
+    def cargarOneContrato():
+        try:
+            var.ui.btnCrearContrato.setDisabled(True)
+            fila = var.ui.tablacontratosalq.currentRow()
+            idAlquiler = var.ui.tablacontratosalq.item(fila, 0).text()
+
+            if idAlquiler:
+                alquiler = conexion.Conexion.cargaOneContrato(idAlquiler)
+                print(alquiler)
+                var.ui.lblnumalq.setText(alquiler[0])
+                var.ui.txtfechainicioalq.setText(alquiler[1])
+                var.ui.txtfechafinalq.setText(alquiler[2])
+            else:
+                mbox = eventos.Eventos.crearMensajeError("Error cargar contrato",
+                                                         "Error al intentar cargar un contrato")
+                mbox.exec()
+        except Exception as e:
+            print("Error carga alquiler: ", e)

@@ -70,6 +70,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tablaFacturas.clicked.connect(facturas.Facturas.cargaOneFactura)
         var.ui.tablaVendedores.clicked.connect(vendedores.Vendedores.cargaOneVendedor)
         var.ui.tablaVentas.clicked.connect(facturas.Facturas.cargaOneVenta)
+        var.ui.tablacontratosalq.clicked.connect(alquileres.Alquileres.cargarOneContrato)
 
         '''
         zona de eventos del menubar

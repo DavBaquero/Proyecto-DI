@@ -1,8 +1,12 @@
+import datetime
+
 import conexion
 import eventos
 import propiedades
 import var
 from PyQt6 import QtWidgets,QtGui, QtCore
+from dateutil.relativedelta import relativedelta
+
 
 
 class Alquileres:
@@ -21,13 +25,15 @@ class Alquileres:
             elif nuevoAlquiler[4] == "":
                 mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Debe seleccionar un vendedor")
                 mbox.exec()
-            else:
-                conexion.Conexion.altaAlquiler(nuevoAlquiler)
-                conexion.Conexion.actualizaPropiedadAlquiler(nuevoAlquiler[0])
+            elif ((conexion.Conexion.altaAlquiler(nuevoAlquiler)) and
+                (conexion.Conexion.actualizaPropiedadAlquiler(nuevoAlquiler[0])) and Alquileres.generaMensualidad(nuevoAlquiler)):
+
                 mbox = eventos.Eventos.crearMensajeInfo("Alta alquiler","Alquiler dado de alta correctamente")
                 mbox.exec()
                 propiedades.Propiedades.cargarTablaPropiedades()
-                #eventos.Eventos.cargarTablaAlquiler()
+                Alquileres.cargarTablaContratos()
+            else:
+                pass
         except Exception as e:
             mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Error al dar alta alquiler")
             print("Error al dar de alta un alquiler", e)
@@ -86,3 +92,36 @@ class Alquileres:
                 mbox.exec()
         except Exception as e:
             print("Error carga alquiler: ", e)
+
+
+    @staticmethod
+    def generaMensualidad(registro):
+        try:
+            fechaIniciostr = registro[2]
+            fechaFinalstr = registro[3]
+            propiedad = registro[0]
+            cliente = registro[1]
+            idAlquiler = conexion.Conexion.buscarAlquiler(propiedad,cliente)
+
+
+            fechaInicio = datetime.datetime.strptime(fechaIniciostr, "%d/%m/%Y")
+            fechaFinal = datetime.datetime.strptime(fechaFinalstr, "%d/%m/%Y")
+
+            while fechaInicio.year <= fechaFinal.year and (
+                    fechaInicio.year < fechaFinal.year or fechaInicio.month <= fechaFinal.month):
+                mes = fechaInicio.strftime("%B").capitalize()
+                mes_anio = f"{mes} {fechaInicio.year}"
+                registro = [idAlquiler, mes_anio, 0]
+                if not conexion.Conexion.altaMensualidad(registro):
+                    return False
+                fechaInicio += relativedelta(months=1)
+
+            return True
+
+        except ValueError as e:
+            print("Error: Las fechas no tienen el formato correcto o no son válidas.", e)
+            return False
+
+        except TypeError as e:
+            print("Error: Se esperaba una cadena de texto para la fecha.", e)
+            return False

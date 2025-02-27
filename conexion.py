@@ -1117,3 +1117,31 @@ class Conexion:
             return listado
         except Exception as e:
             print("Error en la query de cargar un contrato: ",e)
+
+    @staticmethod
+    def buscarAlquiler(p,c):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("select id from alquileres where propiedad_id = :p and cliente_dni = :c")
+            query.bindValue(":p",p)
+            query.bindValue(":c",c)
+            if query.exec():
+                while query.next():
+                    return query.value(0)
+        except Exception as e:
+            print("Error en la query de buscar un alquiler: ", e)
+
+    @staticmethod
+    def altaMensualidad(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("INSERT INTO mensualidades(idalquiler, mes, pagado) VALUES (:idalquiler,:mes,:pagado)")
+            query.bindValue(":idalquiler", str(registro[0]))
+            query.bindValue(":mes", str(registro[1]))
+            query.bindValue(":pagado", str(registro[2]))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al grabar nueva mensualidad en conexion", str(e))

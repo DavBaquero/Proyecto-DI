@@ -82,7 +82,6 @@ class Alquileres:
 
             if idAlquiler:
                 alquiler = conexion.Conexion.cargaOneContrato(idAlquiler)
-                print(alquiler)
                 var.ui.lblnumalq.setText(alquiler[0])
                 var.ui.txtfechainicioalq.setText(alquiler[1])
                 var.ui.txtfechafinalq.setText(alquiler[2])
@@ -90,6 +89,7 @@ class Alquileres:
                 mbox = eventos.Eventos.crearMensajeError("Error cargar contrato",
                                                          "Error al intentar cargar un contrato")
                 mbox.exec()
+            Alquileres.cargarTablaMensualidad(alquiler[0])
         except Exception as e:
             print("Error carga alquiler: ", e)
 
@@ -125,3 +125,28 @@ class Alquileres:
         except TypeError as e:
             print("Error: Se esperaba una cadena de texto para la fecha.", e)
             return False
+
+
+    @staticmethod
+    def cargarTablaMensualidad(idAlquiler):
+        try:
+            listado = conexion.Conexion.listadoMensualidad(idAlquiler)
+            var.ui.tablaMensualidades.setRowCount(len(listado))
+            index = 0
+            for registro in listado:
+                var.ui.tablaMensualidades.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
+                var.ui.tablaMensualidades.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[1])))
+                var.ui.tablaMensualidades.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[2])))
+                var.ui.tablaMensualidades.setItem(index, 3, QtWidgets.QTableWidgetItem(str(registro[3])))
+
+                checkbox = QtWidgets.QCheckBox()
+                checkbox.setChecked(bool(int(registro[4])))
+                var.ui.tablaMensualidades.setCellWidget(index, 4, checkbox)
+
+                var.ui.tablaMensualidades.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
+                var.ui.tablaMensualidades.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaMensualidades.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                var.ui.tablaMensualidades.item(index, 3).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                index += 1
+        except Exception as e:
+            print("Error cargaFacturas en cargaTablaFacturas", e)

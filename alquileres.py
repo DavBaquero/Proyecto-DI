@@ -142,6 +142,8 @@ class Alquileres:
                 checkbox = QtWidgets.QCheckBox()
                 checkbox.setChecked(bool(int(registro[4])))
                 var.ui.tablaMensualidades.setCellWidget(index, 4, checkbox)
+                checkbox.clicked.connect(lambda checked, idMensualidad=registro[0],: Alquileres.pagarMensualidad(idMensualidad))
+
 
                 var.ui.tablaMensualidades.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                 var.ui.tablaMensualidades.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
@@ -150,3 +152,19 @@ class Alquileres:
                 index += 1
         except Exception as e:
             print("Error cargaFacturas en cargaTablaFacturas", e)
+
+    @staticmethod
+    def pagarMensualidad(idMensualidad):
+        try:
+            if conexion.Conexion.pagarMensualidad(idMensualidad):
+                if conexion.Conexion.estadoPago(idMensualidad) == 0:
+                    mbox = eventos.Eventos.crearMensajeInfo("Pago mensualidad","Pago revertido correctamente")
+                elif conexion.Conexion.estadoPago(idMensualidad) == 1:
+                    mbox = eventos.Eventos.crearMensajeInfo("Pago mensualidad","Mensualidad pagada correctamente")
+                mbox.exec()
+            else:
+                mbox = eventos.Eventos.crearMensajeError("Error pago mensualidad","Error al pagar mensualidad")
+                mbox.exec()
+        except Exception as e:
+            print("Error al pagar meses", e)
+            return False

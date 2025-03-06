@@ -1163,3 +1163,34 @@ class Conexion:
 
         except Exception as e:
             print("Error listando mensualidades en listadoMensualidad - conexión", e)
+
+    @staticmethod
+    def pagarMensualidad(idMensualidad):
+        try:
+            query = QtSql.QSqlQuery()
+            if Conexion.estadoPago(idMensualidad) == 0:
+                query.prepare("UPDATE mensualidades SET pagado = 1 WHERE idmensualidad = :idmensualidad")
+            elif Conexion.estadoPago(idMensualidad) == 1:
+                query.prepare("UPDATE mensualidades SET pagado = 0 WHERE idmensualidad = :idmensualidad")
+            query.bindValue(":idmensualidad", str(idMensualidad))
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al pagar mensualidad en conexion", e)
+            return False
+
+
+    @staticmethod
+    def estadoPago(mensualida):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT pagado FROM mensualidades WHERE idmensualidad = :idmensualidad")
+            query.bindValue(":idmensualidad", str(mensualida))
+            if query.exec():
+                while query.next():
+                    return query.value(0)
+        except Exception as e:
+            print("Error en la query de estado de pago: ", e)
+            return False

@@ -123,6 +123,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnCrearContrato.clicked.connect(alquileres.Alquileres.altaAlquiler)
 
         '''
+        var.ui.btnModificarContrato.setDisabled(True)
+        var.ui.btnModificarContrato.clicked.connect(alquileres.Alquileres.modificarContrato)
+        '''
+
+        '''
         eventos de cajas de texto
         '''
         var.ui.txtDnicli.editingFinished.connect(lambda: clientes.Clientes.checkDNI(var.ui.txtDnicli.text()))

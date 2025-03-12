@@ -1194,3 +1194,50 @@ class Conexion:
         except Exception as e:
             print("Error en la query de estado de pago: ", e)
             return False
+
+    @staticmethod
+    def datosOneAlquiler(idContrato):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "SELECT a.id, a.fecha_inicio, a.fecha_fin, a.vendedor, c.dnicli, c.nomecli, c.apelcli, p.codigo, "
+                "p.tipoprop, p.prealquilerprop, p.muniprop, p.dirprop FROM alquileres as a "
+                "INNER JOIN propiedades as p ON a.propiedad_id = p.codigo "
+                "INNER JOIN clientes as c ON a.cliente_dni = c.dnicli WHERE a.id = :idAlquiler")
+            query.bindValue(':idAlquiler', idContrato)
+            if query.exec():
+                while query.next():
+                    for i in range(12):
+                        registro.append(query.value(i))
+            return registro
+        except Exception as e:
+            print("Error datosOneAlquiler: ", e)
+
+    @staticmethod
+    def modificarFechaContrato(idAlquiler, nuevaFechaFin):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE alquileres set fecha_fin = :nuevaFechaFin WHERE id = :idAlquiler")
+            query.bindValue(":nuevaFechaFin", str(nuevaFechaFin))
+            query.bindValue(":idAlquiler", idAlquiler)
+            if query.exec():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            print("Error modifcando fecha de alquiler en conexion", str(e))
+
+    @staticmethod
+    def eliminarMensualidad(idMensualidad):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM mensualidades WHERE idmensualidad = :idMensualidad")
+            query.bindValue(":idMensualidad", idMensualidad)
+            if query.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error eliminando mensualidad", str(e))

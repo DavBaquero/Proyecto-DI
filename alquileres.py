@@ -168,3 +168,91 @@ class Alquileres:
         except Exception as e:
             print("Error al pagar meses", e)
             return False
+
+    @staticmethod
+    def modificarContrato():
+        registro = [var.ui.txtcodpropalq.text(), var.ui.txtdniclialq.text(), var.ui.txtfechainicioalq.text(),
+                    var.ui.txtfechafinalq.text(), var.ui.txtidvenalq.text()]
+        nuevaFecha = registro[3]
+        idContrato = var.ui.lblnumalq.text()
+
+        datosContrato = conexion.Conexion.datosOneAlquiler(idContrato)
+        fechaFin = datosContrato[2]
+
+        nuevaFechaFin = datetime.datetime(nuevaFecha, "%d/%m/%Y")
+        fechaFinRegistrada = datetime.datetime.strptime(fechaFin, "%d/%m/%Y")
+
+        if nuevaFechaFin == fechaFinRegistrada:
+            mbox = eventos.Eventos.crearMensajeError("Error",
+                                              "La nueva fecha de fin de contrato es la misma que está registrada. No se ha modificado el contrato.")
+            mbox.exec()
+        elif nuevaFechaFin > fechaFinRegistrada:
+            registro[2] = fechaFinRegistrada
+            if Alquileres.ampliarMensualidades(idContrato, fechaFinRegistrada, nuevaFechaFin):
+                mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se han añadido nuevas mensualidades.")
+                mbox.exec()
+                eventos.Eventos.limpiarPanel()
+        elif nuevaFechaFin < fechaFinRegistrada:
+            if Alquileres.eliminarMensualidad(idContrato, nuevaFechaFin):
+                mbox = eventos.Eventos.crearMensajeInfo("Aviso",
+                                                 "Se ha recortado el contrato correctamente.")
+                mbox.exec()
+                eventos.Eventos.limpiarPanel()
+            else:
+                mbox =eventos.Eventos.crearMensajeError("Atención",
+                                                  "Es posible que haya meses que no se han eliminado al detectarse pagos en el contrato. Es posible que se haya producido un error.")
+                mbox.exec()
+                eventos.Eventos.limpiarPanel()
+        else:
+            mbox =eventos.Eventos.crearMensajeError("Error", "Se ha producido un error inesperado.")
+            mbox.exec()
+
+    @staticmethod
+    def ampliarMensualidades(idAlquiler, fechaInicio, nuevaFecha):
+        try:
+
+            fechaInicio += relativedelta(months=+1)
+
+            while fechaInicio.year <= nuevaFecha.year and (
+                    fechaInicio.year < nuevaFecha.year or fechaInicio.month <= nuevaFecha.month):
+                mes = fechaInicio.strftime("%B").capitalize()
+                mes_anio = f"{mes} {fechaInicio.year}"
+                registro = [idAlquiler, mes_anio, 0]
+                if not conexion.Conexion.altaMensualidad(registro):
+                    return False
+                fechaInicio += relativedelta(months=1)
+
+            nuevaFecha = nuevaFecha.strftime("%d/%m/%Y")
+            conexion.Conexion.modificarFechaContrato(idAlquiler, nuevaFecha)
+            return True
+
+        except ValueError as e:
+            print("Error: Las fechas no tienen el formato correcto o no son válidas.", e)
+            return False
+        except TypeError as e:
+            print("Error: Se esperaba una cadena de texto para la fecha.", e)
+            return False
+
+    @staticmethod
+    def eliminarMensualidad(idAlquiler, nuevaFecha):
+        try:
+
+            mensualidad = conexion.Conexion.listadoMensualidad(idAlquiler)
+            for i in range(len(mensualidad) - 1, -1, -1):
+                idMensualidad = mensualidad[i][0]
+                mesStr = mensualidad[i][1]
+                mes = datetime.datetime.strptime(mesStr, "%B %Y")
+                pagado = mensualidad[i][2]
+
+                if nuevaFecha < mes and not pagado:
+                    conexion.Conexion.eliminarMensualidad(idMensualidad)
+                elif nuevaFecha > mes:
+                    break;
+                elif pagado:
+                    return False
+
+            nuevaFecha = nuevaFecha.strftime("%d/%m/%Y")
+            conexion.Conexion.modificarFechaContrato(idAlquiler, nuevaFecha)
+            return True
+        except Exception as e:
+            print("Error eliminando mensualidades en alquileres", str(e))

@@ -1,6 +1,8 @@
 import os
 import sys
 from PyQt6 import QtWidgets, QtGui
+
+import alquileres
 import conexion
 import facturas
 import propiedades
@@ -280,15 +282,15 @@ class Eventos():
                         dato.setText(datetime.today().strftime('%d/%m/%Y'))
                 facturas.Facturas.cargaTablaVentas()
             elif current_index == 4:
-                alquileres = [var.ui.lblnumalq, var.ui.txtfechainicioalq, var.ui.txtfechafinalq, var.ui.txtnomeclialq,
+                alquiler = [var.ui.lblnumalq, var.ui.txtfechainicioalq, var.ui.txtfechafinalq, var.ui.txtnomeclialq,
                               var.ui.txtapelclialq, var.ui.txtdniclialq, var.ui.txtidvenalq, var.ui.txtcodpropalq,
                               var.ui.txttipopropalq, var.ui.txtprecioalq, var.ui.txtmunipropalq, var.ui.txtdirpropalq]
-                for i, dato in enumerate(alquileres):
+                for i, dato in enumerate(alquiler):
                     if i != 2 or i !=3:
                         dato.setText("")
                     else:
                         dato.setText(datetime.today().strftime('%d/%m/%Y'))
-                #alquileres.Alquileres.cargaTablaAlquiler()
+                alquileres.Alquileres.cargarTablaMensualidad(-1)
             else:
                 print("panPrincipal es nulo")
         except Exception as e:

@@ -1,7 +1,10 @@
 import datetime
 
+from PyQt6.QtWidgets import QHBoxLayout, QWidget
+
 import conexion
 import eventos
+import informes
 import propiedades
 import var
 from PyQt6 import QtWidgets,QtGui, QtCore
@@ -141,9 +144,36 @@ class Alquileres:
 
                 checkbox = QtWidgets.QCheckBox()
                 checkbox.setChecked(bool(int(registro[4])))
-                var.ui.tablaMensualidades.setCellWidget(index, 4, checkbox)
-                checkbox.clicked.connect(lambda checked, idMensualidad=registro[0],: Alquileres.pagarMensualidad(idMensualidad))
 
+                checkboxLayout = QHBoxLayout()
+                checkboxLayout.addWidget(checkbox)
+                checkboxLayout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                checkboxLayout.setContentsMargins(0, 0, 0, 0)
+                checkboxLayout.setSpacing(0)
+
+                checkboxContainer = QWidget()
+                checkboxContainer.setLayout(checkboxLayout)
+                var.ui.tablaMensualidades.setCellWidget(index, 4, checkboxContainer)
+                checkbox.clicked.connect(lambda checked, idMensualidad=registro[0]: Alquileres.pagarMensualidad(idMensualidad))
+
+                botonInfor = QtWidgets.QPushButton()
+                botonInfor.setStyleSheet("background-color: #f5f5f5;")
+                botonInfor.setFixedSize(20, 20)
+                botonInfor.setIconSize(QtCore.QSize(20, 20))
+                botonInfor.setIcon(QtGui.QIcon('./img/informe.ico'))
+
+                layoutBoton = QHBoxLayout()
+                layoutBoton.addWidget(botonInfor)
+                layoutBoton.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                layoutBoton.setContentsMargins(0, 0, 0, 0)
+                layoutBoton.setSpacing(0)
+
+                containerBoton = QWidget()
+                containerBoton.setLayout(layoutBoton)
+                var.ui.tablaMensualidades.setCellWidget(index, 5, containerBoton)
+                botonInfor.clicked.connect(lambda checked, idMensualidad=registro[0],
+                                                        idAlquilerInforme=idAlquiler:
+                                           informes.Informes.reportReciboMensualidad(idAlquilerInforme, idMensualidad))
 
                 var.ui.tablaMensualidades.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                 var.ui.tablaMensualidades.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)

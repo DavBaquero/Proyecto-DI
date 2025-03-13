@@ -35,10 +35,9 @@ class Alquileres:
                 mbox.exec()
                 propiedades.Propiedades.cargarTablaPropiedades()
                 Alquileres.cargarTablaContratos()
-            else:
-                pass
         except Exception as e:
             mbox = eventos.Eventos.crearMensajeError("Error alta alquiler","Error al dar alta alquiler")
+            mbox.exec()
             print("Error al dar de alta un alquiler", e)
 
 
@@ -71,6 +70,26 @@ class Alquileres:
                 var.ui.tablacontratosalq.setItem(index, 1, QtWidgets.QTableWidgetItem(registro[1]))
                 var.ui.tablacontratosalq.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignLeft.AlignVCenter)
                 var.ui.tablacontratosalq.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+
+                botonEliminar = QtWidgets.QPushButton()
+                botonEliminar.setFixedSize(25, 25)
+                botonEliminar.setIconSize(QtCore.QSize(25, 25))
+                botonEliminar.setObjectName("botonEliminarCont")
+                botonEliminar.setIcon(QtGui.QIcon('./img/papelera.ico'))
+
+                # creamos layout para centrar el boton
+                layout = QHBoxLayout()
+                layout.addWidget(botonEliminar)
+                layout.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
+                layout.setContentsMargins(0, 0, 0, 0)
+                layout.setSpacing(0)
+
+                # Crear un widget contenedor para el layout y agregarlo a la celda
+                container = QWidget()
+                container.setLayout(layout)
+                var.ui.tablacontratosalq.setCellWidget(index, 2, container)
+                botonEliminar.clicked.connect(
+                    lambda checked, idAlquiler=registro[0],: Alquileres.eliminarAlquiler(idAlquiler))
                 index += 1
         except Exception as e:
             print("Error cargaFacturas en cargaTablaFacturas", e)
@@ -292,3 +311,36 @@ class Alquileres:
             return True
         except Exception as e:
             print("Error eliminando mensualidades en alquileres", str(e))
+
+    @staticmethod
+    def eliminarAlquiler(idAlquiler):
+        try:
+            codProp = var.ui.txtcodpropalq.text()
+            hasMensualidadesPagadas = False
+            mensualidades = conexion.Conexion.listadoMensualidad(idAlquiler)
+            for mensualidad in mensualidades:
+                isPagado = mensualidad[4]
+                if isPagado:
+                    hasMensualidadesPagadas = True
+                    break
+
+            mbox = eventos.Eventos.crearMensajeConfirmacion('Eliminar contrato',
+                                                            "¿Desea eliminar el contrato de alquiler seleccionado? Tenga en cuenta que la acción es irreversible.")
+            if mbox.exec() == QtWidgets.QMessageBox.StandardButton.Yes:
+                if hasMensualidadesPagadas:
+                    Alquileres.eliminarMensualidad(idAlquiler, datetime.datetime.now())
+                    fecha_hoy = datetime.datetime.now().strftime("%d/%m/%Y")
+                    conexion.Conexion.finalizarContrato(idAlquiler, codProp, fecha_hoy)
+                    Alquileres.cargarTablaMensualidad(idAlquiler)
+                    eventos.Eventos.crearMensajeInfo("Aviso",
+                                                     "Se han eliminado las mensualidades pendientes. El contrato no se puede eliminar, ya existen mensualidades pagadas.")
+                elif not hasMensualidadesPagadas and conexion.Conexion.eliminarContratoAlquiler(idAlquiler):
+                    eventos.Eventos.crearMensajeInfo("Aviso", "Se ha eliminado el contrato de alquiler.")
+                    Alquileres.cargarTablaContratos()
+                    Alquileres.cargarTablaMensualidad(0)
+                else:
+                    eventos.Eventos.crearMensajeError("Error",
+                                                      "Se ha producido un error y no se ha eliminado el contrato de alquiler.")
+
+        except Exception as e:
+            print("Error al eliminar un alquiler en alquileres", str(e))

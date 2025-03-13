@@ -1243,3 +1243,49 @@ class Conexion:
 
         except Exception as e:
             print("Error al cargar datos de una mensualidad en conexcion", str(e))
+
+    @staticmethod
+    def finalizarContrato(idAlquiler,codPropiedad, nuevaFechaFin):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE alquileres set fecha_fin = :nuevaFechaFin WHERE id = :idAlquiler")
+            query.bindValue(":nuevaFechaFin", str(nuevaFechaFin))
+            query.bindValue(":idAlquiler", idAlquiler)
+            if not query.exec():
+                return False
+
+            query_propiedad = QtSql.QSqlQuery()
+            query_propiedad.prepare("UPDATE propiedades SET baja = NULL, estado = 'Disponible' WHERE codigo = :codPropiedad")
+            query_propiedad.bindValue(":codPropiedad",codPropiedad)
+            if not query_propiedad.exec():
+                return False
+
+            return True
+        except Exception as e:
+            print("Error modifcando fecha de alquiler en conexion", str(e))
+
+    @staticmethod
+    def eliminarContratoAlquiler(idAlquiler):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("DELETE FROM mensualidades WHERE idalquiler = :idAlquiler")
+            query.bindValue(":idAlquiler", idAlquiler)
+            if not query.exec():
+                return False
+
+            query_prop = QtSql.QSqlQuery()
+            query_prop.prepare(
+                "UPDATE propiedades SET estadoprop = 'Disponible', bajaprop = NULL WHERE codigo = ( SELECT propiedad_id FROM alquileres WHERE id = :idAlquiler) ")
+            query_prop.bindValue(":idAlquiler", idAlquiler)
+            if not query_prop.exec():
+                return False
+
+            query_alq = QtSql.QSqlQuery()
+            query_alq.prepare("DELETE FROM alquileres WHERE id = :idAlquiler")
+            query_alq.bindValue(":idAlquiler", idAlquiler)
+            if query_alq.exec():
+                return True
+            else:
+                return False
+        except Exception as e:
+            print("Error al eliminar un contrato de alquiler en conexion", str(e))

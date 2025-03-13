@@ -124,10 +124,6 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnModContrato.clicked.connect(alquileres.Alquileres.modificarContrato)
 
-        '''
-        var.ui.btnModificarContrato.setDisabled(True)
-        var.ui.btnModificarContrato.clicked.connect(alquileres.Alquileres.modificarContrato)
-        '''
 
         '''
         eventos de cajas de texto

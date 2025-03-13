@@ -107,6 +107,19 @@ class Eventos():
         mbox.button(QtWidgets.QMessageBox.StandardButton.Ok).setText('Aceptar')
         return mbox
 
+    @staticmethod
+    def crearMensajeConfirmacion(titulo_ventana, mensaje):
+        mbox = QtWidgets.QMessageBox()
+        mbox.setIcon(QtWidgets.QMessageBox.Icon.Question)
+        mbox.setWindowIcon(QtGui.QIcon('./img/icono.png'))
+        mbox.setText(mensaje)
+        mbox.setWindowTitle(titulo_ventana)
+        mbox.setStandardButtons(QtWidgets.QMessageBox.StandardButton.Yes | QtWidgets.QMessageBox.StandardButton.No)
+        mbox.setDefaultButton(QtWidgets.QMessageBox.StandardButton.No)
+        mbox.button(QtWidgets.QMessageBox.StandardButton.Yes).setText('Sí')
+        mbox.button(QtWidgets.QMessageBox.StandardButton.No).setText('No')
+        return mbox
+
 
     '''
         Zona general
@@ -283,14 +296,17 @@ class Eventos():
                 facturas.Facturas.cargaTablaVentas()
             elif current_index == 4:
                 alquiler = [var.ui.lblnumalq, var.ui.txtfechainicioalq, var.ui.txtfechafinalq, var.ui.txtnomeclialq,
-                              var.ui.txtapelclialq, var.ui.txtdniclialq, var.ui.txtidvenalq, var.ui.txtcodpropalq,
-                              var.ui.txttipopropalq, var.ui.txtprecioalq, var.ui.txtmunipropalq, var.ui.txtdirpropalq]
-                for i, dato in enumerate(alquiler):
-                    if i != 2 or i !=3:
-                        dato.setText("")
-                    else:
-                        dato.setText(datetime.today().strftime('%d/%m/%Y'))
-                alquileres.Alquileres.cargarTablaMensualidad(-1)
+                            var.ui.txtapelclialq, var.ui.txtdniclialq, var.ui.txtidvenalq, var.ui.txtcodpropalq,
+                            var.ui.txttipopropalq, var.ui.txtprecioalq, var.ui.txtmunipropalq,
+                            var.ui.txtdirpropalq]
+                for dato in alquiler:
+                    dato.setText("")
+                var.ui.txtprecioalq.setStyleSheet(
+                    'border-bottom: 1px solid black; background-color: rgb(255, 255, 255);')
+                alquileres.Alquileres.cargarTablaContratos()
+                var.ui.btnCrearContrato.setDisabled(False)
+                alquileres.Alquileres.cargarTablaMensualidad(0)
+                var.ui.btnModificarContrato.setDisabled(True)
             else:
                 print("panPrincipal es nulo")
         except Exception as e:

@@ -1105,20 +1105,6 @@ class Conexion:
             print("Error listando contratos en listadoContrato - conexión", e)
 
     @staticmethod
-    def cargaOneContrato(idAlquiler):
-        try:
-            listado = []
-            query = QtSql.QSqlQuery()
-            query.prepare("Select id, fecha_inicio, fecha_fin from alquileres")
-            if query.exec():
-                while query.next():
-                    for i in range(query.record().count()):
-                        listado.append(str(query.value(i)))
-            return listado
-        except Exception as e:
-            print("Error en la query de cargar un contrato: ",e)
-
-    @staticmethod
     def buscarAlquiler(p,c):
         try:
             query = QtSql.QSqlQuery()

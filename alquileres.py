@@ -82,17 +82,20 @@ class Alquileres:
             var.ui.btnCrearContrato.setDisabled(True)
             fila = var.ui.tablacontratosalq.currentRow()
             idAlquiler = var.ui.tablacontratosalq.item(fila, 0).text()
+            listado = [var.ui.lblnumalq,var.ui.txtfechainicioalq, var.ui.txtfechafinalq, var.ui.txtidvenalq,
+                       var.ui.txtdniclialq, var.ui.txtnomeclialq, var.ui.txtapelclialq, var.ui.txtcodpropalq,
+                       var.ui.txttipopropalq, var.ui.txtprecioalq, var.ui.txtmunipropalq, var.ui.txtdirpropalq]
 
             if idAlquiler:
-                alquiler = conexion.Conexion.cargaOneContrato(idAlquiler)
-                var.ui.lblnumalq.setText(alquiler[0])
-                var.ui.txtfechainicioalq.setText(alquiler[1])
-                var.ui.txtfechafinalq.setText(alquiler[2])
+                alquiler = conexion.Conexion.datosOneAlquiler(idAlquiler)
+                for i, dato in enumerate(alquiler):
+                    listado[i].setText(str(dato))
+                Alquileres.cargarTablaMensualidad(idAlquiler)
+
             else:
                 mbox = eventos.Eventos.crearMensajeError("Error cargar contrato",
                                                          "Error al intentar cargar un contrato")
                 mbox.exec()
-            Alquileres.cargarTablaMensualidad(alquiler[0])
         except Exception as e:
             print("Error carga alquiler: ", e)
 

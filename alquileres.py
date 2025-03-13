@@ -204,41 +204,44 @@ class Alquileres:
 
     @staticmethod
     def modificarContrato():
-        registro = [var.ui.txtcodpropalq.text(), var.ui.txtdniclialq.text(), var.ui.txtfechainicioalq.text(),
-                    var.ui.txtfechafinalq.text(), var.ui.txtidvenalq.text()]
-        nuevaFecha = registro[3]
-        idContrato = var.ui.lblnumalq.text()
+        try:
+            registro = [var.ui.txtcodpropalq.text(), var.ui.txtdniclialq.text(), var.ui.txtfechainicioalq.text(),
+                        var.ui.txtfechafinalq.text(), var.ui.txtidvenalq.text()]
+            nuevaFecha = registro[3]
+            idContrato = var.ui.lblnumalq.text()
 
-        datosContrato = conexion.Conexion.datosOneAlquiler(idContrato)
-        fechaFin = datosContrato[2]
+            datosContrato = conexion.Conexion.datosOneAlquiler(idContrato)
+            fechaFin = datosContrato[2]
 
-        nuevaFechaFin = datetime.datetime(nuevaFecha, "%d/%m/%Y")
-        fechaFinRegistrada = datetime.datetime.strptime(fechaFin, "%d/%m/%Y")
+            nuevaFechaFin = datetime.datetime.strptime(str(nuevaFecha), "%d/%m/%Y")
+            fechaFinRegistrada = datetime.datetime.strptime(fechaFin, "%d/%m/%Y")
 
-        if nuevaFechaFin == fechaFinRegistrada:
-            mbox = eventos.Eventos.crearMensajeError("Error",
-                                              "La nueva fecha de fin de contrato es la misma que está registrada. No se ha modificado el contrato.")
-            mbox.exec()
-        elif nuevaFechaFin > fechaFinRegistrada:
-            registro[2] = fechaFinRegistrada
-            if Alquileres.ampliarMensualidades(idContrato, fechaFinRegistrada, nuevaFechaFin):
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se han añadido nuevas mensualidades.")
+            if nuevaFechaFin == fechaFinRegistrada:
+                mbox = eventos.Eventos.crearMensajeError("Error",
+                                                  "La nueva fecha de fin de contrato es la misma que está registrada. No se ha modificado el contrato.")
                 mbox.exec()
-                eventos.Eventos.limpiarPanel()
-        elif nuevaFechaFin < fechaFinRegistrada:
-            if Alquileres.eliminarMensualidad(idContrato, nuevaFechaFin):
-                mbox = eventos.Eventos.crearMensajeInfo("Aviso",
-                                                 "Se ha recortado el contrato correctamente.")
-                mbox.exec()
-                eventos.Eventos.limpiarPanel()
+            elif nuevaFechaFin > fechaFinRegistrada:
+                registro[2] = fechaFinRegistrada
+                if Alquileres.ampliarMensualidades(idContrato, fechaFinRegistrada, nuevaFechaFin):
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso", "Se han añadido nuevas mensualidades.")
+                    mbox.exec()
+                    Alquileres.cargarTablaMensualidad(idContrato)
+            elif nuevaFechaFin < fechaFinRegistrada:
+                if Alquileres.eliminarMensualidad(idContrato, nuevaFechaFin):
+                    mbox = eventos.Eventos.crearMensajeInfo("Aviso",
+                                                     "Se ha recortado el contrato correctamente.")
+                    mbox.exec()
+                    Alquileres.cargarTablaMensualidad(idContrato)
+                else:
+                    mbox =eventos.Eventos.crearMensajeError("Atención",
+                                                      "Es posible que haya meses que no se han eliminado al detectarse pagos en el contrato. Es posible que se haya producido un error.")
+                    mbox.exec()
+                    Alquileres.cargarTablaMensualidad(idContrato)
             else:
-                mbox =eventos.Eventos.crearMensajeError("Atención",
-                                                  "Es posible que haya meses que no se han eliminado al detectarse pagos en el contrato. Es posible que se haya producido un error.")
+                mbox =eventos.Eventos.crearMensajeError("Error", "Se ha producido un error inesperado.")
                 mbox.exec()
-                eventos.Eventos.limpiarPanel()
-        else:
-            mbox =eventos.Eventos.crearMensajeError("Error", "Se ha producido un error inesperado.")
-            mbox.exec()
+        except Exception as e:
+            print("Error al modificar contrato: ", e)
 
     @staticmethod
     def ampliarMensualidades(idAlquiler, fechaInicio, nuevaFecha):
@@ -273,9 +276,9 @@ class Alquileres:
             mensualidad = conexion.Conexion.listadoMensualidad(idAlquiler)
             for i in range(len(mensualidad) - 1, -1, -1):
                 idMensualidad = mensualidad[i][0]
-                mesStr = mensualidad[i][1]
-                mes = datetime.datetime.strptime(mesStr, "%B %Y")
-                pagado = mensualidad[i][2]
+                mesStr = mensualidad[i][2]
+                mes = datetime.datetime.strptime(str(mesStr), "%B %Y")
+                pagado = mensualidad[i][4]
 
                 if nuevaFecha < mes and not pagado:
                     conexion.Conexion.eliminarMensualidad(idMensualidad)

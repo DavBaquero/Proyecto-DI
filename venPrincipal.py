@@ -12,7 +12,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_venPrincipal(object):
     def setupUi(self, venPrincipal):
         venPrincipal.setObjectName("venPrincipal")
-        venPrincipal.resize(1582, 839)
+        venPrincipal.resize(1582, 842)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -1705,6 +1705,11 @@ class Ui_venPrincipal(object):
         self.btnCrearContrato.setMaximumSize(QtCore.QSize(100, 25))
         self.btnCrearContrato.setObjectName("btnCrearContrato")
         self.horizontalLayout_55.addWidget(self.btnCrearContrato)
+        self.btnModContrato = QtWidgets.QPushButton(parent=self.frame_5)
+        self.btnModContrato.setMinimumSize(QtCore.QSize(100, 25))
+        self.btnModContrato.setMaximumSize(QtCore.QSize(100, 25))
+        self.btnModContrato.setObjectName("btnModContrato")
+        self.horizontalLayout_55.addWidget(self.btnModContrato)
         spacerItem76 = QtWidgets.QSpacerItem(21, 10, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
         self.horizontalLayout_55.addItem(spacerItem76)
         self.gridLayout_24.addLayout(self.horizontalLayout_55, 3, 0, 1, 2)
@@ -2259,6 +2264,7 @@ class Ui_venPrincipal(object):
         self.label_32.setText(_translate("venPrincipal", "Num. contrato:"))
         self.btnfechafincontrato.setToolTip(_translate("venPrincipal", "Abrir calendario"))
         self.btnCrearContrato.setText(_translate("venPrincipal", "Crear contrato"))
+        self.btnModContrato.setText(_translate("venPrincipal", "Modificar contrato"))
         self.label_33.setText(_translate("venPrincipal", "Datos de propiedad:"))
         self.label_34.setText(_translate("venPrincipal", "Código:  "))
         self.label_35.setText(_translate("venPrincipal", "Tipo:"))

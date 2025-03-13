@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1582</width>
-    <height>839</height>
+    <height>842</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -4897,6 +4897,25 @@
                  </property>
                  <property name="text">
                   <string>Crear contrato</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnModContrato">
+                 <property name="minimumSize">
+                  <size>
+                   <width>100</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Modificar contrato</string>
                  </property>
                 </widget>
                </item>
